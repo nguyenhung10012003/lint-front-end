@@ -1,0 +1,52 @@
+{
+  "signIn": {
+    "title": "",
+    "formTitle": "Đăng nhập",
+    "formDescription": "Đăng nhập vào tài khoản của bạn",
+    "forgotPassword": "Quên mật khẩu?",
+    "signInButton": "Đăng nhập",
+    "emailLabel": "Email",
+    "passwordLabel": "Mật khẩu",
+    "emailPlaceholder": "Nhập email của bạn",
+    "passwordPlaceholder": "Nhập mật khẩu của bạn",
+    "signUpLinkText": "Chưa có tài khoản?́",
+    "signUpLink": "Đăng ký",
+    "notifyError": {
+      "userNotFound": "Email không tồn tại",
+      "wrongPassword": "Mật khẩu không đúng",
+      "userDisabled": "Tài khoản đã bị khóa",
+      "tooManyRequests": "Quá nhiều yêu cầu",
+      "operationNotAllowed": "Chức năng này không được phép",
+      "emailFormat": "Email không hợp lệ"
+    },
+    "notifySuccess": {
+      "signInSuccess": "Đăng nhập thành công, chào mừng bạn trở lại!"
+    }
+  },
+  "sidebar": {
+    "home": "Trang chủ",
+    "search": "Tìm kiếm",
+    "notification": "Thông báo",
+    "message": "Nhắn tin",
+    "dropdown": {
+      "account": {
+        "label": "Tài khoản",
+        "items": {
+          "profile": "Hồ sơ",
+          "setting": "Cài đặt"
+        }
+      },
+      "help": {
+        "label": "Trợ giúp",
+        "items": {
+          "faq": "FAQ",
+          "contact": "Liên hệ",
+          "report": "Báo cáo",
+          "feedback": "Phản hồi",
+          "help": "Trung tâm trợ giúp"
+        }
+      },
+      "logout": "Đăng xuất"
+    }
+  }
+}
