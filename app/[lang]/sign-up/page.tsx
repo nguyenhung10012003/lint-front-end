@@ -7,7 +7,7 @@ import {z} from "zod";
 import {signIn} from "@/lib/actions";
 import Link from "next/link";
 
-export default async function SignIn({params}: {
+export default async function SignUp({params}: {
   params: {
     lang: string;
   }
@@ -16,8 +16,9 @@ export default async function SignIn({params}: {
   const formSchema = z.object({
     email: z.string().email("Email must be pattern of email address"),
     password: z.string().min(8, "Password must be at least 8 characters")
-      .max(32, "Password must be at most 32 characters")
-  });
+      .max(32, "Password must be at most 32 characters"),
+    confirmPassword: z.string(),
+  }).refine(data => data.password === data.confirmPassword, 'Password and confirm password must be the same');
   const formFields = [
     {
       name: "email",
@@ -27,17 +28,23 @@ export default async function SignIn({params}: {
     },
     {
       name: "password",
-      label: dictionary.signIn.passwordLabel,
-      placeholder: dictionary.signIn.passwordPlaceholder,
+      label: dictionary.signUp.passwordLabel,
+      placeholder: dictionary.signUp.passwordPlaceholder,
+      type: "password"
+    },
+    {
+      name: "confirmPassword",
+      label: dictionary.signUp.confirmPasswordLabel,
+      placeholder: dictionary.signUp.confirmPasswordPlaceholder,
       type: "password"
     }
   ]
   return (
     <main className="w-full flex justify-center h-screen items-center p-4">
-      <Card className="max-w-[400px] w-full">
+      <Card className="max-w-[420px] w-full">
         <CardHeader>
-          <CardTitle>Sign in to your account</CardTitle>
-          <CardDescription>Enter your email and password to sign in!</CardDescription>
+          <CardTitle>{dictionary.signUp.formTitle}</CardTitle>
+          <CardDescription>{dictionary.signUp.formDescription}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="py-2 flex gap-4 flex-wrap">
@@ -56,18 +63,18 @@ export default async function SignIn({params}: {
             </div>
             <div className="relative flex justify-center text-xs uppercase">
             <span className="bg-background px-2 text-muted-foreground">
-              Or continue with
+              {dictionary.signUp.orContinueWith}
             </span>
             </div>
           </div>
-          <AuthForm schema={'signin'}
+          <AuthForm schema={'signup'}
                     submitAction={signIn}
                     fields={formFields}
-                    submitText={dictionary.signIn.signInButton}
+                    submitText={dictionary.signUp.signUpButton}
           />
           <div className='text-sm flex justify-center p-2 text-gray-500'>
-            {dictionary.signIn.signUpLinkText} &nbsp;
-            <Link href={'/sign-up'} className='underline text-primary'>{dictionary.signIn.signUpLink}</Link>
+            {dictionary.signUp.signInLinkText} &nbsp;
+            <Link href={'/sign-in'} className='underline text-primary'>{dictionary.signUp.signInLink}</Link>
           </div>
         </CardContent>
       </Card>

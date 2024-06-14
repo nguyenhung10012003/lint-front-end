@@ -1,8 +1,8 @@
 {
   "signIn": {
     "title": "",
-    "formTitle": "Đăng nhập",
-    "formDescription": "Đăng nhập vào tài khoản của bạn",
+    "formTitle": "Đăng nhập tài khoản của bạn",
+    "formDescription": "Nhập thông tin để đăng nhập tài khoản của bạn",
     "forgotPassword": "Quên mật khẩu?",
     "signInButton": "Đăng nhập",
     "emailLabel": "Email",
@@ -21,7 +21,8 @@
     },
     "notifySuccess": {
       "signInSuccess": "Đăng nhập thành công, chào mừng bạn trở lại!"
-    }
+    },
+    "orContinueWith": "Hoặc tiếp tục với"
   },
   "sidebar": {
     "home": "Trang chủ",
@@ -48,5 +49,28 @@
       },
       "logout": "Đăng xuất"
     }
+  },
+  "signUp": {
+    "title": "",
+    "formTitle": "Đăng ký tài khoản mới",
+    "formDescription": "Nhập thông tin để tạo tài khoản mới",
+    "signUpButton": "Đăng ký",
+    "emailLabel": "Email",
+    "passwordLabel": "Mật khẩu",
+    "emailPlaceholder": "Nhập email của bạn",
+    "passwordPlaceholder": "Nhập mật khẩu của bạn",
+    "confirmPasswordLabel": "Xác nhận mật khẩu",
+    "confirmPasswordPlaceholder": "Nhập lại mật khẩu của bạn",
+    "notifyError": {
+      "emailExists": "Email đã tồn tại",
+      "weakPassword": "Mật khẩu quá yếu",
+      "emailFormat": "Email không hợp lệ"
+    },
+    "notifySuccess": {
+      "signInSuccess": "Đăng ký thành công, chào mừng bạn đến với chúng tôi!"
+    },
+    "orContinueWith": "Hoặc tiếp tục với",
+    "signInLinkText": "Đã có tài khoản?",
+    "signInLink": "Đăng nhập"
   }
 }

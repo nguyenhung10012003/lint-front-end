@@ -3,6 +3,7 @@ import {Inter} from "next/font/google";
 import "../globals.css";
 import {Providers} from "@/components/providers/Providers";
 import {ReactNode} from "react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -19,7 +20,10 @@ export default function RootLayout({
   return (
     <html>
     <body className={`${inter.className} flex justify-center`}>
-      <Providers>{children}</Providers>
+      <Providers>
+        <ThemeToggle/>
+        {children}
+      </Providers>
     </body>
     </html>
   );
