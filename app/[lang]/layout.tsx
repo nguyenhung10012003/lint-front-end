@@ -1,11 +1,13 @@
-import type {Metadata} from "next";
-import {Inter} from "next/font/google";
-import "../globals.css";
-import {Providers} from "@/components/providers/Providers";
-import {ReactNode} from "react";
 import ThemeToggle from "@/components/ThemeToggle";
+import { Providers } from "@/components/providers/Providers";
+import type { Metadata } from "next";
+import { Archivo, Montserrat, Oswald } from "next/font/google";
+import { ReactNode } from "react";
+import "../globals.css";
 
-const inter = Inter({subsets: ["latin"]});
+const oswald = Oswald({ subsets: ["latin", "vietnamese"] });
+const monstserrat = Montserrat({ subsets: ["latin", "vietnamese"] });
+const archivo = Archivo({ subsets: ["latin", "vietnamese"] });
 
 export const metadata: Metadata = {
   title: "Lint",
@@ -13,18 +15,21 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
+  children,
+}: Readonly<{
   children: ReactNode;
+  welcome: ReactNode;
 }>) {
   return (
     <html>
-    <body className={`${inter.className} flex justify-center`}>
-      <Providers>
-        <ThemeToggle/>
-        {children}
-      </Providers>
-    </body>
+      <body
+        className={`${archivo.className} flex justify-center overflow-visible`}
+      >
+        <Providers>
+          <ThemeToggle />
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

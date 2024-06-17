@@ -1,0 +1,61 @@
+[
+  {
+    "content": "Hello, World!",
+    "images": [
+      {
+        "url": "https://img.freepik.com/free-vector/gradient-japanese-temple-with-lake_52683-45004.jpg?t=st=1718508859~exp=1718512459~hmac=5f9f6b087979d1bd5b7684fe30c1afa867415764f04e84917d48cd99ff42d831&w=1060"
+      }
+    ],
+    "likes": 1543,
+    "comments": 12,
+    "shares": 3,
+    "tags": [
+      "#hello",
+      "#world",
+      "#japan"
+    ],
+    "author": {
+      "id": "1",
+      "name": "John Doe",
+      "avatar": "https://randomuser",
+      "alias": "johndoe",
+      "following": true
+    },
+    "createdAt": "2021-04-15T12:00:00Z",
+    "liked": true
+  },
+  {
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin. Mauris non mauris non odio fringilla luctus. Sed eget erat id mi pharetra tempus. In hac habitasse platea dictumst. Donec neque sapien, volutpat et nunc in, ultricies auctor justo.",
+    "images": [
+      {
+        "url": "https://img.freepik.com/free-photo/beautiful-sea-ocean-with-cloud-blue-sky_74190-6828.jpg?t=st=1718594443~exp=1718598043~hmac=1c665f7a9a5cd7dbee93d2dc869fe626a5e7112077519fd16511aabb586cb9ca&w=1060"
+      },
+      {
+        "url": "https://img.freepik.com/free-vector/cloudy-sky-background-flat-style_23-2147796380.jpg?t=st=1718594483~exp=1718598083~hmac=fe42083e60c5deb8ad4fdd6683c61bdfb866d61239be695a13093224833d4715&w=740"
+      },
+      {
+        "url": "https://img.freepik.com/free-photo/mountain-sky-seydisfjordur-iceland-may-20-2023_58702-10926.jpg?t=st=1718594336~exp=1718597936~hmac=ccb1ad1482c23d507ead13b980b6f52135ef3860e7d42aa8a256bf29253c0d13&w=360"
+      },
+      {
+        "url": "https://img.freepik.com/free-photo/calm-bay-waters-background-peaceful-marine-scene_91128-4247.jpg?t=st=1718594521~exp=1718598121~hmac=f9fb189f186dee36ded9912a43b6421cbf5910f5b23137511421fe608fe5775b&w=1060"
+      }
+    ],
+    "likes": 543,
+    "comments": 12,
+    "shares": 3,
+    "tags": [
+      "#lorem",
+      "#ipsum",
+      "#dolor"
+    ],
+    "author": {
+      "id": "1",
+      "name": "John Doe",
+      "avatar": "https://randomuser",
+      "alias": "johndoe",
+      "following": true
+    },
+    "createdAt": "2021-04-15T12:00:00Z",
+    "liked": false
+  }
+]

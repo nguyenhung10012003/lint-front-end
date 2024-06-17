@@ -1,21 +1,41 @@
-'use client';
-import {MoonIcon, SunIcon} from "lucide-react";
-import {useTheme} from "next-themes";
+"use client";
+import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "./ui/dropdown-menu";
 
 export default function ThemeToggle() {
-  const {theme, setTheme} = useTheme();
+  const { setTheme } = useTheme();
+
   return (
-    <div className="flex items-center fixed right-0 bottom-0 p-2 z-50">
-      <button
-        className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 dark:border-gray-700"
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      >
-        {theme === "dark" ? (
-          <SunIcon className="w-4 h-4 text-gray-500 dark:text-gray-400"/>
-        ) : (
-          <MoonIcon className="w-4 h-4 text-gray-500 dark:text-gray-400"/>
-        )}
-      </button>
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild className="fixed z-50 bottom-0 right-0">
+        <Button
+          variant="outline"
+          size="icon"
+          className="rounded-full m-3 border-gray-500"
+        >
+          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme("light")}>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          System
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

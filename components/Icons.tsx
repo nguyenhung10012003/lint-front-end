@@ -1,12 +1,30 @@
 import {CircleHelp, LogOut, Menu, MessageSquareWarning, Settings} from "lucide-react";
 import {
   BellIcon as BellIconOutline,
+  BellSlashIcon as BellSlashIconOutline,
+  BookmarkIcon as BookmarkIconOutline,
   ChatBubbleOvalLeftIcon as ChatBubbleOvalLeftIconOutline,
+  ExclamationCircleIcon as ExclamationCircleIconOutline,
+  EyeSlashIcon as EyeSlashIconOutline,
+  HeartIcon as HeartIconOutline,
   HomeIcon as HomeIconOutline,
   MagnifyingGlassIcon as MagnifyingGlassIconOutline,
-  UserIcon as UserIconOutline
+  UserIcon as UserIconOutline,
+  ShareIcon as ShareIconOutline
 } from "@heroicons/react/24/outline";
-import {BellIcon, ChatBubbleOvalLeftIcon, HomeIcon, MagnifyingGlassIcon, UserIcon} from "@heroicons/react/24/solid";
+import {
+  BellIcon,
+  BellSlashIcon,
+  BookmarkIcon,
+  ChatBubbleOvalLeftIcon,
+  EllipsisHorizontalIcon,
+  ExclamationCircleIcon,
+  EyeSlashIcon,
+  HeartIcon,
+  HomeIcon,
+  UserIcon,
+  ShareIcon
+} from "@heroicons/react/24/solid";
 
 
 type IconProps = React.HTMLAttributes<SVGElement> & {
@@ -45,7 +63,8 @@ export const Icons = {
   ),
 
   search: (props: IconProps) => (
-    props.variant === 'solid' ? <MagnifyingGlassIcon {...props}/> : <MagnifyingGlassIconOutline {...props}/>
+    props.variant === 'solid' ? <MagnifyingGlassIconOutline strokeWidth={2.5} {...props} /> :
+      <MagnifyingGlassIconOutline {...props}/>
   ),
 
   notification: (props: IconProps) => (
@@ -68,11 +87,39 @@ export const Icons = {
     <LogOut {...props}/>
   ),
 
-  report: (props: IconProps) => (
+  reportIssue: (props: IconProps) => (
     <MessageSquareWarning {...props}/>
   ),
 
   help: (props: IconProps) => (
     <CircleHelp {...props}/>
+  ),
+
+  more: (props: IconProps) => (
+    <EllipsisHorizontalIcon {...props}/>
+  ),
+
+  heart: (props: IconProps) => (
+    props.variant === 'solid' ? <HeartIcon {...props}/> : <HeartIconOutline {...props}/>
+  ),
+
+  save: (props: IconProps) => (
+    props.variant === 'solid' ? <BookmarkIcon {...props}/> : <BookmarkIconOutline {...props}/>
+  ),
+
+  report: (props: IconProps) => (
+    props.variant === 'solid' ? <ExclamationCircleIcon {...props}/> : <ExclamationCircleIconOutline {...props}/>
+  ),
+
+  hide: (props: IconProps) => (
+    props.variant === 'solid' ? <EyeSlashIcon {...props}/> : <EyeSlashIconOutline {...props}/>
+  ),
+
+  turnOffNotification: (props: IconProps) => (
+    props.variant === 'solid' ? <BellSlashIcon {...props}/> : <BellSlashIconOutline {...props}/>
+  ),
+
+  share: (props: IconProps) => (
+    props.variant === 'solid' ? <ShareIcon {...props}/> : <ShareIconOutline {...props}/>
   )
 }

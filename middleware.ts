@@ -19,10 +19,12 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
 
   // Redirect if user is not logged in
-  // if ((!user || !token) && !request.nextUrl.pathname.includes('/sign-in')) {
+  // if (!request.nextUrl.pathname.includes('/sign-in') && (!user || !token)) {
   //   needRedirect = true;
   //   pathname += '/sign-in';
   // }
+
+  // Redirect if user profile is not complete
 
   if (needRedirect) {
     request.nextUrl.pathname = pathname;

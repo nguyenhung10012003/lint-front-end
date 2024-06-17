@@ -9,7 +9,7 @@ export const locales = [
 
 export const getLocale = (request: NextRequest) => {
   const acceptLanguage = request.headers.get('Accept-Language')
-  const locale = acceptLanguage?.split(',')
+  const locale = request.cookies.get('locale')?.value || acceptLanguage?.split(',')
     .find((lang) => locales.map((locale) => locale.key).includes(lang));
   return locale || defaultLocale.key;
 }
