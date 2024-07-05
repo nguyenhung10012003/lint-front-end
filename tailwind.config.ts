@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -54,9 +54,12 @@ const config = {
         },
       },
       borderRadius: {
+        xxl: "calc(var(--radius) + 4px)",
+        xl: "calc(var(--radius) + 2px)",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        xs: "calc(var(--radius) - 6px)",
       },
       keyframes: {
         "accordion-down": {
@@ -67,14 +70,44 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        slideUpAndFade: {
+          "0%": { opacity: "0", transform: "translateY(2px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideRightAndFade: {
+          "0%": { opacity: "0", transform: "translateX(-2px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        slideDownAndFade: {
+          "0%": { opacity: "0", transform: "translateY(-2px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        slideLeftAndFade: {
+          "0%": { opacity: "0", transform: "translateX(2px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        slideUpAndFade: "slideUpAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)",
+        slideDownAndFade:
+          "slideDownAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)",
+        slideRightAndFade:
+          "slideRightAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)",
+        slideLeftAndFade:
+          "slideLeftAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)",
+      },
+      zIndex: {
+        60: "60",
+        70: "70",
+        80: "80",
+        90: "90",
+        100: "100",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

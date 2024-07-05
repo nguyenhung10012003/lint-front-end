@@ -1,0 +1,102 @@
+[
+  {
+    "id": "1",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin",
+    "author": {
+      "id": "2",
+      "name": "John Doe",
+      "alias": "johndoe",
+      "gender": "male",
+      "country": "USA",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin. Mauris non mauris non odio fringilla luctus. Sed eget erat id mi pharetra tempus. In hac habitasse platea dictumst. Donec neque sapien, volutpat et nunc in, ultricies auctor justo."
+    },
+    "createdAt": "2020-01-01T00:00:00Z",
+    "replies": [
+      {
+        "id": "3",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "author": {
+          "id": "4",
+          "name": "John Doe",
+          "alias": "johndoe",
+          "gender": "male",
+          "country": "USA",
+          "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm2gIPMAMPnT9OA8k-P8Vat_CKyMEttSmxzw&s",
+          "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin. Mauris non mauris non odio fringilla luctus. Sed eget erat id mi pharetra tempus. In hac habitasse platea dictumst. Donec neque sapien, volutpat et nunc in, ultricies auctor justo."
+        },
+        "createdAt": "2024-01-01T00:00:00Z"
+      },
+      {
+        "id": "5",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "author": {
+          "id": "2",
+          "name": "John Doe",
+          "alias": "johndoe",
+          "gender": "male",
+          "country": "USA",
+          "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm2gIPMAMPnT9OA8k-P8Vat_CKyMEttSmxzw&s",
+          "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin. Mauris non mauris non odio fringilla luctus. Sed eget erat id mi pharetra tempus. In hac habitasse platea dictumst. Donec neque sapien, volutpat et nunc in, ultricies auctor justo."
+        },
+        "createdAt": "2024-07-01T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin",
+    "author": {
+      "id": "1",
+      "name": "John Doe",
+      "alias": "johndoe",
+      "gender": "male",
+      "country": "USA",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin. Mauris non mauris non odio fringilla luctus. Sed eget erat id mi pharetra tempus. In hac habitasse platea dictumst. Donec neque sapien, volutpat et nunc in, ultricies auctor justo."
+    },
+    "createdAt": "2020-01-01T00:00:00Z"
+  },
+  {
+    "id": "11",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin",
+    "author": {
+      "id": "1",
+      "name": "John Doe",
+      "alias": "johndoe",
+      "gender": "male",
+      "country": "USA",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin. Mauris non mauris non odio fringilla luctus. Sed eget erat id mi pharetra tempus. In hac habitasse platea dictumst. Donec neque sapien, volutpat et nunc in, ultricies auctor justo."
+    },
+    "createdAt": "2020-01-01T00:00:00Z"
+  },
+  {
+    "id": "10",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin",
+    "author": {
+      "id": "1",
+      "name": "John Doe",
+      "alias": "johndoe",
+      "gender": "male",
+      "country": "USA",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin. Mauris non mauris non odio fringilla luctus. Sed eget erat id mi pharetra tempus. In hac habitasse platea dictumst. Donec neque sapien, volutpat et nunc in, ultricies auctor justo."
+    },
+    "createdAt": "2020-01-01T00:00:00Z"
+  },
+  {
+    "id": "122",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin",
+    "author": {
+      "id": "1",
+      "name": "John Doe",
+      "alias": "johndoe",
+      "gender": "male",
+      "country": "USA",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel nunc id sapien tincidunt sollicitudin. Mauris non mauris non odio fringilla luctus. Sed eget erat id mi pharetra tempus. In hac habitasse platea dictumst. Donec neque sapien, volutpat et nunc in, ultricies auctor justo."
+    },
+    "createdAt": "2024-07-01T00:00:00Z"
+  }
+]

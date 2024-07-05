@@ -22,9 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body
-        className={`${archivo.className} flex justify-center overflow-visible`}
-      >
+      <body className={`${archivo.className} flex justify-center`}>
         <Providers>
           <ThemeToggle />
           {children}

@@ -93,5 +93,13 @@
       "seeMore": "Xem thêm",
       "collapse": "Thu gọn"
     }
+  },
+  "createPost": {
+    "title": "Tạo bài viết",
+    "contentPlaceholder": "Bạn đang nghĩ gì?",
+    "postButton": "Đăng",
+    "notifySuccess": {
+      "createPostSuccess": "Đăng bài viết thành công"
+    }
   }
 }

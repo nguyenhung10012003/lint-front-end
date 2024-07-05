@@ -19,6 +19,7 @@
       "name": "John Doe",
       "avatar": "https://randomuser",
       "alias": "johndoe",
+      "followers": 542,
       "following": true
     },
     "createdAt": "2021-04-15T12:00:00Z",
@@ -53,6 +54,7 @@
       "name": "John Doe",
       "avatar": "https://randomuser",
       "alias": "johndoe",
+      "followers": 542,
       "following": true
     },
     "createdAt": "2021-04-15T12:00:00Z",

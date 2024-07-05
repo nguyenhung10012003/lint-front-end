@@ -4,7 +4,7 @@ import SideBarFooter from "@/components/layouts/SideBarFooter";
 import SidebarBody from "@/components/layouts/SidebarBody";
 
 export default async function Sidebar({ lang }: { lang: string }) {
-  const { sidebar } = await getDictionary(lang);
+  const { sidebar, createPost } = await getDictionary(lang);
   const sidebarItems = [
     {
       name: "home",
@@ -33,15 +33,15 @@ export default async function Sidebar({ lang }: { lang: string }) {
       },
       href: "/notification",
     },
-    {
-      name: "message",
-      label: sidebar.message,
-      icon: {
-        outline: <Icons.message className="w-6 h-6" />,
-        solid: <Icons.message className="w-6 h-6" variant={"solid"} />,
-      },
-      href: "/message",
-    },
+    // {
+    //   name: "message",
+    //   label: sidebar.message,
+    //   icon: {
+    //     outline: <Icons.message className="w-6 h-6" />,
+    //     solid: <Icons.message className="w-6 h-6" variant={"solid"} />,
+    //   },
+    //   href: "/message",
+    // },
   ];
   const dropDownMenuGroups = [
     {
@@ -96,7 +96,7 @@ export default async function Sidebar({ lang }: { lang: string }) {
     <div className="sm:flex flex-col h-screen lg:w-full lg:max-w-[275px] py-6 px-4 border-r hidden z-40 fixed">
       <div id="logo">Logo</div>
       <div id="sidebar-body" className="flex gap-2 flex-col mt-10">
-        <SidebarBody sidebarItems={sidebarItems} />
+        <SidebarBody sidebarItems={sidebarItems} createPostText={""} />
       </div>
       <div id="sidebar-footer" className="items-end flex h-full">
         <SideBarFooter dropDownMenuGroups={dropDownMenuGroups} />

@@ -12,7 +12,7 @@ export default function DefaultLayout({
     <div className="flex w-full">
       <Sidebar lang={lang} />
       <MobileNav lang={lang} />
-      <main className="flex p-4 w-full mb-20 overflow-y">{children}</main>
+      <main className="flex p-4 w-full mb-20">{children}</main>
     </div>
   );
 }

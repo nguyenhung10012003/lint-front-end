@@ -1,7 +1,7 @@
 import { getDictionary } from "@/app/[lang]/dictionaries";
-import PostCarousel from "@/components/PostCarousel";
-import PostContent from "@/components/PostContent";
-import PostDropdownMenu from "@/components/PostDropdownMenu";
+import PostCarousel from "@/components/post/PostCarousel";
+import PostContent from "@/components/post/PostContent";
+import PostDropdownMenu from "@/components/post/PostDropdownMenu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
@@ -28,6 +28,7 @@ interface PostCardProps {
       name: string;
       alias: string;
       avatar: string;
+      followers: number;
       following: boolean;
     };
     createdAt: string;
