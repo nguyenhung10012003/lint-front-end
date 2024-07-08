@@ -1,0 +1,56 @@
+{
+  "notifications" : [
+    {
+      "id": "1",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+      "content": "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "linkTo": "/profile/1",
+      "read": false
+    },
+    {
+      "id": "2",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+      "content": "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididuntdddddd utsssssssss labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "linkTo": "/profile/1",
+      "read": true
+    },
+    {
+      "id": "3",
+      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+      "content": "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididuntdddddd utsssssssss labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "linkTo": "/profile/1",
+      "read": true
+    }
+  ],
+  "followRequests" : [
+    {
+      "id": "1",
+      "user": {
+        "id": "2",
+        "name": "John Doe",
+        "alias": "johndoe",
+        "gender": "male",
+        "country": "USA",
+        "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+        "bio": "This is a bio"
+      },
+      "createdAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "user": {
+        "id": "3",
+        "name": "John Doe",
+        "alias": "johndoe",
+        "gender": "male",
+        "country": "USA",
+        "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+        "bio": "This is a bio"
+      },
+      "createdAt": "2024-01-01T00:00:00Z"
+    }
+  ]
+}

@@ -7,5 +7,14 @@
     "country": "USA",
     "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
     "bio": "This is a bio"
+  },
+  {
+    "id": "2",
+    "name": "John Doe",
+    "alias": "johndoe",
+    "gender": "male",
+    "country": "USA",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+    "bio": "This is a bio"
   }
 ]

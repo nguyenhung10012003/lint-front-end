@@ -9,7 +9,7 @@ export default function Home({
   };
 }) {
   return (
-    <div className="flex flex-col gap-6 w-full items-center lg:ml-[250px] sm:ml-[70px]">
+    <div className="flex flex-col gap-6 w-full items-center">
       {posts.map((post, index) => (
         <PostCard key={index} post={post} lang={params.lang} />
       ))}

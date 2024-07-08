@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import profiles from "@/mocks/profile.json";
 import {
   HoverCard,
@@ -12,13 +13,22 @@ import { Separator } from "./ui/separator";
 
 export default function ProfileHoverCard({
   profile,
+  avatarClassName,
+  aliasClassName,
 }: {
   profile: (typeof profiles)[0];
+  avatarClassName?: string;
+  aliasClassName?: string;
 }) {
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <span className="text-foreground hover:underline hover:cursor-pointer font-bold">{`@${profile.alias}`}</span>
+        <span
+          className={cn(
+            "text-foreground hover:underline underline-offset-4 hover:cursor-pointer font-bold",
+            aliasClassName
+          )}
+        >{`@${profile.alias}`}</span>
       </HoverCardTrigger>
       <HoverCardContent
         className="max-w-80 w-full flex flex-col p-6 border rounded-xl bg-background
@@ -38,7 +48,7 @@ export default function ProfileHoverCard({
             src={profile.avatar}
             alt={profile.alias}
             profileId={profile.id}
-            className="w-14 h-14 rounded-full"
+            className={cn("w-14 h-14 rounded-full", avatarClassName)}
           />
         </Link>
         <div className="text-sm">{profile.bio}</div>

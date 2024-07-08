@@ -60,15 +60,7 @@ export default function CreatePostModal() {
           <span className="hidden lg:flex items-center">Bài viết mới</span>
         </div>
       </DialogTrigger>
-      <DialogContent className="md:max-w-[600px]">
-        <DialogClose
-          className="absolute right-4 top-4 rounded-sm opacity-70 
-        ring-offset-background transition-opacity hover:opacity-100 
-        disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
-        >
-          <Icons.close className="h-6 w-6" />
-          <span className="sr-only">Close</span>
-        </DialogClose>
+      <DialogContent className="md:max-w-[600px]" aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold justify-center">
             Create Post
@@ -111,8 +103,10 @@ export default function CreatePostModal() {
           </div>
         </div>
         <DialogFooter>
-          <DialogClose className="flex w-full">
-            <Button className="w-full">Post</Button>
+          <DialogClose className="flex w-full" asChild>
+            <Button className="w-full text-white text-lg font-semibold">
+              Post
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

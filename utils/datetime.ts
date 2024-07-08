@@ -14,6 +14,8 @@ export function formatTimeDifference(date: Date): string {
     return `${hours}h ago`;
   } else if (days < 30) {
     return `${days}d ago`;
+  } else if (months < 12) {
+    return `${months} months ago`;
   } else {
     return date.toLocaleDateString();
   }

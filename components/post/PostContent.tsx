@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Hashtag from "../Hashtag";
 
 export default function PostContent({
   dict,
@@ -34,12 +35,7 @@ export default function PostContent({
 
       <div className="flex flex-wrap gap-1">
         {tags.map((tag, index) => (
-          <span
-            key={index}
-            className="text-sm text-blue-500 hover:underline hover:cursor-pointer"
-          >
-            {`${tag}`}
-          </span>
+          <Hashtag key={index} tag={tag} />
         ))}
       </div>
     </>

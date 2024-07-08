@@ -46,7 +46,7 @@ export default function CommentModal({
       <DialogTrigger>{trigger}</DialogTrigger>
       <DialogContent className="p-2">
         <DialogHeader>
-          <DialogTitle></DialogTitle>
+          <DialogTitle className="text-center pt-2">Comments</DialogTitle>
           <DialogClose />
         </DialogHeader>
         <div className="px-4 overflow-y-auto pb-28 max-h-[70vh]">
