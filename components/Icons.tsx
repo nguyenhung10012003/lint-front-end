@@ -1,4 +1,5 @@
 import {
+  ArrowTopRightOnSquareIcon as ArrowTopRightOnSquareIconOutline,
   BellIcon as BellIconOutline,
   BellSlashIcon as BellSlashIconOutline,
   BookmarkIcon as BookmarkIconOutline,
@@ -10,8 +11,10 @@ import {
   HashtagIcon as HashtagIconOutline,
   HeartIcon as HeartIconOutline,
   HomeIcon as HomeIconOutline,
+  LockClosedIcon as LockClosedIconOutline,
   MagnifyingGlassIcon as MagnifyingGlassIconOutline,
   MusicalNoteIcon as MusicalNoteIconOutline,
+  NoSymbolIcon as NoSymbolIconOutline,
   PaperAirplaneIcon as PaperAirplaneIconOutline,
   PencilSquareIcon as PencilSquareIconOutline,
   PhotoIcon as PhotoIconOutline,
@@ -21,6 +24,7 @@ import {
   VideoCameraIcon as VideoCameraIconOutline,
 } from "@heroicons/react/24/outline";
 import {
+  ArrowTopRightOnSquareIcon,
   BellIcon,
   BellSlashIcon,
   BookmarkIcon,
@@ -35,7 +39,9 @@ import {
   HashtagIcon,
   HeartIcon,
   HomeIcon,
+  LockClosedIcon,
   MusicalNoteIcon,
+  NoSymbolIcon,
   PaperAirplaneIcon,
   PencilSquareIcon,
   PhotoIcon,
@@ -254,5 +260,26 @@ export const Icons = {
       <FaceSmileIcon {...props} />
     ) : (
       <FaceSmileIconOutline {...props} />
+    ),
+
+  lock: (props: IconProps) =>
+    props.variant === "solid" ? (
+      <LockClosedIcon {...props} />
+    ) : (
+      <LockClosedIconOutline {...props} />
+    ),
+
+  block: (props: IconProps) =>
+    props.variant === "solid" ? (
+      <NoSymbolIcon {...props} />
+    ) : (
+      <NoSymbolIconOutline {...props} />
+    ),
+
+  popup: (props: IconProps) =>
+    props.variant === "solid" ? (
+      <ArrowTopRightOnSquareIcon {...props} />
+    ) : (
+      <ArrowTopRightOnSquareIconOutline {...props} />
     ),
 };

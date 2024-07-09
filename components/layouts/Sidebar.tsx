@@ -93,7 +93,7 @@ export default async function Sidebar({ lang }: { lang: string }) {
     },
   ];
   return (
-    <div className="sm:flex fixed flex-col h-screen lg:w-full lg:max-w-[275px] py-6 px-4 border-r hidden z-40 over">
+    <div className="sm:flex flex-col h-screen lg:w-full lg:max-w-[275px] py-6 px-4 border-r hidden z-40 over">
       <div id="logo">Logo</div>
       <div id="sidebar-body" className="flex gap-2 flex-col mt-10">
         <SidebarBody sidebarItems={sidebarItems} createPostText={""} />

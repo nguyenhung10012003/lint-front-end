@@ -12,7 +12,7 @@ export default function DefaultLayout({
     <>
       <Sidebar lang={lang} />
       <MobileNav lang={lang} />
-      <main className="flex p-4 w-full sm:mb-0 mb-20 lg:ml-[250px] sm:ml-[70px] justify-center">
+      <main className="flex flex-col w-full overflow-y-auto h-[100vh] sm:p-8 pb-24 p-4 items-center">
         {children}
       </main>
     </>

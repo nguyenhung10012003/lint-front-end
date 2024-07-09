@@ -1,6 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
+import {} from "@radix-ui/react-dialog";
 import Link from "next/link";
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 
 export default function ProfileAvatar({
   src,
@@ -11,8 +13,8 @@ export default function ProfileAvatar({
 }: {
   src: string;
   alt: string;
-  profileId: string;
-  variant?: "link" | "button" | "none";
+  profileId?: string;
+  variant?: "link" | "button" | "none" | "input" | "modal";
   className?: string;
 }) {
   const avatar = (
@@ -21,11 +23,20 @@ export default function ProfileAvatar({
       <AvatarFallback>{alt.slice(0, 1)}</AvatarFallback>
     </Avatar>
   );
-  if (variant === "link")
+  if (variant === "link" && profileId)
     return (
-      <Link href={`/${profileId}`} className="self-start">
+      <Link href={`/${profileId}`} className="">
         {avatar}
       </Link>
+    );
+  else if (variant === "modal")
+    return (
+      <Dialog>
+        <DialogTrigger>{avatar}</DialogTrigger>
+        <DialogContent>
+          <img src={src} alt="" />
+        </DialogContent>
+      </Dialog>
     );
 
   return <div className="flex">{avatar}</div>;

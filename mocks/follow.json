@@ -1,0 +1,75 @@
+[
+  {
+    "id": "1",
+    "name": "John Doe",
+    "alias": "johndoe",
+    "gender": "male",
+    "country": "USA",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+    "bio": "This is a bio"
+  },
+  {
+    "id": "2",
+    "name": "John Doe",
+    "alias": "johndoe",
+    "gender": "male",
+    "country": "USA",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+    "bio": "This is a bio"
+  },
+  {
+    "id": "3",
+    "name": "John Doe",
+    "alias": "johndoe",
+    "gender": "male",
+    "country": "USA",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+    "bio": "This is a bio"
+  },
+  {
+    "id": "4",
+    "name": "John Doe",
+    "alias": "johndoe",
+    "gender": "male",
+    "country": "USA",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+    "bio": "This is a bio"
+  },
+  {
+    "id": "5",
+    "name": "John Doe",
+    "alias": "johndoe",
+    "gender": "male",
+    "country": "USA",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+    "bio": "This is a bio"
+  },
+  {
+    "id": "6",
+    "name": "John Doe",
+    "alias": "johndoe",
+    "gender": "male",
+    "country": "USA",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+    "bio": "This is a bio"
+  },
+  {
+    "id": "7",
+    "name": "John Doe",
+    "alias": "johndoe",
+    "gender": "male",
+    "country": "USA",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+    "bio": "This is a bio"
+  },
+  {
+    "id": "8",
+    "name": "John Doe",
+    "alias": "milo",
+    "gender": "male",
+    "country": "USA",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJ4F1_bZf2nvnYMHg9uHyb5KI5cp_aCcxog&s",
+    "bio": "This is a bio"
+  }
+  
+]

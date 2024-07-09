@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className={`${archivo.className} flex w-full`}>
+      <body className={`${archivo.className} flex w-full overflow-hidden `}>
         <Providers>
           <ThemeToggle />
           {children}
