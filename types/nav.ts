@@ -3,4 +3,5 @@ export interface NavItem {
   label: string,
   icon: any,
   href: string,
+  pathReg: string
 }

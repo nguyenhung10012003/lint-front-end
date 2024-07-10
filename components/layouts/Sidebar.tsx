@@ -14,6 +14,7 @@ export default async function Sidebar({ lang }: { lang: string }) {
         solid: <Icons.home className="w-6 h-6" variant={"solid"} />,
       },
       href: "/",
+      pathReg: "^/[a-zA-Z]{2}(-[a-zA-Z]{2})?$",
     },
     {
       name: "search",
@@ -23,6 +24,7 @@ export default async function Sidebar({ lang }: { lang: string }) {
         solid: <Icons.search className="w-6 h-6" variant={"solid"} />,
       },
       href: "/search",
+      pathReg: "^/[a-zA-Z]{2}(-[a-zA-Z]{2})?/search$",
     },
     {
       name: "notification",
@@ -32,6 +34,7 @@ export default async function Sidebar({ lang }: { lang: string }) {
         solid: <Icons.notification className="w-6 h-6" variant={"solid"} />,
       },
       href: "/notification",
+      pathReg: "^/[a-zA-Z]{2}(-[a-zA-Z]{2})?/notification$",
     },
     // {
     //   name: "message",
@@ -70,13 +73,13 @@ export default async function Sidebar({ lang }: { lang: string }) {
           name: "help-center",
           label: sidebar.dropdown.help.items.help,
           icon: Icons.help,
-          href: "/help-center",
+          href: "/help",
         },
         {
           name: "report-issue",
           label: sidebar.dropdown.help.items.report,
           icon: Icons.reportIssue,
-          href: "/report-issue",
+          href: "/report",
         },
       ],
     },

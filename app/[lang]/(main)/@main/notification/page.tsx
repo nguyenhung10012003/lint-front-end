@@ -41,7 +41,7 @@ export default function Notification({
             <TabsContent
               key={tab.id}
               value={tab.id}
-              className="mt-4 min-h-[80vh]"
+              className="mt-4 min-h-[75vh]"
             >
               {tab.content}
             </TabsContent>
