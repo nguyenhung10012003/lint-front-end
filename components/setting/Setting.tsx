@@ -1,4 +1,6 @@
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { Icons } from "../Icons";
 
 export const SettingGroup = ({
   title,
@@ -13,7 +15,12 @@ export const SettingGroup = ({
 }) => {
   return (
     <div className={cn("flex flex-col gap-6", className)} id={id}>
-      <h2 className="text-2xl font-bold border-b-2">{title}</h2>
+      <div className="flex items-center p-2 border-b">
+        <Link href="/setting">
+          <Icons.arrowLeft className="w-6 h-6" />
+        </Link>
+        <h2 className="font-bold text-lg w-full text-center">{title}</h2>
+      </div>
       {children}
     </div>
   );
@@ -26,7 +33,7 @@ export const SettingItem = ({
   className,
 }: {
   children: React.ReactNode;
-  as?: 'div' | 'link' | 'button';
+  as?: "div" | "link" | "button";
   href?: string;
   className?: string;
 }) => {

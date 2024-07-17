@@ -1,5 +1,9 @@
-import profiles from "@/mocks/profile.json";
+"use client";
+
+import { updateProfile } from "@/lib/server-action/user-action";
+import { Profile } from "@/types/user";
 import {} from "@radix-ui/react-select";
+import { useState } from "react";
 import ProfileAvatar from "../ProfileAvatar";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -14,21 +18,39 @@ import {
 import { Textarea } from "../ui/textarea";
 import { SettingGroup, SettingItem } from "./Setting";
 
-export default function ProfileSetting() {
-  const profile = profiles[0];
+export default function ProfileSetting({ profile }: { profile: Profile }) {
+  const [pf, setProfile] = useState(profile);
+  const [avatar, setAvatar] = useState<File | undefined>();
+  const [preview, setPreview] = useState<string | undefined>();
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setAvatar(file);
+      setPreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const profile = await updateProfile({ profile: pf, avatar });
+      setProfile(profile);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <SettingGroup id="profile-setting" title="Edit Profile" className="">
       <SettingItem className="p-4 gap-4 items-center bg-secondary rounded-2xl">
         <ProfileAvatar
-          src={profile.avatar}
-          alt={""}
+          src={preview || pf.avatar}
+          alt={pf.name}
           className="w-14 md:w-14 h-14 md:h-14"
+          variant="modal"
         />
         <div className="flex flex-col w-full">
-          <span className="font-bold text-lg">{profile.alias}</span>
-          <span className="text-gray-500 dark:text-gray-400">
-            {profile.name}
-          </span>
+          <span className="font-bold text-lg">{pf.alias}</span>
+          <span className="text-gray-500 dark:text-gray-400">{pf.name}</span>
         </div>
         <Label
           htmlFor="avatar"
@@ -37,7 +59,13 @@ export default function ProfileSetting() {
         >
           Change Avatar
         </Label>
-        <Input type="file" id="avatar" className="hidden" />
+        <Input
+          type="file"
+          id="avatar"
+          className="hidden"
+          accept="image/*"
+          onChange={handleAvatarChange}
+        />
       </SettingItem>
       <SettingItem className="flex-col gap-2">
         <Label htmlFor="name" className="font-semibold text-lg">
@@ -46,8 +74,9 @@ export default function ProfileSetting() {
         <Input
           id="name"
           type="text"
-          defaultValue={profile.name}
+          defaultValue={pf.name}
           className="w-full rounded-lg"
+          onChange={(e) => setProfile({ ...pf, name: e.target.value })}
         />
       </SettingItem>
       <SettingItem className="flex-col gap-2">
@@ -58,14 +87,19 @@ export default function ProfileSetting() {
           className="resize-none min-h-0 rounded-lg"
           rows={3}
           placeholder="Bio"
-          maxLength={150}
+          maxLength={250}
+          value={pf.bio}
+          onChange={(e) => setProfile({ ...pf, bio: e.target.value })}
         />
       </SettingItem>
       <SettingItem className="flex-col gap-2">
         <Label htmlFor="gender" className="font-semibold text-lg">
           Gender
         </Label>
-        <Select defaultValue={profile.gender}>
+        <Select
+          defaultValue={pf.gender}
+          onValueChange={(value) => setProfile({ ...pf, gender: value })}
+        >
           <SelectTrigger className="hover:bg-secondary">
             <SelectValue placeholder="Choose gender"></SelectValue>
           </SelectTrigger>
@@ -76,8 +110,30 @@ export default function ProfileSetting() {
           </SelectContent>
         </Select>
       </SettingItem>
+      <SettingItem className="flex-col gap-2">
+        <Label htmlFor="alias" className="font-semibold text-lg">
+          Bio
+        </Label>
+        <Input
+          id="dob"
+          type="date"
+          defaultValue={
+            pf.dob ? new Date(pf.dob).toISOString().split("T")[0] : ""
+          }
+          max={new Date().toISOString().split("T")[0]}
+          min={"1900-01-01"}
+          className="w-full rounded-lg block"
+          onChange={(e) => setProfile({ ...pf, dob: e.target.value })}
+        />
+      </SettingItem>
       <SettingItem className="justify-end">
-        <Button className="max-w-[120px] text-white w-full">Save</Button>
+        <Button
+          className="max-w-[120px] text-white w-full"
+          disabled={pf == profile && !avatar}
+          onClick={handleSubmit}
+        >
+          Save
+        </Button>
       </SettingItem>
     </SettingGroup>
   );

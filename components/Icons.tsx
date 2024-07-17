@@ -24,6 +24,8 @@ import {
   VideoCameraIcon as VideoCameraIconOutline,
 } from "@heroicons/react/24/outline";
 import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
   ArrowTopRightOnSquareIcon,
   BellIcon,
   BellSlashIcon,
@@ -282,4 +284,7 @@ export const Icons = {
     ) : (
       <ArrowTopRightOnSquareIconOutline {...props} />
     ),
+
+  arrowRight: (props: IconProps) => <ArrowRightIcon {...props} />,
+  arrowLeft: (props: IconProps) => <ArrowLeftIcon {...props} />,
 };

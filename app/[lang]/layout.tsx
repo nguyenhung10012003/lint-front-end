@@ -1,12 +1,11 @@
 import ThemeToggle from "@/components/ThemeToggle";
 import { Providers } from "@/components/providers/Providers";
+import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
-import { Archivo, Montserrat, Oswald } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { ReactNode } from "react";
 import "../globals.css";
 
-const oswald = Oswald({ subsets: ["latin", "vietnamese"] });
-const monstserrat = Montserrat({ subsets: ["latin", "vietnamese"] });
 const archivo = Archivo({ subsets: ["latin", "vietnamese"] });
 
 export const metadata: Metadata = {
@@ -18,7 +17,6 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
-  welcome: ReactNode;
 }>) {
   return (
     <html>
@@ -26,6 +24,7 @@ export default function RootLayout({
         <Providers>
           <ThemeToggle />
           {children}
+          <Toaster />
         </Providers>
       </body>
     </html>

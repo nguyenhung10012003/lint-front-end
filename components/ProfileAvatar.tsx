@@ -11,16 +11,20 @@ export default function ProfileAvatar({
   variant = "none",
   className,
 }: {
-  src: string;
-  alt: string;
+  src?: string;
+  alt?: string;
   profileId?: string;
   variant?: "link" | "button" | "none" | "input" | "modal";
   className?: string;
 }) {
   const avatar = (
-    <Avatar className={cn("md:w-12 md:h-12 w-10 h-10", className)}>
-      <AvatarImage src={src} alt={alt} className="object-cover" />
-      <AvatarFallback>{alt.slice(0, 1)}</AvatarFallback>
+    <Avatar className={cn("md:w-12 md:h-12 w-10 h-10 bg-gray-200", className)}>
+      <AvatarImage
+        src={src || "/image/default_avatar.png"}
+        alt={alt}
+        className="object-cover"
+      />
+      <AvatarFallback>{alt?.slice(0, 1)}</AvatarFallback>
     </Avatar>
   );
   if (variant === "link" && profileId)
@@ -34,7 +38,7 @@ export default function ProfileAvatar({
       <Dialog>
         <DialogTrigger>{avatar}</DialogTrigger>
         <DialogContent>
-          <img src={src} alt="" />
+          <img src={src || "/image/default_avatar.png"} alt="" />
         </DialogContent>
       </Dialog>
     );

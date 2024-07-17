@@ -1,9 +1,16 @@
-import { getDictionary } from "@/app/[lang]/dictionaries";
+import { getDictionary } from "@/app/dictionaries";
 import { Icons } from "@/components/Icons";
 import SideBarFooter from "@/components/layouts/SideBarFooter";
 import SidebarBody from "@/components/layouts/SidebarBody";
+import { User } from "@/types/user";
 
-export default async function Sidebar({ lang }: { lang: string }) {
+export default async function Sidebar({
+  lang,
+  user,
+}: {
+  lang: string;
+  user: User;
+}) {
   const { sidebar, createPost } = await getDictionary(lang);
   const sidebarItems = [
     {
@@ -102,7 +109,7 @@ export default async function Sidebar({ lang }: { lang: string }) {
         <SidebarBody sidebarItems={sidebarItems} createPostText={""} />
       </div>
       <div id="sidebar-footer" className="items-end flex h-full">
-        <SideBarFooter dropDownMenuGroups={dropDownMenuGroups} />
+        <SideBarFooter dropDownMenuGroups={dropDownMenuGroups} user={user} />
       </div>
     </div>
   );

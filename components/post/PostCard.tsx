@@ -1,4 +1,4 @@
-import { getDictionary } from "@/app/[lang]/dictionaries";
+import { getDictionary } from "@/app/dictionaries";
 import PostCarousel from "@/components/post/PostCarousel";
 import PostContent from "@/components/post/PostContent";
 import PostDropdownMenu from "@/components/post/PostDropdownMenu";

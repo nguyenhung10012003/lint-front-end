@@ -1,5 +1,5 @@
 import {} from "@radix-ui/react-dialog";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import { Icons } from "./Icons";
 import ProfileAvatar from "./ProfileAvatar";
