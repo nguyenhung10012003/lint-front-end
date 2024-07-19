@@ -1,10 +1,17 @@
 "use client";
+import { User } from "@/types/user";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import CreatePostModal from "../CreatePostModal";
 import { Icons } from "../Icons";
 
-export default function MobileNav({ lang }: { lang: string }) {
+export default function MobileNav({
+  lang,
+  user,
+}: {
+  lang: string;
+  user: User;
+}) {
   const items = [
     {
       name: "home",
@@ -21,7 +28,7 @@ export default function MobileNav({ lang }: { lang: string }) {
     {
       name: "create-post",
       type: "component",
-      component: <CreatePostModal />,
+      component: <CreatePostModal user={user} />,
     },
     {
       name: "notification",

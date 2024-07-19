@@ -15,7 +15,7 @@ export default function DefaultLayout({
   return (
     <>
       <Sidebar lang={lang} user={user} />
-      <MobileNav lang={lang} />
+      <MobileNav lang={lang} user={user} />
       <main className="flex flex-col w-full overflow-y-auto h-[100vh] sm:p-8 pb-24 p-4 items-center">
         {children}
       </main>

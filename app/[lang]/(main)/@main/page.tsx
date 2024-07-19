@@ -1,7 +1,7 @@
 import PostCard from "@/components/post/PostCard";
 import posts from "@/mocks/post.json";
 
-export default function Home({
+export default async function Home({
   params,
 }: {
   params: {

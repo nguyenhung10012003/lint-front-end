@@ -24,8 +24,8 @@ export default function RootLayout({
         <Providers>
           <ThemeToggle />
           {children}
-          <Toaster />
         </Providers>
+        <Toaster />
       </body>
     </html>
   );

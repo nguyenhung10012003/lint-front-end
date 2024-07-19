@@ -106,7 +106,7 @@ export default async function Sidebar({
     <div className="sm:flex flex-col h-screen lg:w-full lg:max-w-[275px] py-6 px-4 border-r hidden z-40 over">
       <div id="logo">Logo</div>
       <div id="sidebar-body" className="flex gap-2 flex-col mt-10">
-        <SidebarBody sidebarItems={sidebarItems} createPostText={""} />
+        <SidebarBody sidebarItems={sidebarItems} user={user} />
       </div>
       <div id="sidebar-footer" className="items-end flex h-full">
         <SideBarFooter dropDownMenuGroups={dropDownMenuGroups} user={user} />

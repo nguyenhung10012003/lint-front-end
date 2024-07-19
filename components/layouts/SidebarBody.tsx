@@ -3,13 +3,14 @@ import { NavItem } from "@/types/nav";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import CreatePostModal from "../CreatePostModal";
+import { User } from "@/types/user";
 
 export default function SidebarBody({
   sidebarItems,
-  createPostText,
+  user
 }: {
   sidebarItems: NavItem[];
-  createPostText: string;
+  user: User;
 }) {
   const path = usePathname();
 
@@ -31,7 +32,7 @@ export default function SidebarBody({
           </Link>
         );
       })}
-      <CreatePostModal />
+      <CreatePostModal user={user}/>
     </>
   );
 }
