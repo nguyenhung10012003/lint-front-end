@@ -2,19 +2,24 @@ import FollowRequestList from "@/components/notification/FollowRequestList";
 import NotificationList from "@/components/notification/NotificationList";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getNotifications } from "@/lib/server-action/notification-action";
+import type { Notification } from "@/types/notification";
 
-export default function Notification({
+export default async function Notification({
   params,
 }: {
   params: {
     lang: string;
   };
 }) {
+  const response = await getNotifications();
+  const notifications: Notification[] = response.notifications;
+
   const tabs = [
     {
       label: "Notification",
       id: "notification",
-      content: <NotificationList />,
+      content: <NotificationList notifications  = {notifications} />,
     },
     {
       label: "Follow Request",
