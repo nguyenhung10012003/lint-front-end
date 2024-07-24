@@ -47,7 +47,10 @@ export default function PostCarousel({
       </Carousel>
       {selected !== undefined && (
         <Dialog open onOpenChange={() => setSelected(undefined)}>
-          <DialogContent className="flex p-0 justify-center">
+          <DialogContent
+            className="flex p-0 justify-center min-w-0 w-0"
+            includeClose={false}
+          >
             <Image
               src={images[selected].url}
               alt={``}

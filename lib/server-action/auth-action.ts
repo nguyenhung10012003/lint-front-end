@@ -44,8 +44,9 @@ export const signIn = async (formData: SignInFormData) => {
 };
 
 export const signUp = async (formData: SignUpFormData) => {
-  const response = await api.post("/auth/signup", formData);
-  if (response.data.error) {
+  const response = await api.post<any, any>("/auth/signup", formData);
+  console.log(response);
+  if (response.data?.error) {
     switch (response.data.error) {
       case "CONFLICT":
         return {
@@ -60,7 +61,7 @@ export const signUp = async (formData: SignUpFormData) => {
         };
     }
   }
-  const { token, refreshToken, userId } = response.data;
+  const { token, refreshToken, userId } = response;
   setCookie("token", token);
   setCookie("refreshToken", refreshToken);
   setCookie("userId", userId);

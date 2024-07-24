@@ -13,7 +13,6 @@ import api from "@/config/api";
 import { Post } from "@/types/post";
 import { User } from "@/types/user";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import EmojiPicker from "./EmojiPicker";
 import HashTagPicker from "./HashTagPicker";
@@ -65,7 +64,6 @@ export default function CreatePostModal({ user }: { user: User }) {
   };
 
   const { toast } = useToast();
-  const router = useRouter();
 
   const handleSubmitPost = async () => {
     const formData = new FormData();
@@ -98,7 +96,6 @@ export default function CreatePostModal({ user }: { user: User }) {
     <Dialog
       onOpenChange={(open) => {
         setOpen(open);
-        if (!open) clearData();
       }}
       open={open}
     >

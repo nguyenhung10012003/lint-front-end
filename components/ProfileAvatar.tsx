@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import {} from "@radix-ui/react-dialog";
 import Link from "next/link";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import { Skeleton } from "./ui/skeleton";
 
 export default function ProfileAvatar({
   src,
@@ -14,7 +15,7 @@ export default function ProfileAvatar({
   src?: string;
   alt?: string;
   profileId?: string;
-  variant?: "link" | "button" | "none" | "input" | "modal";
+  variant?: "link" | "button" | "none" | "input" | "modal" | "skeleton";
   className?: string;
 }) {
   const avatar = (
@@ -41,6 +42,12 @@ export default function ProfileAvatar({
           <img src={src || "/image/default_avatar.png"} alt="" />
         </DialogContent>
       </Dialog>
+    );
+  else if (variant === "skeleton")
+    return (
+      <Skeleton
+        className={cn("md:w-12 md:h-12 w-10 h-10 rounded-full", className)}
+      />
     );
 
   return <div className="flex">{avatar}</div>;

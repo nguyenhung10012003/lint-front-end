@@ -3,17 +3,17 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'img.freepik.com',
-        port: '',
-        
+        protocol: "https",
+        hostname: "img.freepik.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "lint-cdn.s3.ap-southeast-1.amazonaws.com",
       },
     ],
   },
-  publicRuntimeConfig: {
-    // Will be available on both server and client
-    backendUrl: process.env.API_URL,
-  },
+  reactStrictMode: false,
 };
 
 export default nextConfig;

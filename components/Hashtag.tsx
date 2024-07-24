@@ -11,7 +11,7 @@ export default function Hashtag({ tag }: { tag: string }) {
       }}
       className="text-sm text-blue-500 hover:underline hover:cursor-pointer"
     >
-      {`${tag}`}
+      {`#${tag}`}
     </Link>
   );
 }
