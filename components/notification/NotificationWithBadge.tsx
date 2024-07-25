@@ -1,38 +1,33 @@
 'use client';
-
+import api from "@/config/api";
 import { useState, useEffect } from 'react';
 import { useSocket } from '../providers/SocketProvider';
-import Cookies from 'js-cookie';
 import { Icons } from '../Icons';
+import useSWR from 'swr';
+
 
 interface NotificationProps {
-  onResetUnreadCount?: () => void;
   iconVariant?: 'outline' | 'solid';
 }
 
-export default function NotificationWithBadge({ onResetUnreadCount, iconVariant }: NotificationProps) {
+export default function NotificationWithBadge({ iconVariant }: NotificationProps) {
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   const socket = useSocket();
 
-  const fetchUnreadCount = async () => {
-    try {
-      const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications/count-unread`;
-      const response = await fetch(url, {
-        headers: {
-          Authorization: `Bearer ${Cookies.get('token')}`,
-        },
-      });
-      const data = await response.json();
-      const unreadCount = data.count || 0;
-      setUnreadNotificationCount(unreadCount);
-    } catch (error) {
-      console.error('Error fetching unread count:', error);
-    }
+  const fetcher = (url: string) => {
+    return api.get<any, any>(url);
   };
+  
+  const { data } = useSWR('/notifications/count-unread', fetcher);
 
   useEffect(() => {
-    fetchUnreadCount();
-  
+    if (data) {
+      const unreadCount = data?.count || 0;
+      setUnreadNotificationCount(unreadCount);
+    }
+  }, [data]);
+
+  useEffect(() => {
     if (!socket) return;
 
     const handleNotification = (payload: any) => {
@@ -46,11 +41,6 @@ export default function NotificationWithBadge({ onResetUnreadCount, iconVariant 
       socket.off('notification', handleNotification);
     };
   }, [socket]);
-
-  const handleIconClick = () => {
-    setUnreadNotificationCount(0);
-    if (onResetUnreadCount) onResetUnreadCount();
-  };
 
   return (
     <div className="relative">

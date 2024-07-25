@@ -45,6 +45,7 @@ export const signIn = async (formData: SignInFormData) => {
 
 export const signUp = async (formData: SignUpFormData) => {
   const response = await api.post<any, any>("/auth/signup", formData);
+  console.log(response);
   if (response.data?.error) {
     switch (response.data.error) {
       case "CONFLICT":

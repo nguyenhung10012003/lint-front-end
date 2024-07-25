@@ -1,12 +1,10 @@
 import { FollowersModal, FollowingsModal } from "@/components/FollowModal";
 import { Icons } from "@/components/Icons";
-import PostCard from "@/components/post/PostCard";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getCookie } from "@/lib/server-action";
 import { getOneUser } from "@/lib/server-action/user-action";
-import posts from "@/mocks/post.json";
 import Link from "next/link";
 
 export default async function Profile({
@@ -77,11 +75,11 @@ export default async function Profile({
         </Button>
       )}
       <Separator className="w-full h-[1px] bg-border" />
-      <div className="flex flex-col gap-6 w-full items-center">
+      {/* <div className="flex flex-col gap-6 w-full items-center">
         {posts.map((post, index) => (
           <PostCard key={index} post={post} lang={params.lang} />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

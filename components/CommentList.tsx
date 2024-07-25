@@ -1,18 +1,26 @@
-import { Separator } from "@/components/ui/separator";
-import comments from "@/mocks/comment.json";
-import Comment from "./Comment";
-import CommentForm from "./CommentForm";
+import { Comment } from "@/types/comment";
+import CommentCard from "./CommentCard";
+import InfiniteScroll from "./InfiniteScroll";
 
-export default function CommentList() {
+export default function CommentList({
+  comments, loadMore, hasMore
+}: {
+  comments: Comment[];
+  loadMore: () => void;
+  hasMore: boolean;
+}) {
   return (
-    <div className="flex gap-4 flex-col">
+    <InfiniteScroll
+      loadMore={loadMore}
+      hasMore={hasMore}
+      className="flex flex-col gap-3"
+    >
       {comments.map((comment, index) => (
-        <div key={comment.id} className="flex flex-col gap-4">
-          <Comment comment={comment} />
-          <CommentForm />
-          {index < comments.length - 1 && <Separator className="" />}
-        </div>
+        <>
+          <CommentCard key={comment.id} comment={comment} />
+          {index !== comments.length - 1 && <hr />}
+        </>
       ))}
-    </div>
+    </InfiniteScroll>
   );
 }

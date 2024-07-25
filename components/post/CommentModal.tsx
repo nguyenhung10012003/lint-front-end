@@ -1,5 +1,8 @@
+import api from "@/config/api";
 import useMediaQuery from "@/hooks/use-media-query";
+import { Comment } from "@/types/comment";
 import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
+import { useCallback, useState } from "react";
 import CommentForm from "../CommentForm";
 import CommentList from "../CommentList";
 import {
@@ -18,10 +21,31 @@ import {
 
 export default function CommentModal({
   trigger,
+  postId,
 }: {
   trigger: React.ReactNode;
+  postId: string;
 }) {
   const isMobile = useMediaQuery("(max-width: 640px)");
+  const [page, setPage] = useState<number>(0);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [comments, setComments] = useState<Comment[]>([]);
+  const fetchPerPage = 5;
+
+  const loadMore = useCallback(async () => {
+    const data = await api.get<any, { comments: Comment[] }>(
+      `/comment?postId=${postId}&skip=${
+        page * fetchPerPage
+      }&take=${fetchPerPage}&orderField=createdAt&orderDirection=desc`
+    );
+    if (!data.comments || data.comments.length === 0) {
+      setHasMore(false);
+      return;
+    }
+    setPage(page + 1);
+    setComments([...comments, ...data.comments]);
+  }, [page]);
+  //if (isLoading) return <Skeleton className="w-10 h-6"></Skeleton>;
   if (isMobile)
     return (
       <Drawer>
@@ -31,11 +55,15 @@ export default function CommentModal({
             <DialogTitle />
             <DrawerClose />
           </DrawerHeader>
-          <div className="px-4 overflow-y-auto pb-20">
-            <CommentList />
+          <div className="overflow-y-auto pb-2">
+            <CommentList
+              comments={comments}
+              loadMore={loadMore}
+              hasMore={hasMore}
+            />
           </div>
-          <div className="border-t-2 fixed bottom-0 flex w-full p-2 bg-background">
-            <CommentForm />
+          <div className="border-t-2 bottom-0 flex w-full p-2 bg-background">
+            <CommentForm postId={postId} />
           </div>
         </DrawerContent>
       </Drawer>
@@ -44,16 +72,26 @@ export default function CommentModal({
   return (
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
-      <DialogContent className="p-2">
+      <DialogContent className="p-0 w-full max-w-[600px]">
         <DialogHeader>
-          <DialogTitle className="text-center pt-2">Comments</DialogTitle>
+          <DialogTitle className="text-center pt-4">Comments</DialogTitle>
           <DialogClose />
         </DialogHeader>
-        <div className="px-4 overflow-y-auto pb-28 max-h-[70vh]">
-          <CommentList />
+        <div className="px-0 overflow-y-auto pb-4 max-h-[70vh]">
+          <CommentList
+            comments={comments}
+            loadMore={loadMore}
+            hasMore={hasMore}
+          />
         </div>
-        <div className="border-t-2 absolute bottom-0 flex w-full p-2 bg-background">
-          <CommentForm />
+        <div className="border-t-2 bottom-0 flex w-full p-2 bg-background">
+          <CommentForm
+            postId={postId}
+            submitAction="comment"
+            mutate={(newComment: Comment) => {
+              setComments([newComment, ...comments]);
+            }}
+          />
         </div>
       </DialogContent>
     </Dialog>

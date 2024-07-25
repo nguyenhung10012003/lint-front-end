@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { Button } from '../ui/button';
 import { useSocket } from '../providers/SocketProvider';
+import { mutate } from 'swr';
 
 function HighlightedText({ text, highlights }: { text: string, highlights: Highlight[] }) {
   if (!highlights || highlights.length === 0) {
@@ -43,7 +44,8 @@ function sortNotification(notifications: Notification[]) {
 }
 
 async function fetchNotifications(page: number) {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications?skip=${(page - 1) * 5}&take=5`;
+  const take: number = 6;
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications?skip=${(page - 1) * take}&take=${take}`;
   const response = await fetch(url, {
     headers: {
       Authorization: `Bearer ${Cookies.get('token')}`,
@@ -84,7 +86,6 @@ export default function NotificationList() {
       socket.on('notification', (payload: any) => {
         const notification: Notification = payload.data;
         const parseNotification = { ...notification, content: JSON.parse(notification.content as unknown as string) };
-        console.log('Received notification', notification);
         setLiveNotifications((prev) => {
           const index = prev.findIndex((msg) => msg.id === notification.id);
           if (index !== -1) {
@@ -101,7 +102,7 @@ export default function NotificationList() {
     }
     return () => {
       if (socket) {
-        socket.off('your-event');
+        socket.off('notification');
       }
     };
   }, [socket]);
@@ -127,6 +128,7 @@ export default function NotificationList() {
           read: true,
         })
       });
+      mutate('/notifications/count-unread');
 
       if (!response.ok) {
         throw new Error('Failed to update notification');
@@ -144,8 +146,9 @@ export default function NotificationList() {
       const data = await fetchNotifications(page + 1);
       setHasMore(data.hasMore);
       setLiveNotifications((prev) => {
-        const unsortNotification = [...prev, ...data.notifications];
-        return sortNotification(unsortNotification);
+        const notificationIds = new Set(prev.map(notification => notification.id));
+        const newNotifications = data.notifications.filter((notification: Notification) => !notificationIds.has(notification.id));
+        return sortNotification([...prev, ...newNotifications]);
       });
       setPage((prev) => prev + 1);
     } catch (error) {

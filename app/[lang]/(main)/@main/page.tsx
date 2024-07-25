@@ -1,5 +1,5 @@
-import PostCard from "@/components/post/PostCard";
-import posts from "@/mocks/post.json";
+import { getDictionary } from "@/app/dictionaries";
+import Feed from "@/components/Feed";
 
 export default async function Home({
   params,
@@ -8,11 +8,10 @@ export default async function Home({
     lang: string;
   };
 }) {
+  const dictionary = await getDictionary(params.lang);
   return (
-    <div className="flex flex-col gap-6 w-full items-center">
-      {posts.map((post, index) => (
-        <PostCard key={index} post={post} lang={params.lang} />
-      ))}
+    <div className="flex flex-col gap-6 w-full">
+      <Feed dictionary={dictionary} />
     </div>
   );
 }

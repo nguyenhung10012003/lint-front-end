@@ -22,7 +22,7 @@ export default function Search({
 }) {
   return (
     <div className="flex items-center flex-col w-full p-4 gap-4 ">
-      <SearchBox placeholder="Search" />
+      {/* <SearchBox placeholder="Search" />
       <Card className="w-full max-w-[550px] rounded-lg mt-5">
         <CardHeader className="flex flex-row justify-between items-center">
           <CardTitle>Peoples</CardTitle>
@@ -66,7 +66,7 @@ export default function Search({
         {posts.map((post, index) => (
           <PostCard key={index} post={post} lang={params.lang} />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

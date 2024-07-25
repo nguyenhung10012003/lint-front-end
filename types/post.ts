@@ -16,7 +16,7 @@ export interface Post {
 export interface Media {
   id: number;
   postId?: string;
-  url?: string;
+  url: string;
   type: MediaType;
   width?: number | undefined;
   height?: number | undefined;
@@ -37,6 +37,6 @@ export enum PostScope {
 
 export interface Tag {
   id?: number;
-  name?: string;
+  name: string;
   createdAt?: string;
 }
