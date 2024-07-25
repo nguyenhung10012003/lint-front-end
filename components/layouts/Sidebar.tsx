@@ -3,16 +3,14 @@ import { Icons } from "@/components/Icons";
 import SideBarFooter from "@/components/layouts/SideBarFooter";
 import SidebarBody from "@/components/layouts/SidebarBody";
 import { User } from "@/types/user";
-import NotificationBadge from "../notification/NotificationBadge";
+import NotificationWithBadge from "../notification/NotificationWithBadge";
 
 export default async function Sidebar({
   lang,
   user,
-  unreadNotificationCount,
 }: {
   lang: string;
   user: User;
-  unreadNotificationCount: number;
 }) {
   const { sidebar, createPost } = await getDictionary(lang);
   const sidebarItems = [
@@ -41,19 +39,12 @@ export default async function Sidebar({
       label: sidebar.notification,
       icon: {
         outline:         
-          <div className="relative">
-            <NotificationBadge initialCount={unreadNotificationCount} />
-            <Icons.notification className="w-6 h-6" />
-          </div>,
+          <NotificationWithBadge iconVariant="outline" />,
         solid:         
-          <div className="relative">
-            <NotificationBadge initialCount={unreadNotificationCount} />
-            <Icons.notification className="w-6 h-6" variant={"solid"} />
-        </div>,
+          <NotificationWithBadge iconVariant="solid" />,
       },
       href: "/notification",
       pathReg: "^/[a-zA-Z]{2}(-[a-zA-Z]{2})?/notification$",
-      count: unreadNotificationCount,
     },
     // {
     //   name: "message",

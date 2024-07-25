@@ -38,6 +38,10 @@ function HighlightedText({ text, highlights }: { text: string, highlights: Highl
   return <>{parts}</>;
 }
 
+function sortNotification(notifications: Notification[]) {
+  return notifications.sort((a, b) => new Date(b.lastModified).getTime() - new Date(a.lastModified).getTime());
+}
+
 async function fetchNotifications(page: number) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications?skip=${(page - 1) * 5}&take=5`;
   const response = await fetch(url, {
@@ -66,7 +70,7 @@ export default function NotificationList() {
       try {
         const data = await fetchNotifications(1);
         setHasMore(data.hasMore);
-        setLiveNotifications(data.notifications || []);
+        setLiveNotifications(sortNotification(data.notifications) || []);
       } catch (error) {
         console.error('Error fetching notifications:', error);
       }
@@ -86,7 +90,7 @@ export default function NotificationList() {
           if (index !== -1) {
             const updatedNotifications = [...prev];
             updatedNotifications[index] = parseNotification;
-            return updatedNotifications;
+            return sortNotification(updatedNotifications);
           } else {
             return [parseNotification, ...prev];
           }
@@ -139,7 +143,10 @@ export default function NotificationList() {
     try {
       const data = await fetchNotifications(page + 1);
       setHasMore(data.hasMore);
-      setLiveNotifications((prev) => [...prev, ...data.notifications]);
+      setLiveNotifications((prev) => {
+        const unsortNotification = [...prev, ...data.notifications];
+        return sortNotification(unsortNotification);
+      });
       setPage((prev) => prev + 1);
     } catch (error) {
       console.error('Error loading more notifications:', error);
