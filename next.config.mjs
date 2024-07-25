@@ -1,14 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'img.freepik.com',
-        port: '',
-        
-      },
-    ],
+    domains: ['lint-cdn.s3.ap-southeast-1.amazonaws.com', 'img.freepik.com'],
+
   },
   publicRuntimeConfig: {
     // Will be available on both server and client

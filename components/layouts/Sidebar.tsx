@@ -3,13 +3,16 @@ import { Icons } from "@/components/Icons";
 import SideBarFooter from "@/components/layouts/SideBarFooter";
 import SidebarBody from "@/components/layouts/SidebarBody";
 import { User } from "@/types/user";
+import NotificationBadge from "../notification/NotificationBadge";
 
 export default async function Sidebar({
   lang,
   user,
+  unreadNotificationCount,
 }: {
   lang: string;
   user: User;
+  unreadNotificationCount: number;
 }) {
   const { sidebar, createPost } = await getDictionary(lang);
   const sidebarItems = [
@@ -37,11 +40,20 @@ export default async function Sidebar({
       name: "notification",
       label: sidebar.notification,
       icon: {
-        outline: <Icons.notification className="w-6 h-6" />,
-        solid: <Icons.notification className="w-6 h-6" variant={"solid"} />,
+        outline:         
+          <div className="relative">
+            <NotificationBadge initialCount={unreadNotificationCount} />
+            <Icons.notification className="w-6 h-6" />
+          </div>,
+        solid:         
+          <div className="relative">
+            <NotificationBadge initialCount={unreadNotificationCount} />
+            <Icons.notification className="w-6 h-6" variant={"solid"} />
+        </div>,
       },
       href: "/notification",
       pathReg: "^/[a-zA-Z]{2}(-[a-zA-Z]{2})?/notification$",
+      count: unreadNotificationCount,
     },
     // {
     //   name: "message",
@@ -102,6 +114,7 @@ export default async function Sidebar({
       ],
     },
   ];
+
   return (
     <div className="sm:flex flex-col h-screen lg:w-full lg:max-w-[275px] py-6 px-4 border-r hidden z-40 over">
       <div id="logo">Logo</div>

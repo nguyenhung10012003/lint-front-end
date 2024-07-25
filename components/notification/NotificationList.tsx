@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 import { formatTimeDifference } from '@/utils/datetime';
 import {} from '@radix-ui/react-avatar';
@@ -7,8 +6,9 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Notification, Highlight } from '@/types/notification'; 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { io } from 'socket.io-client';
 import Cookies from 'js-cookie';
+import { Button } from '../ui/button';
+import { useSocket } from '../providers/SocketProvider';
 
 function HighlightedText({ text, highlights }: { text: string, highlights: Highlight[] }) {
   if (!highlights || highlights.length === 0) {
@@ -38,50 +38,115 @@ function HighlightedText({ text, highlights }: { text: string, highlights: Highl
   return <>{parts}</>;
 }
 
-export default function NotificationList({ notifications }: { notifications: Notification[] }) {
-  const [liveNotifications, setLiveNotifications] = useState<Notification[]>(notifications);
+async function fetchNotifications(page: number) {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications?skip=${(page - 1) * 5}&take=5`;
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get('token')}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch notifications');
+  }
+
+  return await response.json();
+}
+
+
+export default function NotificationList() {
+  const [liveNotifications, setLiveNotifications] = useState<Notification[]>([]);
+  const [hasMore, setHasMore] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+
+  const socket = useSocket();
+
   useEffect(() => {
-    const token = Cookies.get('token') || '';
-    const socketOptions = {
-      transportOptions: {
-          polling: {
-              extraHeaders: {
-                  Authorization: 'Bearer ' + token, 
-              }
-          }
+    const initializeNotifications = async () => {
+      try {
+        const data = await fetchNotifications(1);
+        setHasMore(data.hasMore);
+        setLiveNotifications(data.notifications || []);
+      } catch (error) {
+        console.error('Error fetching notifications:', error);
       }
     };
-    const socket = io('http://localhost:3001', socketOptions);
 
-    socket.on('connect', () => {
-      console.log('Socket connection opened');
-    });
-
-    socket.on('notification', (payload: any) => {
-      const notification: Notification = payload.data;
-      console.log('Received notification', notification);
-      setLiveNotifications((prev) => {
-        const index = prev.findIndex((msg) => msg.id === notification.id);
-        if (index !== -1) {
-          const updatedNotifications = [...prev];
-          let parseNotification = { ...notification, content: JSON.parse(notification.content as unknown as string) };
-          updatedNotifications[index] = parseNotification;
-          return updatedNotifications;
-        } else {
-          let parseNotification = { ...notification, content: JSON.parse(notification.content as unknown as string) };
-          return [parseNotification, ...prev];
-        }
-      });
-    });
-
-    socket.on('disconnect', () => {
-      console.log('Socket connection closed');
-    });
-
-    return () => {
-      socket.disconnect();
-    };
+    initializeNotifications();
   }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on('notification', (payload: any) => {
+        const notification: Notification = payload.data;
+        const parseNotification = { ...notification, content: JSON.parse(notification.content as unknown as string) };
+        console.log('Received notification', notification);
+        setLiveNotifications((prev) => {
+          const index = prev.findIndex((msg) => msg.id === notification.id);
+          if (index !== -1) {
+            const updatedNotifications = [...prev];
+            updatedNotifications[index] = parseNotification;
+            return updatedNotifications;
+          } else {
+            return [parseNotification, ...prev];
+          }
+        });
+      });
+    } else {
+      console.log('Socket is not available');
+    }
+    return () => {
+      if (socket) {
+        socket.off('your-event');
+      }
+    };
+  }, [socket]);
+
+  const handleNotificationClick = async (id: string) => {
+    setLiveNotifications(prev => {
+      const updatedNotifications = prev.map(notification => 
+        notification.id === id ? { ...notification, read: true } : notification
+      );
+      return updatedNotifications;
+    });
+
+    try {
+      const url = process.env.NEXT_PUBLIC_API_URL + '/notifications';
+      const response = await fetch(url, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+        body: JSON.stringify({
+          id: id,
+          read: true,
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update notification');
+      }
+    } catch (error) {
+      console.error('Error updating notification:', error);
+    }
+  };
+
+  const loadMoreNotifications = async () => {
+    if (loading || !hasMore) return;
+
+    setLoading(true);
+    try {
+      const data = await fetchNotifications(page + 1);
+      setHasMore(data.hasMore);
+      setLiveNotifications((prev) => [...prev, ...data.notifications]);
+      setPage((prev) => prev + 1);
+    } catch (error) {
+      console.error('Error loading more notifications:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -90,6 +155,7 @@ export default function NotificationList({ notifications }: { notifications: Not
           key={notification.id}
           className="flex p-2 hover:bg-accent rounded-lg  gap-4"
           href={notification.url}
+          onClick={() => handleNotificationClick(notification.id)}
         >
           <Avatar className="w-14 h-14">
             <AvatarImage src={notification.subject?.imageUrl} className="object-cover" />
@@ -103,16 +169,15 @@ export default function NotificationList({ notifications }: { notifications: Not
               />
             </div>
             <p className="text-sm text-blue-500">
-              {formatTimeDifference(new Date(notification.updatedAt))}
+              {formatTimeDifference(new Date(notification.lastModified))}
             </p>
           </div>
           {notification.diObject?.imageUrl && (
             <div className="w-20 h-14 ml-4">
-              <img 
+              <Image 
                 src={notification.diObject?.imageUrl}
                 alt="Post Image" 
                 className="object-cover w-full h-full rounded-lg" 
-                // layout="responsive"
                 width={56}
                 height={56}
               />
@@ -127,6 +192,17 @@ export default function NotificationList({ notifications }: { notifications: Not
           </div>
         </Link>
       ))}
+      <div className="flex justify-center mt-4">
+        {hasMore && (
+          <Button
+            onClick={loadMoreNotifications}
+            disabled={loading}
+            className="w-full bg-accent text-accent-foreground font-semibold hover:bg-accent/50"
+          > 
+            {loading ? 'Loading...' : 'Load more'}
+          </Button>
+        )}
+      </div>  
     </>
   );
 }

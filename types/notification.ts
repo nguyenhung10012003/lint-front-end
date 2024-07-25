@@ -6,8 +6,7 @@ export interface Notification {
   url: string;
   content: Content | undefined;
   read: boolean;
-  createdAt: string;
-  updatedAt: string;
+  lastModified: string;
 }
 
 export interface Obj {
