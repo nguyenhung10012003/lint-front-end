@@ -1,6 +1,6 @@
 "use client";
 
-import { updateProfile } from "@/lib/server-action/user-action";
+import api from "@/config/api";
 import { Profile } from "@/types/user";
 import {} from "@radix-ui/react-select";
 import { useState } from "react";
@@ -16,12 +16,14 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Textarea } from "../ui/textarea";
+import { useToast } from "../ui/use-toast";
 import { SettingGroup, SettingItem } from "./Setting";
 
 export default function ProfileSetting({ profile }: { profile: Profile }) {
   const [pf, setProfile] = useState(profile);
   const [avatar, setAvatar] = useState<File | undefined>();
   const [preview, setPreview] = useState<string | undefined>();
+  const { toast } = useToast();
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -32,8 +34,24 @@ export default function ProfileSetting({ profile }: { profile: Profile }) {
 
   const handleSubmit = async () => {
     try {
-      const profile = await updateProfile({ profile: pf, avatar });
+      const form = new FormData();
+      if (pf.name) form.append("name", pf.name);
+      if (pf.alias) form.append("alias", pf.alias);
+      if (pf.bio) form.append("bio", pf.bio);
+      if (pf.dob) form.append("dob", pf.dob);
+      if (pf.country) form.append("country", pf.country);
+      if (pf.gender) form.append("gender", pf.gender);
+      if (avatar) form.append("avatar", avatar);
+      const profile = await api.patch<any, Profile>("/profile", form, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       setProfile(profile);
+      toast({
+        title: "Profile updated",
+        description: "Your profile has been updated successfully",
+      });
     } catch (error) {
       console.error(error);
     }

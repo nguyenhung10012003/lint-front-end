@@ -6,7 +6,7 @@ export function extractHashtags(text: string) {
   const textWithoutHashtags = text.replace(regex, "").trim();
 
   return {
-    hashtags: hashtags,
+    hashtags: hashtags?.map((hashtag) => hashtag.slice(1)) || [],
     text: textWithoutHashtags,
   };
 }

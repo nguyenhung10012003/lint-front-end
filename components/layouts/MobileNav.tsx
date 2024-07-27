@@ -2,7 +2,7 @@
 import { User } from "@/types/user";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import CreatePostModal from "../CreatePostModal";
+import CreatePostModal from "../post/CreatePostModal";
 import { Icons } from "../Icons";
 
 export default function MobileNav({

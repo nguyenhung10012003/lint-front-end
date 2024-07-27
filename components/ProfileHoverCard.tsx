@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import profiles from "@/mocks/profile.json";
+import { User } from "@/types/user";
 import {
   HoverCard,
   HoverCardArrow,
@@ -7,16 +7,16 @@ import {
   HoverCardTrigger,
 } from "@radix-ui/react-hover-card";
 import Link from "next/link";
+import FollowBtn from "./FollowBtn";
 import ProfileAvatar from "./ProfileAvatar";
-import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 
 export default function ProfileHoverCard({
-  profile,
+  user,
   avatarClassName,
   aliasClassName,
 }: {
-  profile: (typeof profiles)[0];
+  user: User;
   avatarClassName?: string;
   aliasClassName?: string;
 }) {
@@ -28,7 +28,7 @@ export default function ProfileHoverCard({
             "text-foreground hover:underline underline-offset-4 hover:cursor-pointer font-bold",
             aliasClassName
           )}
-        >{`@${profile.alias}`}</span>
+        >{`@${user.profile.alias}`}</span>
       </HoverCardTrigger>
       <HoverCardContent
         className="max-w-80 w-full flex flex-col p-6 border rounded-xl bg-background
@@ -38,28 +38,26 @@ export default function ProfileHoverCard({
       >
         <Link
           className="flex flex-row gap-12 justify-between"
-          href={`/${profile.id}`}
+          href={`/profile/${user.id}`}
         >
           <div className="flex flex-col">
-            <span className="font-semibold text-xl">{profile.name}</span>
-            <span className="text-gray-600 dark:text-gray-400">{`@${profile.alias}`}</span>
+            <span className="font-semibold text-xl">{user.profile.name}</span>
+            <span className="text-gray-600 dark:text-gray-400">{`@${user.profile.alias}`}</span>
           </div>
           <ProfileAvatar
-            src={profile.avatar}
-            alt={profile.alias}
-            profileId={profile.id}
+            src={user.profile.avatar}
+            alt={user.profile.alias}
+            profileId={user.id}
             className={cn("w-14 h-14 rounded-full", avatarClassName)}
           />
         </Link>
-        <div className="text-sm">{profile.bio}</div>
+        <div className="text-sm">{user.profile.bio}</div>
         <div className="flex gap-2 text-gray-400">
           <span className="text-sm font-semibold">{0} followers</span>
           <Separator orientation="vertical" className="h-[20px]" />
           <span className="text-sm font-semibold">{0} following</span>
         </div>
-        <Button className="rounded-xl text-lg font-semibold text-white">
-          Follow
-        </Button>
+        <FollowBtn followingId={user.id} />
         <HoverCardArrow className="fill-background" />
       </HoverCardContent>
     </HoverCard>

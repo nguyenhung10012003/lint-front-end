@@ -1,8 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
-import {} from "@radix-ui/react-dialog";
+import Image from "next/image";
 import Link from "next/link";
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { Skeleton } from "./ui/skeleton";
 
 export default function ProfileAvatar({
@@ -38,8 +38,19 @@ export default function ProfileAvatar({
     return (
       <Dialog>
         <DialogTrigger>{avatar}</DialogTrigger>
-        <DialogContent>
-          <img src={src || "/image/default_avatar.png"} alt="" />
+        <DialogContent
+          className="flex p-0 justify-center min-w-0"
+          includeClose={false}
+          aria-describedby={undefined}
+        >
+          <DialogTitle></DialogTitle>
+          <Image
+            src={src || "/image/default_avatar.png"}
+            alt=""
+            width={1000}
+            height={1000}
+            className="object-contain sm:max-w-[90vw] sm:max-h-[90vh] lg:max-w-[80vw] lg:max-h-[90vh] flex"
+          />
         </DialogContent>
       </Dialog>
     );

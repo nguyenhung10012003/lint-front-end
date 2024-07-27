@@ -14,14 +14,14 @@ import { Post } from "@/types/post";
 import { User } from "@/types/user";
 import Link from "next/link";
 import { useState } from "react";
-import EmojiPicker from "./EmojiPicker";
-import HashTagPicker from "./HashTagPicker";
-import { Icons } from "./Icons";
-import ProfileAvatar from "./ProfileAvatar";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Separator } from "./ui/separator";
-import { useToast } from "./ui/use-toast";
+import EmojiPicker from "../EmojiPicker";
+import HashTagPicker from "../HashTagPicker";
+import { Icons } from "../Icons";
+import ProfileAvatar from "../ProfileAvatar";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Separator } from "../ui/separator";
+import { useToast } from "../ui/use-toast";
 
 export default function CreatePostModal({ user }: { user: User }) {
   const [content, setContent] = useState<string | undefined>();

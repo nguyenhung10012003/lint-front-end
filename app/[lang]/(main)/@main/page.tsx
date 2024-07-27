@@ -1,5 +1,5 @@
 import { getDictionary } from "@/app/dictionaries";
-import Feed from "@/components/Feed";
+import PostList from "@/components/PostList";
 
 export default async function Home({
   params,
@@ -11,7 +11,7 @@ export default async function Home({
   const dictionary = await getDictionary(params.lang);
   return (
     <div className="flex flex-col gap-6 w-full">
-      <Feed dictionary={dictionary} />
+      <PostList dictionary={dictionary} url={{ url: "/feed" }} />
     </div>
   );
 }

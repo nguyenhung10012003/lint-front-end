@@ -1,5 +1,4 @@
 import { Icons } from "@/components/Icons";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { User } from "@/types/user";
 import Link from "next/link";
+import ProfileAvatar from "../ProfileAvatar";
 
 interface DropDownMenuGroup {
   name: string;
@@ -32,10 +32,11 @@ export default async function SideBarFooter({
 }) {
   return (
     <div className="flex w-full gap-2 items-center justify-center">
-      <Avatar className="w-12 h-12 hidden lg:block">
-        <AvatarImage src={user.profile.avatar} alt="" />
-        <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
+      <ProfileAvatar
+        src={user.profile.avatar}
+        profileId={user.profile.id}
+        className="hidden lg:flex"
+      />
       <div className="w-full hidden lg:block">
         <div className="font-semibold">{user.profile.name}</div>
         <Link

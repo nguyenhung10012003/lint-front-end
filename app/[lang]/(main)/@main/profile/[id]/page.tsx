@@ -1,5 +1,7 @@
+import { getDictionary } from "@/app/dictionaries";
 import { FollowersModal, FollowingsModal } from "@/components/FollowModal";
 import { Icons } from "@/components/Icons";
+import PostList from "@/components/PostList";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -17,6 +19,7 @@ export default async function Profile({
 }) {
   const user = await getOneUser({ id: params.id });
   const isOwner = (await getCookie("userId"))?.value === user.id;
+  const dictionary = await getDictionary(params.lang);
 
   return (
     <div className="flex flex-col w-full items-center max-w-[700px] mt-2 p-2 gap-4">
@@ -75,11 +78,9 @@ export default async function Profile({
         </Button>
       )}
       <Separator className="w-full h-[1px] bg-border" />
-      {/* <div className="flex flex-col gap-6 w-full items-center">
-        {posts.map((post, index) => (
-          <PostCard key={index} post={post} lang={params.lang} />
-        ))}
-      </div> */}
+      <div className="flex flex-col gap-6 w-full">
+        <PostList dictionary={dictionary} url={`/post?userId=${user.id}`} />
+      </div>
     </div>
   );
 }
