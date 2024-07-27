@@ -110,7 +110,7 @@ function PostCard({ post, dictionary, isAuthor = false }: PostCardProps) {
               </div>
               <ProfileHoverCard
                 aliasClassName="font-md text-sm"
-                profile={author.profile}
+                user={author}
               ></ProfileHoverCard>
             </div>
           </div>

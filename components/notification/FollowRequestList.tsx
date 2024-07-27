@@ -18,7 +18,7 @@ export default function FollowRequestList() {
           />
           <div className="flex w-full pb-2 border-b justify-between md:flex-row flex-col gap-2">
             <div>
-              <ProfileHoverCard profile={request.user}></ProfileHoverCard>
+              <ProfileHoverCard user={request.user}></ProfileHoverCard>
               <span className="ml-2 text-gray-600 dark:text-gray-400 text-sm">
                 {formatTimeDifference(new Date(request.createdAt))}
               </span>

@@ -9,6 +9,7 @@ import { formatToShortNumber } from "@/utils/number";
 import { Icons } from "./Icons";
 import ProfileAvatar from "./ProfileAvatar";
 import ProfileHoverCard from "./ProfileHoverCard";
+import { User } from "@/types/user";
 
 const fetcher = (url: string) => api.get<any, any>(url);
 
@@ -40,7 +41,7 @@ function CommentUI({
   createdAt: string;
   connector?: React.ReactNode;
 }) {
-  const { data, error, isLoading } = useSWR(`/user/${userId}`, fetcher);
+  const { data, error, isLoading } = useSWR<User>(`/user/${userId}`, fetcher);
   if (isLoading) return <CommentSkeleton />;
   return (
     <div className="flex gap-3">
@@ -56,7 +57,7 @@ function CommentUI({
       </div>
       <div className="">
         <div className="flex gap-3 items-center">
-          <ProfileHoverCard profile={data?.profile} />
+          {data && <ProfileHoverCard user={data} />}
           <span className="text-gray-400 text-sm">
             {formatTimeDifference(new Date(createdAt))}
           </span>

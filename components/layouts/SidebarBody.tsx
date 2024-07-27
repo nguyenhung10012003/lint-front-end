@@ -1,13 +1,13 @@
 "use client";
+import CreatePostModal from "@/components/post/CreatePostModal";
 import { NavItem } from "@/types/nav";
+import { User } from "@/types/user";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import CreatePostModal from "../CreatePostModal";
-import { User } from "@/types/user";
 
 export default function SidebarBody({
   sidebarItems,
-  user
+  user,
 }: {
   sidebarItems: NavItem[];
   user: User;
@@ -32,7 +32,7 @@ export default function SidebarBody({
           </Link>
         );
       })}
-      <CreatePostModal user={user}/>
+      <CreatePostModal user={user} />
     </>
   );
 }
