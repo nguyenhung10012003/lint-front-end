@@ -2,6 +2,7 @@ import FollowRequestList from "@/components/notification/FollowRequestList";
 import NotificationList from "@/components/notification/NotificationList";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type { Notification } from "@/types/notification";
 
 export default function Notification({
   params,
@@ -14,7 +15,7 @@ export default function Notification({
     {
       label: "Notification",
       id: "notification",
-      content: <NotificationList />,
+      content: <NotificationList/>,
     },
     {
       label: "Follow Request",

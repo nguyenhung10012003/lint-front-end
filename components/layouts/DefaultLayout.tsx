@@ -2,7 +2,7 @@ import { User } from "@/types/user";
 import MobileNav from "./MobileNav";
 import Sidebar from "./Sidebar";
 
-export default function DefaultLayout({
+export default async function DefaultLayout({
   children,
   lang,
   user,
@@ -11,7 +11,6 @@ export default function DefaultLayout({
   lang: string;
   user: User;
 }) {
-  
   return (
     <>
       <Sidebar lang={lang} user={user} />

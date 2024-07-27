@@ -3,6 +3,7 @@ import { Icons } from "@/components/Icons";
 import SideBarFooter from "@/components/layouts/SideBarFooter";
 import SidebarBody from "@/components/layouts/SidebarBody";
 import { User } from "@/types/user";
+import NotificationWithBadge from "../notification/NotificationWithBadge";
 
 export default async function Sidebar({
   lang,
@@ -37,8 +38,10 @@ export default async function Sidebar({
       name: "notification",
       label: sidebar.notification,
       icon: {
-        outline: <Icons.notification className="w-6 h-6" />,
-        solid: <Icons.notification className="w-6 h-6" variant={"solid"} />,
+        outline:         
+          <NotificationWithBadge iconVariant="outline" />,
+        solid:         
+          <NotificationWithBadge iconVariant="solid" />,
       },
       href: "/notification",
       pathReg: "^/[a-zA-Z]{2}(-[a-zA-Z]{2})?/notification$",
@@ -102,6 +105,7 @@ export default async function Sidebar({
       ],
     },
   ];
+
   return (
     <div className="sm:flex flex-col h-screen lg:w-full lg:max-w-[275px] py-6 px-4 border-r hidden z-40 over">
       <div id="logo">Logo</div>
