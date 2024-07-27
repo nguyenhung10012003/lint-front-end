@@ -59,14 +59,13 @@ export default function ProfileSetupSteps({
 }) {
   const [pf, setProfile] = useState(profile);
   const [step, setStep] = useState(initStep);
+  const [avatar, setAvatar] = useState<File | undefined>();
+  const [preview, setPreview] = useState<string | null>(null);
   const router = useRouter();
 
   const handleStart = async () => {
-    console.log(pf);
-    profile = await createProfile({ profile: pf });
-
-    console.log(profile);
-    //router.refresh();
+    profile = await createProfile({ profile: pf, avatar: avatar });
+    //window.location.reload();
   };
 
   const nameAndAliasSchema = z.object({
@@ -91,9 +90,16 @@ export default function ProfileSetupSteps({
   const handleSubmitStep1 = async (
     values: z.infer<typeof nameAndAliasSchema>
   ) => {
-    console.log(values);
     setProfile({ ...pf, name: values.name, alias: values.alias });
     setStep(step + 1);
+  };
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setAvatar(file);
+      setPreview(URL.createObjectURL(file));
+    }
   };
 
   const pageSteps = [
@@ -111,7 +117,7 @@ export default function ProfileSetupSteps({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="font-semibold">
-                    What's your name?
+                    {`What's your name?`}
                   </FormLabel>
                   <FormControl>
                     <Input id="name" {...field} maxLength={32} />
@@ -126,7 +132,7 @@ export default function ProfileSetupSteps({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="font-semibold">
-                    What's your alias?
+                    {`What's your alias?`}
                   </FormLabel>
                   <FormControl>
                     <Input id="alias" {...field} maxLength={24} />
@@ -149,7 +155,7 @@ export default function ProfileSetupSteps({
         <div className="flex h-full flex-col gap-4 w-full max-w-[300px] justify-center">
           <div className="flex flex-col gap-2">
             <Label htmlFor="dob" className="font-semibold">
-              When were you born?
+              {`When were you born?`}
             </Label>
             <Input
               id="dob"
@@ -197,9 +203,10 @@ export default function ProfileSetupSteps({
         <div className="flex h-full flex-col gap-4 w-full max-w-[400px] justify-center">
           <div className="flex justify-between w-full border-2 rounded-xl p-4 items-center">
             <ProfileAvatar
-              src={pf.avatar || ""}
+              src={preview || pf.avatar || ""}
               alt={""}
               className="w-14 md:w-20 h-14 md:h-20"
+              variant="modal"
             />
 
             <Label
@@ -214,6 +221,7 @@ export default function ProfileSetupSteps({
               id="avatar"
               className="hidden"
               accept="image/*"
+              onChange={handleAvatarChange}
             />
           </div>
           <div className="flex flex-col gap-2">

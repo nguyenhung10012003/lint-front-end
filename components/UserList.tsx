@@ -38,7 +38,7 @@ export default function UserList({ usersId }: { usersId: { id: string }[] }) {
       className="flex flex-col gap-4 "
     >
       {users.map((user, index) => (
-        <div className="flex gap-2 justify-between items-center ">
+        <div className="flex gap-2 justify-between items-center " key={index}>
           <div className="flex gap-2">
             <ProfileAvatar
               src={user.profile.avatar}

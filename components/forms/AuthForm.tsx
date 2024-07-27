@@ -79,8 +79,10 @@ export default function AuthForm({
   const { toast } = useToast();
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const response = await submitAction(values);
-    if (response?.error && response?.field) {
-      form.setError(response.field, { message: response.message });
+    if (response?.error) {
+      if (response.field)
+        form.setError(response.field, { message: response.message });
+      else setUncatchedError(response.message);
     } else if (response?.error) {
       toast({
         variant: "destructive",

@@ -36,7 +36,8 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
-    return error.response;
+    if (error.response) return error.response;
+    return error;
   }
 );
 

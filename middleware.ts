@@ -8,7 +8,8 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
 
   //Redirect if user is not logged in
-  if (!request.nextUrl.pathname.includes("/sign-in") && (!user || !token)) {
+  const checkPath = /sign-(in|up)/;
+  if (!checkPath.test(request.nextUrl.pathname) && (!user || !token)) {
     needRedirect = true;
     pathname = "/sign-in";
   }

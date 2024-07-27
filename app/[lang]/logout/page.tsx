@@ -8,6 +8,6 @@ export default function Logout() {
   const router = useRouter();
   useEffect(() => {
     signOut();
-    router.push("/sign-in");
+    router.replace("/sign-in");
   }, []);
 }
