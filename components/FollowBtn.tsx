@@ -49,7 +49,7 @@ export default function FollowBtn({
   return !isFollowing ? (
     <Button
       className={cn(
-        "text-white font-semibold w-full max-w-[150px]",
+        "text-white font-semibold w-full",
         followBtnClassName
       )}
       onClick={handleFollow}
@@ -58,7 +58,7 @@ export default function FollowBtn({
     </Button>
   ) : (
     <Button
-      className={cn("font-semibold w-full max-w-[150px]", unfollowBtnClassName)}
+      className={cn("font-semibold w-full", unfollowBtnClassName)}
       variant="secondary"
       onClick={handleUnfollow}
     >

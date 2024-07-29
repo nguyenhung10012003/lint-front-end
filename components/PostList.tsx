@@ -27,7 +27,7 @@ export default function PostList({
     const data = await api.get<any, { posts: Post[] }>(`${url.url}`, {
       params: {
         ...url.params,
-        skip: page * postPerFetch,
+        idsNotIn: posts.map((post) => post.id),
         take: postPerFetch,
       },
     });

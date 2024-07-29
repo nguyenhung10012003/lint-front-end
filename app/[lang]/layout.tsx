@@ -11,6 +11,9 @@ const archivo = Archivo({ subsets: ["latin", "vietnamese"] });
 export const metadata: Metadata = {
   title: "Lint",
   description: "",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
