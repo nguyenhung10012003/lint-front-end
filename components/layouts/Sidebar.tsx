@@ -3,6 +3,7 @@ import { Icons } from "@/components/Icons";
 import SideBarFooter from "@/components/layouts/SideBarFooter";
 import SidebarBody from "@/components/layouts/SidebarBody";
 import { User } from "@/types/user";
+import Image from "next/image";
 import NotificationWithBadge from "../notification/NotificationWithBadge";
 
 export default async function Sidebar({
@@ -38,10 +39,8 @@ export default async function Sidebar({
       name: "notification",
       label: sidebar.notification,
       icon: {
-        outline:         
-          <NotificationWithBadge iconVariant="outline" />,
-        solid:         
-          <NotificationWithBadge iconVariant="solid" />,
+        outline: <NotificationWithBadge iconVariant="outline" />,
+        solid: <NotificationWithBadge iconVariant="solid" />,
       },
       href: "/notification",
       pathReg: "^/[a-zA-Z]{2}(-[a-zA-Z]{2})?/notification$",
@@ -108,8 +107,18 @@ export default async function Sidebar({
 
   return (
     <div className="sm:flex flex-col h-screen lg:w-full lg:max-w-[275px] py-6 px-4 border-r hidden z-40 over">
-      <div id="logo">Logo</div>
-      <div id="sidebar-body" className="flex gap-2 flex-col mt-10">
+      <div id="logo" className="flex justify-center">
+        <a href="/">
+          <Image
+            src={"/logo.png"}
+            alt={""}
+            width={250}
+            height={250}
+            className="w-14 h-14"
+          />
+        </a>
+      </div>
+      <div id="sidebar-body" className="flex gap-2 flex-col mt-6">
         <SidebarBody sidebarItems={sidebarItems} user={user} />
       </div>
       <div id="sidebar-footer" className="items-end flex h-full">

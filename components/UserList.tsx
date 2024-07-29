@@ -30,7 +30,7 @@ export default function UserList({ usersId }: { usersId: { id: string }[] }) {
       setUsers((prev) => [...prev, ...users]);
       setPage(page + 1);
     }
-  }, [page]);
+  }, [page, hasMore]);
   return (
     <InfiniteScroll
       loadMore={loadMore}
@@ -55,7 +55,11 @@ export default function UserList({ usersId }: { usersId: { id: string }[] }) {
             </div>
           </div>
 
-          <FollowBtn followingId={user.id} />
+          <FollowBtn
+            followingId={user.id}
+            followBtnClassName="max-w-[150px]"
+            unfollowBtnClassName="max-w-[150px]"
+          />
         </div>
       ))}
     </InfiniteScroll>
