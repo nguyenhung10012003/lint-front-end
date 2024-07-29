@@ -17,6 +17,6 @@ export const getLocale = (request: NextRequest) => {
   return locale || defaultLocale.key;
 };
 
-export const getLanguageFromLocale = async (locale: string) => {
+export const getLanguageFromLocale = (locale: string) => {
   return locales.find((l) => l.key === locale)?.lang || defaultLocale.lang;
 };
