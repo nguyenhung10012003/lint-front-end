@@ -1,13 +1,7 @@
-import { followRequests } from "@/mocks/notification.json";
-import { formatTimeDifference } from "@/utils/datetime";
-import ProfileAvatar from "../ProfileAvatar";
-import ProfileHoverCard from "../ProfileHoverCard";
-import { Button } from "../ui/button";
-
 export default function FollowRequestList() {
   return (
     <>
-      {followRequests.map((request) => (
+      {/* {followRequests.map((request) => (
         <div className="flex gap-4 mt-4" key={request.id}>
           <ProfileAvatar
             src={request.user.avatar}
@@ -34,7 +28,7 @@ export default function FollowRequestList() {
             </div>
           </div>
         </div>
-      ))}
+      ))} */}
     </>
   );
 }
