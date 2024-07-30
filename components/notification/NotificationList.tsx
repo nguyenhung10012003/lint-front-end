@@ -189,8 +189,8 @@ export default function NotificationList() {
                 src={notification.diObject?.imageUrl}
                 alt="Post Image" 
                 className="object-cover w-full h-full rounded-lg" 
-                width={56}
-                height={56}
+                width={2000}
+                height={2000}
               />
             </div>
           )}
