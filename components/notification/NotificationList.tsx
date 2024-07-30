@@ -72,7 +72,7 @@ export default function NotificationList() {
       try {
         const data = await fetchNotifications(1);
         setHasMore(data.hasMore);
-        setLiveNotifications(sortNotification(data.notifications) || []);
+        setLiveNotifications(data.notifications ? sortNotification(data.notifications) : []);
       } catch (error) {
         console.error('Error fetching notifications:', error);
       }
@@ -85,6 +85,7 @@ export default function NotificationList() {
     if (socket) {
       socket.on('notification', (payload: any) => {
         const notification: Notification = payload.data;
+        console.log(notification);
         const parseNotification = { ...notification, content: JSON.parse(notification.content as unknown as string) };
         setLiveNotifications((prev) => {
           const index = prev.findIndex((msg) => msg.id === notification.id);

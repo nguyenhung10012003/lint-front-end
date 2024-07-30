@@ -1,105 +1,134 @@
 {
   "signIn": {
     "title": "",
-    "formTitle": "Đăng nhập tài khoản của bạn",
-    "formDescription": "Nhập thông tin để đăng nhập tài khoản của bạn",
-    "forgotPassword": "Quên mật khẩu?",
-    "signInButton": "Đăng nhập",
+    "formTitle": "Sign in to your account",
+    "formDescription": "Enter your email and password to sign in",
+    "forgotPassword": "Forgot password?",
+    "signInButton": "Sign in",
     "emailLabel": "Email",
-    "passwordLabel": "Mật khẩu",
-    "emailPlaceholder": "Nhập email của bạn",
-    "passwordPlaceholder": "Nhập mật khẩu của bạn",
-    "signUpLinkText": "Chưa có tài khoản?́",
-    "signUpLink": "Đăng ký",
+    "passwordLabel": "Password",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "signUpLinkText": "Don't have an account?",
+    "signUpLink": "Sign up",
     "notifyError": {
-      "userNotFound": "Email không tồn tại",
-      "wrongPassword": "Mật khẩu không đúng",
-      "userDisabled": "Tài khoản đã bị khóa",
-      "tooManyRequests": "Quá nhiều yêu cầu",
-      "operationNotAllowed": "Chức năng này không được phép",
-      "emailFormat": "Email không hợp lệ"
+      "userNotFound": "Email does not exist",
+      "wrongPassword": "Incorrect password",
+      "userDisabled": "Account has been disabled",
+      "tooManyRequests": "Too many requests",
+      "operationNotAllowed": "This operation is not allowed",
+      "emailFormat": "Invalid email format"
     },
     "notifySuccess": {
-      "signInSuccess": "Đăng nhập thành công, chào mừng bạn trở lại!"
+      "signInSuccess": "Sign in successfully, welcome back!"
     },
-    "orContinueWith": "Hoặc tiếp tục với"
+    "orContinueWith": "Or continue with"
   },
   "sidebar": {
-    "home": "Trang chủ",
-    "search": "Tìm kiếm",
-    "notification": "Thông báo",
-    "message": "Nhắn tin",
+    "home": "Home",
+    "search": "Search",
+    "notification": "Notification",
+    "message": "Message",
     "dropdown": {
       "account": {
-        "label": "Tài khoản",
+        "label": "Account",
         "items": {
-          "profile": "Hồ sơ",
-          "setting": "Cài đặt"
+          "profile": "Profile",
+          "setting": "Setting"
         }
       },
       "help": {
-        "label": "Trợ giúp",
+        "label": "Help",
         "items": {
           "faq": "FAQ",
-          "contact": "Liên hệ",
-          "report": "Báo cáo",
-          "feedback": "Phản hồi",
-          "help": "Trung tâm trợ giúp"
+          "contact": "Contact",
+          "report": "Report",
+          "feedback": "Feedback",
+          "help": "Help Center"
         }
       },
-      "logout": "Đăng xuất"
+      "logout": "Logout"
     }
   },
   "signUp": {
     "title": "",
-    "formTitle": "Đăng ký tài khoản mới",
-    "formDescription": "Nhập thông tin để tạo tài khoản mới",
-    "signUpButton": "Đăng ký",
+    "formTitle": "Sign up for a new account",
+    "formDescription": "Enter your information to create a new account",
+    "signUpButton": "Sign up",
     "emailLabel": "Email",
-    "passwordLabel": "Mật khẩu",
-    "emailPlaceholder": "Nhập email của bạn",
-    "passwordPlaceholder": "Nhập mật khẩu của bạn",
-    "confirmPasswordLabel": "Xác nhận mật khẩu",
-    "confirmPasswordPlaceholder": "Nhập lại mật khẩu của bạn",
+    "passwordLabel": "Password",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPasswordLabel": "Confirm password",
+    "confirmPasswordPlaceholder": "Re-enter your password",
     "notifyError": {
-      "emailExists": "Email đã tồn tại",
-      "weakPassword": "Mật khẩu quá yếu",
-      "emailFormat": "Email không hợp lệ"
+      "emailExists": "Email already exists",
+      "weakPassword": "Password is too weak",
+      "emailFormat": "Invalid email format"
     },
     "notifySuccess": {
-      "signInSuccess": "Đăng ký thành công, chào mừng bạn đến với chúng tôi!"
+      "signInSuccess": "Sign up successfully, welcome to our community!"
     },
-    "orContinueWith": "Hoặc tiếp tục với",
-    "signInLinkText": "Đã có tài khoản?",
-    "signInLink": "Đăng nhập"
+    "orContinueWith": "Or continue with",
+    "signInLinkText": "Already have an account?",
+    "signInLink": "Sign in"
   },
   "welcome": {
   },
   "post": {
     "action": {
-      "like": "Thích",
-      "comment": "Bình luận",
-      "share": "Chia sẻ"
+      "like": "Like",
+      "comment": "Comment",
+      "share": "Share"
     },
     "moreDropdown": {
-      "savePost": "Lưu bài viết",
-      "reportPost": "Báo cáo bài viết",
-      "turnOnNotification": "Bật thông báo cho bài viết này",
-      "turnOffNotification": "Tắt thông báo cho bài viết này",
-      "hidePost": "Ẩn bài viết",
-      "unHidePost": "Hiện bài viết"
+      "savePost": "Save post",
+      "reportPost": "Report post",
+      "turnOnNotification": "Turn on notifications for this post",
+      "turnOffNotification": "Turn off notifications for this post",
+      "hidePost": "Hide post",
+      "unHidePost": "Unhide post"
     },
     "content": {
-      "seeMore": "Xem thêm",
-      "collapse": "Thu gọn"
+      "seeMore": "See more",
+      "collapse": "Collapse"
     }
   },
   "createPost": {
-    "title": "Tạo bài viết",
-    "contentPlaceholder": "Bạn đang nghĩ gì?",
-    "postButton": "Đăng",
+    "sidebarItem": "Create post",
+    "title": "Create post",
+    "image": "Image",
+    "music": "Music",
+    "contentPlaceholder": "What's on your mind?",
+    "postButton": "Post",
     "notifySuccess": {
-      "createPostSuccess": "Đăng bài viết thành công"
+      "createPostSuccess": "Post created successfully"
+    },
+    "alert": {
+      "maxMedia": "You can only upload up to 10 medias"
+    },
+    "toast": {
+      "title": "Post created",
+      "description": "Your post has been created successfully"
+    }
+  },
+  "applicationSetting": {
+    "title": "Application",
+    "theme": "Theme",
+    "language": "Language",
+    "themeSetting": {
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "languageSetting": {
+      "en-US": "English",
+      "vi-VN": "Vietnamese"
+    },
+    "saveButton": "Save",
+    "toast": {
+      "title": "Settings saved",
+      "description": "Your settings have been saved successfully"
     }
   }
 }

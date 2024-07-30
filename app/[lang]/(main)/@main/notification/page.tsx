@@ -20,7 +20,7 @@ export default function Notification({
     {
       label: "Follow Request",
       id: "follow-request",
-      content: <FollowRequestList />,
+      // content: <FollowRequestList />,
     },
   ];
   return (

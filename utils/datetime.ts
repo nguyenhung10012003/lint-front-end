@@ -1,4 +1,4 @@
-export function formatTimeDifference(date: Date): string {
+export function formatTimeDifference(date: Date, lang: string): string {
   const now = new Date();
   const diff = now.getTime() - date.getTime();
   if (diff < 0) return "0";
@@ -10,7 +10,7 @@ export function formatTimeDifference(date: Date): string {
   const months = Math.floor(days / 30);
 
   if (minutes < 60) {
-    return `${minutes}m ago`;
+    return `${minutes} {}`;
   } else if (hours < 24) {
     return `${hours}h ago`;
   } else if (days < 30) {

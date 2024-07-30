@@ -23,7 +23,13 @@ import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
 import { useToast } from "../ui/use-toast";
 
-export default function CreatePostModal({ user }: { user: User }) {
+export default function CreatePostModal({
+  user,
+  dictionary
+}: {
+  user: User,
+  dictionary: any
+}) {
   const [content, setContent] = useState<string | undefined>();
   const [medias, setMedias] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[] | undefined>();
@@ -32,7 +38,7 @@ export default function CreatePostModal({ user }: { user: User }) {
   const handleAddMedia = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       if (e.target.files.length + (medias?.length || 0) > 10) {
-        alert("You can only upload 10 medias");
+        alert(dictionary.createPost.alert.maxMedia);
       } else {
         setMedias(
           medias
@@ -84,8 +90,8 @@ export default function CreatePostModal({ user }: { user: User }) {
     });
     if (post) {
       toast({
-        title: "Post created",
-        description: "Your post has been created successfully",
+        title: dictionary.createPost.toast.title,
+        description: dictionary.createPost.toast.description,
       });
       setOpen(false);
       clearData();
@@ -105,13 +111,13 @@ export default function CreatePostModal({ user }: { user: User }) {
               items-center hover:scale-105 hover:cursor-pointer"
         >
           <Icons.create className="w-6 h-6" />
-          <span className="hidden lg:flex items-center">Bài viết mới</span>
+          <span className="hidden lg:flex items-center">{dictionary?.createPost.sidebarItem}</span>
         </div>
       </DialogTrigger>
       <DialogContent className="md:max-w-[600px]" aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold justify-center">
-            Create Post
+            {dictionary?.createPost.title}
           </DialogTitle>
           <Separator />
           <div className="flex items-center gap-2 pt-2">
@@ -131,7 +137,7 @@ export default function CreatePostModal({ user }: { user: User }) {
         <div className="grid gap-4 py-2">
           <div className="flex flex-col px-3 py-2 border rounded-xl focus:border-primary">
             <Textarea
-              placeholder="What's on your mind?"
+              placeholder={dictionary?.createPost.contentPlaceholder}
               className="resize-none p-0 border-none focus-visible:ring-0 focus-visible:ring-offset-0 min-h-0 h-auto"
               rows={3}
               maxLength={500}
@@ -184,7 +190,7 @@ export default function CreatePostModal({ user }: { user: User }) {
             >
               <span className="flex items-center gap-1">
                 <Icons.image className="h-5 w-5" />
-                Image
+                {dictionary?.createPost.image}
               </span>
               <Input
                 id="image"
@@ -232,7 +238,7 @@ export default function CreatePostModal({ user }: { user: User }) {
             >
               <span className="flex items-center gap-1">
                 <Icons.music className="h-5 w-5" />
-                Music
+                {dictionary?.createPost.music}
               </span>
               <Input
                 id="music"
@@ -253,7 +259,7 @@ export default function CreatePostModal({ user }: { user: User }) {
               (!hashTags || hashTags.length === 0)
             }
           >
-            Post
+            {dictionary?.createPost.postButton}
           </Button>
         </DialogFooter>
       </DialogContent>

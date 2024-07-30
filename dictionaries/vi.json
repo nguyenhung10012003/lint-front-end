@@ -95,11 +95,46 @@
     }
   },
   "createPost": {
+    "sidebarItem": "Bài viết mới",
     "title": "Tạo bài viết",
+    "image": "Hình ảnh",
+    "music": "Âm nhạc",
     "contentPlaceholder": "Bạn đang nghĩ gì?",
     "postButton": "Đăng",
     "notifySuccess": {
       "createPostSuccess": "Đăng bài viết thành công"
+    },
+    "alert": {
+      "maxMedia": "Bạn chỉ có thể tải lên tối đa 10 phương tiện"
+    },
+    "toast": {
+      "title": "Bài viết đã được tạo",
+      "description": "Bài viết của bạn đã được tạo thành công"
     }
+  },
+  "applicationSetting": {
+    "title": "Ứng dụng",
+    "theme": "Chủ đề",
+    "language": "Ngôn ngữ",
+    "themeSetting": {
+      "system": "Hệ thống",
+      "light": "Sáng",
+      "dark": "Tối"
+    },
+    "languageSetting": {
+      "en-US": "Tiếng Anh",
+      "vi-VN": "Tiếng Việt"
+    },
+    "saveButton": "Lưu",
+    "toast": {
+      "title": "Lưu thành công",
+      "description": "Cài đặt của bạn đã được lưu thành công"
+    }
+  },
+  "dateTime": {
+    "minuteAgo": "p trước",
+    "hourAgo": "h trước",
+    "dayAgo": "ngày trước",
+    "monthAgo": "tháng trước"
   }
 }
