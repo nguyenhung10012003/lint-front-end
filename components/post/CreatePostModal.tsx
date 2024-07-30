@@ -160,9 +160,7 @@ export default function CreatePostModal({
               </span>
               <EmojiPicker
                 text={""}
-                setText={function (text: string): void {
-                  throw new Error("Function not implemented.");
-                }}
+                setText={(emoji) => setContent((content || "") + emoji)}
               />
             </div>
           </div>

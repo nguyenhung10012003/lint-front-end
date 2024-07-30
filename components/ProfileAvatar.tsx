@@ -30,7 +30,7 @@ export default function ProfileAvatar({
   );
   if (variant === "link" && profileId)
     return (
-      <Link href={`/${profileId}`} className="">
+      <Link href={`/profile/${profileId}`} className="">
         {avatar}
       </Link>
     );

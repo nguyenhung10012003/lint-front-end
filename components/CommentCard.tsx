@@ -1,15 +1,15 @@
 import api from "@/config/api";
 import { Comment, Reply } from "@/types/comment";
+import { User } from "@/types/user";
+import { formatTimeDifference } from "@/utils/datetime";
+import { formatToShortNumber } from "@/utils/number";
 import React, { useState } from "react";
 import useSWR from "swr";
 import CommentForm from "./CommentForm";
-import { Skeleton } from "./ui/skeleton";
-import { formatTimeDifference } from "@/utils/datetime";
-import { formatToShortNumber } from "@/utils/number";
 import { Icons } from "./Icons";
 import ProfileAvatar from "./ProfileAvatar";
 import ProfileHoverCard from "./ProfileHoverCard";
-import { User } from "@/types/user";
+import { Skeleton } from "./ui/skeleton";
 
 const fetcher = (url: string) => api.get<any, any>(url);
 
@@ -49,7 +49,7 @@ function CommentUI({
         <ProfileAvatar
           src={data?.profile.avatar}
           alt={data?.profile.alias}
-          profileId={data?.profile.id}
+          profileId={userId}
           variant="link"
           className="h-10 w-10 md:h-10 md:w-10"
         />

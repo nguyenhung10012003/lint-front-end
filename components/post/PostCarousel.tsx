@@ -50,13 +50,14 @@ export default function PostCarousel({
           <DialogContent
             className="flex p-0 justify-center min-w-0 w-0"
             includeClose={false}
+            aria-describedby={undefined}
           >
             <Image
               src={images[selected].url}
               alt={``}
               width={1000}
               height={1000}
-              className="object-contain sm:max-w-[90vw] sm:max-h-[90vh] lg:max-w-[80vw] lg:max-h-[90vh] flex"
+              className="object-contain max-w-[90vw] max-h-[95vh] lg:max-w-[80vw] lg:max-h-[90vh] flex"
               onLoad={(e) => {}}
             />
           </DialogContent>

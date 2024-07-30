@@ -96,7 +96,7 @@ function PostCard({ post, dictionary, isAuthor = false }: PostCardProps) {
             <ProfileAvatar
               src={author.profile.avatar}
               variant="link"
-              profileId={author.profile.id}
+              profileId={author.id}
             />
             <div className="flex flex-col font-bold">
               <div className="flex items-center gap-2">

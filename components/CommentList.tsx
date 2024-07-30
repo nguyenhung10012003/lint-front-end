@@ -3,7 +3,9 @@ import CommentCard from "./CommentCard";
 import InfiniteScroll from "./InfiniteScroll";
 
 export default function CommentList({
-  comments, loadMore, hasMore
+  comments,
+  loadMore,
+  hasMore,
 }: {
   comments: Comment[];
   loadMore: () => void;
@@ -16,10 +18,10 @@ export default function CommentList({
       className="flex flex-col gap-3"
     >
       {comments.map((comment, index) => (
-        <>
+        <div key={index}>
           <CommentCard key={index} comment={comment} />
           {index !== comments.length - 1 && <hr />}
-        </>
+        </div>
       ))}
     </InfiniteScroll>
   );
