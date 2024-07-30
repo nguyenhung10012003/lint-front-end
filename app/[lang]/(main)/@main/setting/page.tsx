@@ -1,24 +1,32 @@
+import { getDictionary } from "@/app/dictionaries";
 import { Icons } from "@/components/Icons";
 import Link from "next/link";
 
-export default function Setting() {
+export default async function Setting({
+  params,
+}: {
+  params: {
+    lang: string;
+  };
+}) {
+  const dictionary = await getDictionary(params.lang);
   const settingGroups = [
     {
       name: "profile",
-      label: "Profile",
-      description: "Edit your profile information",
+      label: dictionary.setting.profile.title,
+      description: dictionary.setting.profile.description,
       href: "/setting/profile",
     },
     {
       name: "privacy",
-      label: "Privacy",
-      description: "Control your profile visibility and data",
+      label: dictionary.setting.privacy.title,
+      description: dictionary.setting.privacy.description,
       href: "/setting/privacy",
     },
     {
       name: "application",
-      label: "Application",
-      description: "Manage your application settings",
+      label: dictionary.setting.application.title,
+      description: dictionary.setting.application.description,
       href: "/setting/application",
     },
   ];

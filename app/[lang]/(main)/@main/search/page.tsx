@@ -17,19 +17,19 @@ export default async function Search({
     tags: string[];
   };
 }) {
-  if (!searchParams.q && !searchParams.tags)
-    return <SearchBox placeholder="Search" />;
   const [users, dictionary] = await Promise.all([
     api.get<any, any>(`/user/search?key=${searchParams.q}`),
     getDictionary(params.lang),
   ]);
+  if (!searchParams.q && !searchParams.tags)
+    return <SearchBox placeholder={dictionary.search.searchBox.placeholder} />;
   return (
     <div className="flex items-center flex-col w-full p-4 gap-4 ">
-      <SearchBox placeholder="Search" />
+      <SearchBox placeholder={dictionary.search.searchBox.placeholder} />
       {users?.usersId && (
         <Card className="w-full max-w-[550px] rounded-lg mt-5">
           <CardHeader className="flex flex-row justify-between items-center">
-            <CardTitle>Peoples</CardTitle>
+            <CardTitle>{dictionary.search.searchResult.people}</CardTitle>
           </CardHeader>
           <CardContent className="w-full flex flex-col gap-4 max-h-[300px] overflow-y-auto py-1">
             <UserList usersId={users.usersId} />

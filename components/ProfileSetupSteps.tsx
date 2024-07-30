@@ -53,9 +53,11 @@ export function StepDots({
 export default function ProfileSetupSteps({
   profile,
   initStep,
+  dict
 }: {
   profile: Profile;
   initStep: number;
+  dict: any
 }) {
   const [pf, setProfile] = useState(profile);
   const [step, setStep] = useState(initStep);
@@ -65,21 +67,21 @@ export default function ProfileSetupSteps({
 
   const handleStart = async () => {
     profile = await createProfile({ profile: pf, avatar: avatar });
-    //window.location.reload();
+    window.location.reload();
   };
 
   const nameAndAliasSchema = z.object({
     name: z
-      .string()
-      .min(3, "Name must be between 3 and 32 characters long")
-      .max(32, "Name must be between 3 and 32 characters long"),
+      .string(dict.invalidNotify.nameRequired)
+      .min(3, dict.invalidNotify.nameMinLength)
+      .max(32, dict.invalidNotify.nameMaxLength),
     alias: z
-      .string()
-      .min(3, "Alias must be between 3 and 24 characters long.")
-      .max(24, "Alias must be between 3 and 24 characters long.")
+      .string(dict.invalidNotify.aliasRequired)
+      .min(3, dict.invalidNotify.aliasMinLength)
+      .max(24, dict.invalidNotify.aliasMaxLength)
       .regex(
         /^[a-zA-Z0-9_][a-zA-Z0-9._]{1,28}[a-zA-Z0-9_]$/,
-        "Alias must be alphanumeric and can contain underscores and periods."
+        dict.invalidNotify.aliasInvalid
       ),
   });
 
@@ -117,7 +119,7 @@ export default function ProfileSetupSteps({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="font-semibold">
-                    {`What's your name?`}
+                    {dict.form.name}
                   </FormLabel>
                   <FormControl>
                     <Input id="name" {...field} maxLength={32} />
@@ -132,7 +134,7 @@ export default function ProfileSetupSteps({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="font-semibold">
-                    {`What's your alias?`}
+                    {dict.form.alias}
                   </FormLabel>
                   <FormControl>
                     <Input id="alias" {...field} maxLength={24} />
@@ -155,7 +157,7 @@ export default function ProfileSetupSteps({
         <div className="flex h-full flex-col gap-4 w-full max-w-[300px] justify-center">
           <div className="flex flex-col gap-2">
             <Label htmlFor="dob" className="font-semibold">
-              {`When were you born?`}
+              {dict.form.dob}
             </Label>
             <Input
               id="dob"
@@ -169,7 +171,7 @@ export default function ProfileSetupSteps({
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="country" className="font-semibold">
-              Where are you from?
+              {dict.form.country}
             </Label>
             <Select
               onValueChange={(value) => setProfile({ ...pf, country: value })}
@@ -191,7 +193,7 @@ export default function ProfileSetupSteps({
             onClick={() => setStep(step + 1)}
             disabled={!pf.dob || !pf.country}
           >
-            Next
+            {dict.form.submitNext}
           </Button>
         </div>
       ),
@@ -214,7 +216,7 @@ export default function ProfileSetupSteps({
               className="cursor-pointer p-2 border rounded-lg bg-primary text-sm text-white 
           text-center min-h-10 flex font-semibold hover:bg-primary/90 transition-colors"
             >
-              Change Avatar
+              {dict.form.uploadAvatar}
             </Label>
             <Input
               type="file"
@@ -226,7 +228,7 @@ export default function ProfileSetupSteps({
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="bio" className="font-semibold">
-              Tell us about yourself
+              {dict.form.bio}
             </Label>
             <Textarea
               id="bio"
@@ -264,7 +266,7 @@ export default function ProfileSetupSteps({
             variant="ghost"
             className="p-1 h-auto hover:underline hover:bg-background underline-offset-2 text-md ml-auto"
           >
-            Skip
+            {dict.form.skip}
           </Button>
         )}
       </div>

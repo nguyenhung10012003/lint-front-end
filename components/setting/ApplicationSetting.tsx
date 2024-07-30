@@ -16,7 +16,7 @@ import { useTheme } from "next-themes";
 import { useToast } from "../ui/use-toast";
 import { useRouter, usePathname } from 'next/navigation';
 
-export default function ApplicationSetting() {
+export default function ApplicationSetting({dictionary}: {dictionary: any}) {
   const defaultTheme = Cookies.get("theme") || "system";
   const currentLocale = Cookies.get("locale") || "vi-VN";
 
@@ -46,32 +46,33 @@ export default function ApplicationSetting() {
 
     const newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
     router.replace(newPathname);
+    router.refresh();
     toast({
-      title: "Settings saved",
-      description: "Your settings have been saved successfully.",
+      title: dictionary.setting.application.toast.updateSettingSuccessTitle,
+      description: dictionary.setting.application.toast.updateSettingSuccessDescription,
     });
   }
 
   return (
-    <SettingGroup title="Application" id={"application"}>
+    <SettingGroup title={dictionary.setting.application.title} id={"application"}>
       <SettingItem className="w-full justify-between items-center">
         <Label htmlFor="theme" className="text-lg flex w-full">
-          Theme
+          {dictionary.setting.application.theme}
         </Label>
         <Select defaultValue={theme} onValueChange={handleThemeChange}>
           <SelectTrigger className="max-w-[180px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="system">System</SelectItem>
-            <SelectItem value="light">Light</SelectItem>
-            <SelectItem value="dark">Dark</SelectItem>
+            <SelectItem value="system">{dictionary.setting.application.themeSystem}</SelectItem>
+            <SelectItem value="light">{dictionary.setting.application.themeLight}</SelectItem>
+            <SelectItem value="dark">{dictionary.setting.application.themeDark}</SelectItem>
           </SelectContent>
         </Select>
       </SettingItem>
       <SettingItem className="w-full justify-between items-center">
         <Label htmlFor="language" className="text-lg flex w-full">
-          Language
+          {dictionary.setting.application.language}
         </Label>
         <Select defaultValue={locale} onValueChange={handleLanguageChange}>
           <SelectTrigger className="max-w-[180px]">
@@ -87,7 +88,7 @@ export default function ApplicationSetting() {
         </Select>
       </SettingItem>
       <SettingItem className="justify-end">
-        <Button className="max-w-[120px] text-white w-full" onClick={handleSave}>Save</Button>
+        <Button className="max-w-[120px] text-white w-full" onClick={handleSave}>{dictionary.setting.application.submit}</Button>
       </SettingItem>
     </SettingGroup>
   );

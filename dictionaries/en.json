@@ -2,7 +2,7 @@
   "signIn": {
     "title": "",
     "formTitle": "Sign in to your account",
-    "formDescription": "Enter your email and password to sign in",
+    "formDescription": "Enter your information to sign in to your account",
     "forgotPassword": "Forgot password?",
     "signInButton": "Sign in",
     "emailLabel": "Email",
@@ -12,8 +12,8 @@
     "signUpLinkText": "Don't have an account?",
     "signUpLink": "Sign up",
     "notifyError": {
-      "userNotFound": "Email does not exist",
-      "wrongPassword": "Incorrect password",
+      "userNotFound": "Email not found",
+      "wrongPassword": "Wrong password",
       "userDisabled": "Account has been disabled",
       "tooManyRequests": "Too many requests",
       "operationNotAllowed": "This operation is not allowed",
@@ -44,7 +44,7 @@
           "contact": "Contact",
           "report": "Report",
           "feedback": "Feedback",
-          "help": "Help Center"
+          "help": "Help center"
         }
       },
       "logout": "Logout"
@@ -52,7 +52,7 @@
   },
   "signUp": {
     "title": "",
-    "formTitle": "Sign up for a new account",
+    "formTitle": "Create a new account",
     "formDescription": "Enter your information to create a new account",
     "signUpButton": "Sign up",
     "emailLabel": "Email",
@@ -67,13 +67,31 @@
       "emailFormat": "Invalid email format"
     },
     "notifySuccess": {
-      "signInSuccess": "Sign up successfully, welcome to our community!"
+      "signInSuccess": "Sign up successfully, welcome!"
     },
     "orContinueWith": "Or continue with",
     "signInLinkText": "Already have an account?",
     "signInLink": "Sign in"
   },
   "welcome": {
+    "invalidateNotify": {
+      "nameMinLength": "Name must be at least 3 characters",
+      "nameMaxLength": "Name must not exceed 30 characters",
+      "nameRequired": "Name field is required",
+      "aliasRequired": "Alias field is required",
+      "aliasInvalid": "Alias must be alphanumeric and can contain underscores and periods.",
+      "form": {
+        "name": "What is your name?",
+        "alias": "What is your alias?",
+        "submitNext": "Next",
+        "dob": "When is your birthday?",
+        "country": "Where are you from?",
+        "changeAvatar": "Choose avatar",
+        "bio": "Tell us about yourself",
+        "submit": "Finish",
+        "skip": "Skip"
+      }
+    }
   },
   "post": {
     "action": {
@@ -84,8 +102,8 @@
     "moreDropdown": {
       "savePost": "Save post",
       "reportPost": "Report post",
-      "turnOnNotification": "Turn on notifications for this post",
-      "turnOffNotification": "Turn off notifications for this post",
+      "turnOnNotification": "Turn on notification for this post",
+      "turnOffNotification": "Turn off notification for this post",
       "hidePost": "Hide post",
       "unHidePost": "Unhide post"
     },
@@ -112,23 +130,57 @@
       "description": "Your post has been created successfully"
     }
   },
-  "applicationSetting": {
-    "title": "Application",
-    "theme": "Theme",
-    "language": "Language",
-    "themeSetting": {
-      "system": "System",
-      "light": "Light",
-      "dark": "Dark"
+
+  "search": {
+      "searchBox": {
+        "placeholder": "Search"
+      },
+      "searchResult": {
+        "people": "Peoples",
+        "post": "Posts",
+        "noResult": "No result found"
+      }
+  },
+  "notification": {
+    "tab": {
+      "notification" :"Notification",
+      "followRequest": "Follow request"
+    }
+  },
+  "profile": {
+    "editProfileBtn": "Edit profile",
+    "followersModal": {
+      "title": "Followers list",
+      "trigger": "Followers"
     },
-    "languageSetting": {
-      "en-US": "English",
-      "vi-VN": "Vietnamese"
+    "followingModal": {
+      "title": "Following list",
+      "trigger": "Following"
+    }
+  },
+  "delete": "Delete",
+  "setting": {
+    "profile": {
+      "title" : "Profile",
+      "description": "Edit your personal information"
     },
-    "saveButton": "Save",
-    "toast": {
-      "title": "Settings saved",
-      "description": "Your settings have been saved successfully"
+    "privacy": {
+      "title" : "Privacy",
+      "description": "Manage your privacy settings"
+    },
+    "application": {
+      "title" : "Application",
+      "description": "Manage your application settings",
+      "theme": "Theme",
+      "themeDark": "Dark",
+      "themeLight": "Light",
+      "themeSystem": "System",
+      "language": "Language",
+      "toast": {
+        "updateSettingSuccessTitle": "Update setting success",
+        "updateSettingSuccessDescription": "Your setting has been updated successfully"
+      },
+      "submit": "Save"
     }
   }
 }
