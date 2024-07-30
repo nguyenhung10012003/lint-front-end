@@ -6,10 +6,10 @@ import CreatePostModal from "../post/CreatePostModal";
 import { Icons } from "../Icons";
 
 export default function MobileNav({
-  lang,
+  dictionary,
   user,
 }: {
-  lang: string;
+  dictionary: any;
   user: User;
 }) {
   const items = [
@@ -28,7 +28,7 @@ export default function MobileNav({
     {
       name: "create-post",
       type: "component",
-      component: <CreatePostModal user={user} />,
+      component: <CreatePostModal user={user} dictionary={dictionary}/>,
     },
     {
       name: "notification",

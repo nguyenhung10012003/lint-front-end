@@ -47,10 +47,10 @@ export default function ApplicationSetting({dictionary}: {dictionary: any}) {
     const newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
     router.replace(newPathname);
     router.refresh();
-    toast({
-      title: dictionary.setting.application.toast.updateSettingSuccessTitle,
-      description: dictionary.setting.application.toast.updateSettingSuccessDescription,
-    });
+    // toast({
+    //   title: dictionary.setting.application.toast.updateSettingSuccessTitle,
+    //   description: dictionary.setting.application.toast.updateSettingSuccessDescription,
+    // });
   }
 
   return (
