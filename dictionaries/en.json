@@ -113,13 +113,24 @@
     }
   },
   "createPost": {
-    "title": "Create a post",
-    "contentPlaceholder": "What are you thinking?",
+    "sidebarItem": "Create post",
+    "title": "Create post",
+    "image": "Image",
+    "music": "Music",
+    "contentPlaceholder": "What's on your mind?",
     "postButton": "Post",
     "notifySuccess": {
       "createPostSuccess": "Post created successfully"
+    },
+    "alert": {
+      "maxMedia": "You can only upload up to 10 medias"
+    },
+    "toast": {
+      "title": "Post created",
+      "description": "Your post has been created successfully"
     }
   },
+
   "search": {
       "searchBox": {
         "placeholder": "Search"

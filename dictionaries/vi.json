@@ -9,7 +9,7 @@
     "passwordLabel": "Mật khẩu",
     "emailPlaceholder": "Nhập email của bạn",
     "passwordPlaceholder": "Nhập mật khẩu của bạn",
-    "signUpLinkText": "Chưa có tài khoản?́",
+    "signUpLinkText": "Chưa có tài khoản?",
     "signUpLink": "Đăng ký",
     "notifyError": {
       "userNotFound": "Email không tồn tại",
@@ -113,11 +113,21 @@
     }
   },
   "createPost": {
+    "sidebarItem": "Bài viết mới",
     "title": "Tạo bài viết",
+    "image": "Hình ảnh",
+    "music": "Âm nhạc",
     "contentPlaceholder": "Bạn đang nghĩ gì?",
     "postButton": "Đăng",
     "notifySuccess": {
       "createPostSuccess": "Đăng bài viết thành công"
+    },
+    "alert": {
+      "maxMedia": "Bạn chỉ có thể tải lên tối đa 10 phương tiện"
+    },
+    "toast": {
+      "title": "Bài viết đã được tạo",
+      "description": "Bài viết của bạn đã được tạo thành công"
     }
   },
   "search": {

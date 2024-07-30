@@ -28,6 +28,13 @@ export default async function SignIn({
       .min(8, "Password must be at least 8 characters")
       .max(32, "Password must be at most 32 characters"),
   });
+
+  const form = {
+    title: dictionary.signIn.formTitle,
+    description: dictionary.signIn.formDescription,
+    continueWith: dictionary.signIn.orContinueWith,
+  }
+
   const formFields = [
     {
       name: "email",
@@ -46,9 +53,9 @@ export default async function SignIn({
     <main className="w-full flex justify-center h-screen items-center p-4">
       <Card className="max-w-[400px] w-full">
         <CardHeader>
-          <CardTitle>Sign in to your account</CardTitle>
+          <CardTitle>{form.title}</CardTitle>
           <CardDescription>
-            Enter your email and password to sign in!
+            {form.description}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -68,7 +75,7 @@ export default async function SignIn({
             </div>
             <div className="relative flex justify-center text-xs uppercase">
               <span className="bg-background px-2 text-muted-foreground">
-                Or continue with
+                {form.continueWith}
               </span>
             </div>
           </div>

@@ -13,6 +13,7 @@ export default async function Sidebar({
   lang: string;
   user: User;
 }) {
+  const dictionary = await getDictionary(lang);
   const { sidebar, createPost } = await getDictionary(lang);
   const sidebarItems = [
     {
@@ -39,8 +40,8 @@ export default async function Sidebar({
       name: "notification",
       label: sidebar.notification,
       icon: {
-        outline: <NotificationWithBadge iconVariant="outline" />,
-        solid: <NotificationWithBadge iconVariant="solid" />,
+        outline: <NotificationWithBadge variant="outline" />,
+        solid: <NotificationWithBadge variant="solid" />,
       },
       href: "/notification",
       pathReg: "^/[a-zA-Z]{2}(-[a-zA-Z]{2})?/notification$",
@@ -119,7 +120,7 @@ export default async function Sidebar({
         </a>
       </div>
       <div id="sidebar-body" className="flex gap-2 flex-col mt-6">
-        <SidebarBody sidebarItems={sidebarItems} user={user} />
+        <SidebarBody sidebarItems={sidebarItems} user={user} dictionary={dictionary} />
       </div>
       <div id="sidebar-footer" className="items-end flex h-full">
         <SideBarFooter dropDownMenuGroups={dropDownMenuGroups} user={user} />

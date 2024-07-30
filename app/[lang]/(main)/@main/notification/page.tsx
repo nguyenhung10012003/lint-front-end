@@ -21,7 +21,7 @@ export default async function Notification({
     {
       label: dictionary.notification.tab.followRequest,
       id: "follow-request",
-      content: <FollowRequestList />,
+      // content: <FollowRequestList />,
     },
   ];
   return (

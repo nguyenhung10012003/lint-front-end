@@ -8,9 +8,11 @@ import { usePathname } from "next/navigation";
 export default function SidebarBody({
   sidebarItems,
   user,
+  dictionary,
 }: {
   sidebarItems: NavItem[];
   user: User;
+  dictionary: any;
 }) {
   const path = usePathname();
 
@@ -32,7 +34,7 @@ export default function SidebarBody({
           </Link>
         );
       })}
-      <CreatePostModal user={user} />
+      <CreatePostModal user={user} dictionary={dictionary} />
     </>
   );
 }
