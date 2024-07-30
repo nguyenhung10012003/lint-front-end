@@ -1,5 +1,5 @@
 'use client';
-import { locales } from "@/utils/locale";
+import { locales, defaultLocale } from "@/utils/locale";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import {
@@ -17,15 +17,21 @@ import { useToast } from "../ui/use-toast";
 import { useRouter, usePathname } from 'next/navigation';
 
 export default function ApplicationSetting({dictionary}: {dictionary: any}) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const extractLocaleFromPath = (path: string) => {
+    const segments = path.split('/');
+    return segments[1];
+  };
+  console.log(extractLocaleFromPath(pathname));
+
   const defaultTheme = Cookies.get("theme") || "system";
-  const currentLocale = Cookies.get("locale") || "vi-VN";
+  const currentLocale = Cookies.get("locale") || extractLocaleFromPath(pathname);
 
   const [theme, setTheme] = useState(defaultTheme);
   const [locale, setLocale] = useState(currentLocale);
   const { setTheme: applyTheme } = useTheme();
-
-  const router = useRouter();
-  const pathname = usePathname();
   
   const handleThemeChange = (value: string) => {
     setTheme(value);
