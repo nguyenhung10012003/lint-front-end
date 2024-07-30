@@ -74,13 +74,14 @@
     "signInLink": "Đăng nhập"
   },
   "welcome": {
-    "invalidateNotify": {
+    "invalidNotify": {
       "nameMinLength": "Tên phải có ít nhất 3 ký tự",
       "nameMaxLength": "Tên không được vượt quá 30 ký tự",
       "nameRequired": "Trường tên không được bỏ trống",
       "aliasRequired": "Trường biệt danh không được bỏ trống",
-      "aliasInvalid": "Biệt danh phải có chữ cái, số hoặc dấu gạch dưới",
-      "form": {
+      "aliasInvalid": "Biệt danh phải có chữ cái, số hoặc dấu gạch dưới"   
+    },
+    "form": {
         "name": "Tên bạn là gì?",
         "alias": "Biệt danh của bạn là gì?",
         "submitNext": "Tiếp tục",
@@ -91,7 +92,6 @@
         "submit": "Hoàn tất",
         "skip": "Bỏ qua"
       }
-    }
   },
   "post": {
     "action": {

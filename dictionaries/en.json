@@ -74,24 +74,24 @@
     "signInLink": "Sign in"
   },
   "welcome": {
-    "invalidateNotify": {
+    "invalidNotify": {
       "nameMinLength": "Name must be at least 3 characters",
       "nameMaxLength": "Name must not exceed 30 characters",
       "nameRequired": "Name field is required",
       "aliasRequired": "Alias field is required",
-      "aliasInvalid": "Alias must be alphanumeric and can contain underscores and periods.",
-      "form": {
+      "aliasInvalid": "Alias must be alphanumeric and can contain underscores and periods."
+    },
+    "form": {
         "name": "What is your name?",
         "alias": "What is your alias?",
         "submitNext": "Next",
         "dob": "When is your birthday?",
         "country": "Where are you from?",
-        "changeAvatar": "Choose avatar",
+        "uploadAvatar": "Choose avatar",
         "bio": "Tell us about yourself",
         "submit": "Finish",
         "skip": "Skip"
       }
-    }
   },
   "post": {
     "action": {
