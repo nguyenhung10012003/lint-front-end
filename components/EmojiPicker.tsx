@@ -70,7 +70,7 @@ export default function EmojiPicker({
           <Icons.emoji className="h-5 w-5 hover:bg-ancent" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="bg-background border rounded-md">
+      <PopoverContent className="bg-background border rounded-md z-60">
         <EmojiTable onChoose={setText} />
       </PopoverContent>
     </Popover>

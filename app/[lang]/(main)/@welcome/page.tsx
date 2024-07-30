@@ -15,5 +15,5 @@ export default async function Welcome({
     id: (await getCookie("userId"))?.value || "",
   });
 
-  return <ProfileSetupSteps profile={user.profile || {}} initStep={0} />;
+  return <ProfileSetupSteps profile={user.profile || {}} initStep={0} dict={welcome} />;
 }

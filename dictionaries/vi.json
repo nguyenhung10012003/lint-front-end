@@ -74,6 +74,24 @@
     "signInLink": "Đăng nhập"
   },
   "welcome": {
+    "invalidateNotify": {
+      "nameMinLength": "Tên phải có ít nhất 3 ký tự",
+      "nameMaxLength": "Tên không được vượt quá 30 ký tự",
+      "nameRequired": "Trường tên không được bỏ trống",
+      "aliasRequired": "Trường biệt danh không được bỏ trống",
+      "aliasInvalid": "Biệt danh phải có chữ cái, số hoặc dấu gạch dưới",
+      "form": {
+        "name": "Tên bạn là gì?",
+        "alias": "Biệt danh của bạn là gì?",
+        "submitNext": "Tiếp tục",
+        "dob": "Bạn sinh ngày nào?",
+        "country": "Bạn đến từ đâu?",
+        "uploadAvatar": "Chọn ảnh đại diện",
+        "bio": "Giới thiệu về bản thân bạn",
+        "submit": "Hoàn tất",
+        "skip": "Bỏ qua"
+      }
+    }
   },
   "post": {
     "action": {
@@ -100,6 +118,74 @@
     "postButton": "Đăng",
     "notifySuccess": {
       "createPostSuccess": "Đăng bài viết thành công"
+    }
+  },
+  "search": {
+      "searchBox": {
+        "placeholder": "Tìm kiếm"
+      },
+      "searchResult": {
+        "people": "Mọi người",
+        "post": "Bài viết",
+        "noResult": "Không tìm thấy kết quả nào"
+      }
+  },
+  "notification": {
+    "tab": {
+      "notification" :"Thông báo",
+      "followRequest": "Yêu cầu theo dõi"
+    }
+  },
+  "profile": {
+    "editProfileBtn": "Chỉnh sửa hồ sơ",
+    "followersModal": {
+      "title": "Danh sách người theo dõi",
+      "trigger": "Người theo dõi"
+    },
+    "followingModal": {
+      "title": "Danh sách đang theo dõi",
+      "trigger": "Đang theo dõi"
+    }
+  },
+  "delete": "Xóa",
+  "setting": {
+    "profile": {
+      "title" : "Trang cá nhân",
+      "description": "Chỉnh sửa thông tin cá nhân của bạn",
+      "editProfile": "Chỉnh sửa hồ sơ",
+      "changeAvatar": "Đổi ảnh đại diện",
+      "form": {
+        "name": "Tên hiển thị",
+        "bio": "Giới thiệu",
+        "gender": "Giới tính",
+        "genderMale": "Nam",
+        "genderFemale": "Nữ",
+        "genderOther": "Khác",
+        "birthday": "Ngày sinh",
+        "submit": "Lưu"
+      },
+      "toast": {
+        "updateProfileSuccessTitle": "Cập nhật thành công",
+        "updateProfileSuccessDescription": "Thông tin cá nhân của bạn đã được cập nhật"
+      }
+    },
+    "privacy": {
+      "title" : "Quyền riêng tư",
+      "description": "Chỉnh sửa quyền riêng tư của bạn"
+    },
+    "application": {
+      "title" : "Ứng dụng",
+      "description": "Quản lý các cài đặt ứng dụng",
+      "theme": "Giao diện",
+      "themeDark": "Tối",
+      "themeLight": "Sáng",
+      "themeSystem": "Hệ thống",
+      "language": "Ngôn ngữ",
+      "toast": {
+        "updateSettingSuccessTitle": "Cập nhật thành công",
+        "updateSettingSuccessDescription": "Cài đặt của bạn đã được cập nhật"
+      },
+      "submit": "Lưu"
     }
   }
 }

@@ -4,7 +4,6 @@ import useDebounce from "@/hooks/use-debounce";
 import { Following } from "@/types/relationship";
 import { User } from "@/types/user";
 import Link from "next/link";
-import { title } from "process";
 import { useCallback, useState } from "react";
 import useSWR from "swr";
 import { Icons } from "./Icons";
@@ -26,12 +25,14 @@ const FollowList = ({
   variant,
   includeAction = false,
   mutate,
+  deleteText,
 }: {
   follows: Following[];
   search: string;
   variant: "followers" | "followings";
   includeAction?: boolean;
   mutate: () => void;
+  deleteText: string;
 }) => {
   const [users, setUsers] = useState<User[]>([]);
   const [page, setPage] = useState<number>(0);
@@ -106,7 +107,7 @@ const FollowList = ({
                 variant="secondary"
                 onClick={() => handleDelete(follows[index])}
               >
-                Delete
+                {deleteText || "Delete"}
               </Button>
             )}
           </div>
@@ -118,9 +119,11 @@ const FollowList = ({
 export function FollowersModal({
   includeAction,
   userId,
+  dict,
 }: {
   includeAction?: boolean;
   userId: string;
+  dict: any;
 }) {
   const [search, setSearch] = useState<string>("");
   const debounce = useDebounce(search, 500);
@@ -132,14 +135,16 @@ export function FollowersModal({
   if (isLoading) return <></>;
   return (
     <Dialog>
-      <DialogTrigger>{`${data.follows?.length || 0} Followes`}</DialogTrigger>
+      <DialogTrigger>{`${data.follows?.length || 0} ${
+        dict.profile.followersModal.trigger
+      }`}</DialogTrigger>
       <DialogContent
         className="flex gap-2 flex-col p-0 w-full max-w-[400px] rounded-xl max-h-[60vh]"
         aria-describedby={undefined}
       >
         <DialogHeader>
           <DialogTitle className="text-center font-bold text-xl border-b py-2">
-            {title}
+            {dict.profile.followersModal.title}
           </DialogTitle>
         </DialogHeader>
         <div className="flex gap-2 mx-4 my-2 border-b">
@@ -159,6 +164,7 @@ export function FollowersModal({
             search={debounce}
             includeAction={includeAction}
             mutate={mutate}
+            deleteText={dict.delete}
           />
         </div>
       </DialogContent>
@@ -169,9 +175,11 @@ export function FollowersModal({
 export function FollowingsModal({
   includeAction,
   userId,
+  dict,
 }: {
   includeAction?: boolean;
   userId: string;
+  dict: any;
 }) {
   const [search, setSearch] = useState<string>("");
   const debounce = useDebounce(search, 500);
@@ -182,14 +190,16 @@ export function FollowingsModal({
   if (isLoading) return <></>;
   return (
     <Dialog>
-      <DialogTrigger>{`${data.follows?.length || 0} Followings`}</DialogTrigger>
+      <DialogTrigger>{`${data.follows?.length || 0} ${
+        dict.profile.followingModal.trigger
+      }`}</DialogTrigger>
       <DialogContent
         className="flex gap-2 flex-col p-0 w-full max-w-[400px] rounded-xl max-h-[60vh]"
         aria-describedby={undefined}
       >
         <DialogHeader>
           <DialogTitle className="text-center font-bold text-xl border-b py-2">
-            {title}
+            {dict.profile.followingModal.title}
           </DialogTitle>
         </DialogHeader>
         <div className="flex gap-2 mx-4 my-2 border-b">
@@ -209,6 +219,7 @@ export function FollowingsModal({
             search={debounce}
             includeAction={includeAction}
             mutate={mutate}
+            deleteText={dict.delete}
           />
         </div>
       </DialogContent>

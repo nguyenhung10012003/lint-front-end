@@ -1,7 +1,7 @@
 export function formatTimeDifference(date: Date): string {
   const now = new Date();
   const diff = now.getTime() - date.getTime();
-  if (diff < 0) return "0";
+  if (diff < 0) return "0m ago";
 
   // Đơn vị thời gian
   const minutes = Math.floor(diff / 1000 / 60);

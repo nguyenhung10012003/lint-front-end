@@ -17,7 +17,7 @@ export default function CommentList({
     >
       {comments.map((comment, index) => (
         <>
-          <CommentCard key={comment.id} comment={comment} />
+          <CommentCard key={index} comment={comment} />
           {index !== comments.length - 1 && <hr />}
         </>
       ))}

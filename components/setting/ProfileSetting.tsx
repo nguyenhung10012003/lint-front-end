@@ -19,7 +19,7 @@ import { Textarea } from "../ui/textarea";
 import { useToast } from "../ui/use-toast";
 import { SettingGroup, SettingItem } from "./Setting";
 
-export default function ProfileSetting({ profile }: { profile: Profile }) {
+export default function ProfileSetting({ profile, dictionary }: { profile: Profile, dictionary: any }) {
   const [pf, setProfile] = useState(profile);
   const [avatar, setAvatar] = useState<File | undefined>();
   const [preview, setPreview] = useState<string | undefined>();
@@ -49,8 +49,8 @@ export default function ProfileSetting({ profile }: { profile: Profile }) {
       });
       setProfile(profile);
       toast({
-        title: "Profile updated",
-        description: "Your profile has been updated successfully",
+        title: dictionary.setting.profile.toast.updateProfileSuccessTitle,
+        description: dictionary.setting.profile.toast.updateProfileSuccessDescription,
       });
     } catch (error) {
       console.error(error);
@@ -58,7 +58,7 @@ export default function ProfileSetting({ profile }: { profile: Profile }) {
   };
 
   return (
-    <SettingGroup id="profile-setting" title="Edit Profile" className="">
+    <SettingGroup id="profile-setting" title={dictionary.setting.profile.title} className="">
       <SettingItem className="p-4 gap-4 items-center bg-secondary rounded-2xl">
         <ProfileAvatar
           src={preview || pf.avatar}
@@ -75,7 +75,7 @@ export default function ProfileSetting({ profile }: { profile: Profile }) {
           className="cursor-pointer p-2 border rounded-lg bg-primary text-sm text-white 
           text-center min-h-10 flex font-semibold hover:bg-primary/90 transition-colors"
         >
-          Change Avatar
+          {dictionary.setting.profile.changeAvatar}
         </Label>
         <Input
           type="file"
@@ -87,7 +87,7 @@ export default function ProfileSetting({ profile }: { profile: Profile }) {
       </SettingItem>
       <SettingItem className="flex-col gap-2">
         <Label htmlFor="name" className="font-semibold text-lg">
-          Name
+          {dictionary.setting.profile.form.name}
         </Label>
         <Input
           id="name"
@@ -99,7 +99,7 @@ export default function ProfileSetting({ profile }: { profile: Profile }) {
       </SettingItem>
       <SettingItem className="flex-col gap-2">
         <Label htmlFor="alias" className="font-semibold text-lg">
-          Bio
+          {dictionary.setting.profile.form.bio}
         </Label>
         <Textarea
           className="resize-none min-h-0 rounded-lg"
@@ -112,7 +112,7 @@ export default function ProfileSetting({ profile }: { profile: Profile }) {
       </SettingItem>
       <SettingItem className="flex-col gap-2">
         <Label htmlFor="gender" className="font-semibold text-lg">
-          Gender
+          {dictionary.setting.profile.form.gender}
         </Label>
         <Select
           defaultValue={pf.gender}
@@ -122,15 +122,15 @@ export default function ProfileSetting({ profile }: { profile: Profile }) {
             <SelectValue placeholder="Choose gender"></SelectValue>
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="male">Male</SelectItem>
-            <SelectItem value="female">Female</SelectItem>
-            <SelectItem value="other">Other</SelectItem>
+            <SelectItem value="male">{dictionary.setting.profile.form.genderMale}</SelectItem>
+            <SelectItem value="female">{dictionary.setting.profile.form.genderFemale}</SelectItem>
+            <SelectItem value="other">{dictionary.setting.profile.form.genderOther}</SelectItem>
           </SelectContent>
         </Select>
       </SettingItem>
       <SettingItem className="flex-col gap-2">
-        <Label htmlFor="alias" className="font-semibold text-lg">
-          Bio
+        <Label htmlFor="dob" className="font-semibold text-lg">
+          {dictionary.setting.profile.form.birthday}
         </Label>
         <Input
           id="dob"
@@ -150,7 +150,7 @@ export default function ProfileSetting({ profile }: { profile: Profile }) {
           disabled={pf == profile && !avatar}
           onClick={handleSubmit}
         >
-          Save
+          {dictionary.setting.profile.form.submit}
         </Button>
       </SettingItem>
     </SettingGroup>

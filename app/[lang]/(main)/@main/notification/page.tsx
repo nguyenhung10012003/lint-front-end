@@ -1,24 +1,25 @@
+import { getDictionary } from "@/app/dictionaries";
 import FollowRequestList from "@/components/notification/FollowRequestList";
 import NotificationList from "@/components/notification/NotificationList";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import type { Notification } from "@/types/notification";
 
-export default function Notification({
+export default async function Notification({
   params,
 }: {
   params: {
     lang: string;
   };
 }) {
+  const dictionary = await getDictionary(params.lang);
   const tabs = [
     {
-      label: "Notification",
+      label: dictionary.notification.tab.notification,
       id: "notification",
-      content: <NotificationList/>,
+      content: <NotificationList />,
     },
     {
-      label: "Follow Request",
+      label: dictionary.notification.tab.followRequest,
       id: "follow-request",
       content: <FollowRequestList />,
     },

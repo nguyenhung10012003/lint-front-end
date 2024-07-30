@@ -72,7 +72,10 @@ export default function CommentModal({
   return (
     <Dialog>
       <DialogTrigger>{trigger}</DialogTrigger>
-      <DialogContent className="p-0 w-full max-w-[600px]">
+      <DialogContent
+        className="p-0 w-full max-w-[600px]"
+        aria-describedby={undefined}
+      >
         <DialogHeader>
           <DialogTitle className="text-center pt-4">Comments</DialogTitle>
           <DialogClose />
