@@ -40,8 +40,8 @@ export default async function Sidebar({
       name: "notification",
       label: sidebar.notification,
       icon: {
-        outline: <NotificationWithBadge iconVariant="outline" />,
-        solid: <NotificationWithBadge iconVariant="solid" />,
+        outline: <NotificationWithBadge variant="outline" />,
+        solid: <NotificationWithBadge variant="solid" />,
       },
       href: "/notification",
       pathReg: "^/[a-zA-Z]{2}(-[a-zA-Z]{2})?/notification$",

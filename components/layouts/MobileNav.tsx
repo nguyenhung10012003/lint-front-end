@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import CreatePostModal from "../post/CreatePostModal";
 import { Icons } from "../Icons";
+import NotificationWithBadge from "../notification/NotificationWithBadge";
 
 export default function MobileNav({
   dictionary,
@@ -32,7 +33,7 @@ export default function MobileNav({
     },
     {
       name: "notification",
-      icon: Icons.notification,
+      icon: NotificationWithBadge,
       href: "/notification",
       pathReg: "^/[a-zA-Z]{2}(-[a-zA-Z]{2})?/notification$",
     },

@@ -9,7 +9,7 @@
     "passwordLabel": "Mật khẩu",
     "emailPlaceholder": "Nhập email của bạn",
     "passwordPlaceholder": "Nhập mật khẩu của bạn",
-    "signUpLinkText": "Chưa có tài khoản?́",
+    "signUpLinkText": "Chưa có tài khoản?",
     "signUpLink": "Đăng ký",
     "notifyError": {
       "userNotFound": "Email không tồn tại",

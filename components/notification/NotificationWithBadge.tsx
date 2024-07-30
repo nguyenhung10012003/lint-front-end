@@ -7,10 +7,10 @@ import useSWR from 'swr';
 
 
 interface NotificationProps {
-  iconVariant?: 'outline' | 'solid';
+  variant?: 'outline' | 'solid';
 }
 
-export default function NotificationWithBadge({ iconVariant }: NotificationProps) {
+export default function NotificationWithBadge({ variant }: NotificationProps) {
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
   const socket = useSocket();
 
@@ -50,7 +50,7 @@ export default function NotificationWithBadge({ iconVariant }: NotificationProps
         </div>
       )}
       <div>
-        <Icons.notification className="w-6 h-6" variant={iconVariant} />
+        <Icons.notification className="w-6 h-6" variant={variant} />
       </div>
     </div>
   );
