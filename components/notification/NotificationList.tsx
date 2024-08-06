@@ -6,10 +6,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Notification, Highlight } from '@/types/notification'; 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
 import { Button } from '../ui/button';
 import { useSocket } from '../providers/SocketProvider';
 import { mutate } from 'swr';
+import { getNotifications, markAsRead } from '@/lib/server-action/notification.action';
 
 function HighlightedText({ text, highlights }: { text: string, highlights: Highlight[] }) {
   if (!highlights || highlights.length === 0) {
@@ -43,22 +43,6 @@ function sortNotification(notifications: Notification[]) {
   return notifications.sort((a, b) => new Date(b.lastModified).getTime() - new Date(a.lastModified).getTime());
 }
 
-async function fetchNotifications(page: number) {
-  const take: number = 6;
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/notifications?skip=${(page - 1) * take}&take=${take}`;
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${Cookies.get('token')}`,
-    },
-  });
-  if (!response.ok) {
-    throw new Error('Failed to fetch notifications');
-  }
-
-  return await response.json();
-}
-
-
 export default function NotificationList() {
   const [liveNotifications, setLiveNotifications] = useState<Notification[]>([]);
   const [hasMore, setHasMore] = useState(false);
@@ -70,7 +54,7 @@ export default function NotificationList() {
   useEffect(() => {
     const initializeNotifications = async () => {
       try {
-        const data = await fetchNotifications(1);
+        const data = await getNotifications(page);
         setHasMore(data.hasMore);
         setLiveNotifications(data.notifications ? sortNotification(data.notifications) : []);
       } catch (error) {
@@ -117,21 +101,10 @@ export default function NotificationList() {
     });
 
     try {
-      const url = process.env.NEXT_PUBLIC_API_URL + '/notifications';
-      const response = await fetch(url, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${Cookies.get('token')}`,
-        },
-        body: JSON.stringify({
-          id: id,
-          read: true,
-        })
-      });
+      const response = markAsRead(id);
       mutate('/notifications/count-unread');
 
-      if (!response.ok) {
+      if (!response) {
         throw new Error('Failed to update notification');
       }
     } catch (error) {
@@ -144,7 +117,7 @@ export default function NotificationList() {
 
     setLoading(true);
     try {
-      const data = await fetchNotifications(page + 1);
+      const data = await getNotifications(page + 1);
       setHasMore(data.hasMore);
       setLiveNotifications((prev) => {
         const notificationIds = new Set(prev.map(notification => notification.id));

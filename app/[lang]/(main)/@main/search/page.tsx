@@ -2,7 +2,7 @@ import { getDictionary } from "@/app/dictionaries";
 import PostList from "@/components/PostList";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import UserList from "@/components/UserList";
-import api from "@/config/api";
+import { api } from "@/config/api";
 import SearchBox from "./SearchBox";
 
 export default async function Search({

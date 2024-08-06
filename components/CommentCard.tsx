@@ -1,4 +1,4 @@
-import api from "@/config/api";
+import { api } from "@/config/api";
 import { Comment, Reply } from "@/types/comment";
 import { User } from "@/types/user";
 import { formatTimeDifference } from "@/utils/datetime";

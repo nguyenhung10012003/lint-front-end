@@ -1,6 +1,6 @@
 import { getDictionary } from "@/app/dictionaries";
 import PostCard from "@/components/post/PostCard";
-import api from "@/config/api";
+import { api } from "@/config/api";
 import { Post } from "@/types/post";
 
 export default async function PostPage({

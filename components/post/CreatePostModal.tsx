@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import api from "@/config/api";
+import { api } from "@/config/api";
 import { Post } from "@/types/post";
 import { User } from "@/types/user";
 import Link from "next/link";

@@ -1,6 +1,6 @@
 "use client";
 
-import api from "@/config/api";
+import { api } from "@/config/api";
 import { Post } from "@/types/post";
 import { formatTimeDifference } from "@/utils/datetime";
 import { getRandomInt } from "@/utils/number";

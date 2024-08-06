@@ -1,5 +1,5 @@
 "use client";
-import api from "@/config/api";
+import { api } from "@/config/api";
 import { Post } from "@/types/post";
 import { useCookies } from "next-client-cookies";
 import { useCallback, useEffect, useState } from "react";

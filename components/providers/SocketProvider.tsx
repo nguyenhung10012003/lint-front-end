@@ -30,7 +30,7 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
     };
 
     if (typeof window !== 'undefined') {
-      const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || '';
+      const socketUrl = process.env.NEXT_PUBLIC_NOTIFICATION_API_URL || '';
       const socket = io(socketUrl, socketOptions);
       setSocket(socket);
   

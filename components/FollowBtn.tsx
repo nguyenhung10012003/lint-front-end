@@ -1,5 +1,5 @@
 "use client";
-import api from "@/config/api";
+import { api } from "@/config/api";
 import { cn } from "@/lib/utils";
 import { Following } from "@/types/relationship";
 import { useCookies } from "next-client-cookies";

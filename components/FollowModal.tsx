@@ -1,5 +1,5 @@
 "use client";
-import api from "@/config/api";
+import { api } from "@/config/api";
 import useDebounce from "@/hooks/use-debounce";
 import { Following } from "@/types/relationship";
 import { User } from "@/types/user";

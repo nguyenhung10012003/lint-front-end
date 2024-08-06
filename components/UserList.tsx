@@ -1,5 +1,5 @@
 "use client";
-import api from "@/config/api";
+import { api } from "@/config/api";
 import { User } from "@/types/user";
 import { useCallback, useEffect, useState } from "react";
 import FollowBtn from "./FollowBtn";
