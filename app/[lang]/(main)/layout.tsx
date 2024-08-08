@@ -1,7 +1,8 @@
 import DefaultLayout from "@/components/layouts/DefaultLayout";
 import { SocketProvider } from "@/components/providers/SocketProvider";
+import api from "@/config/api";
 import { getCookie } from "@/lib/server-action/cookies-action";
-import { getOneUser } from "@/lib/server-action/user-action";
+import { User } from "@/types/user";
 import { ReactNode } from "react";
 
 export default async function Main({
@@ -15,9 +16,10 @@ export default async function Main({
     lang: string;
   };
 }) {
-  const user = await getOneUser({
-    id: (await getCookie("userId"))?.value || "",
-  });
+  const user = await api.get<any, User>(
+    `/user/${(await getCookie("userId"))?.value}`
+  );
+
   const needProfile = user.profile && user.profile.name && user.profile.alias;
   if (needProfile)
     return (
