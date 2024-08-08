@@ -101,7 +101,7 @@ export default function NotificationList() {
     });
 
     try {
-      const response = markAsRead(id);
+      const response = await markAsRead(id);
       mutate('/notifications/count-unread');
 
       if (!response) {
