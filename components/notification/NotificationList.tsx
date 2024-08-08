@@ -70,7 +70,7 @@ export default function NotificationList() {
       socket.on('notification', (payload: any) => {
         const notification: Notification = payload.data;
         console.log(notification);
-        const parseNotification = { ...notification, content: JSON.parse(notification.content as unknown as string) };
+        const parseNotification = { ...notification, content: notification.content };
         setLiveNotifications((prev) => {
           const index = prev.findIndex((msg) => msg.id === notification.id);
           if (index !== -1) {
@@ -121,7 +121,9 @@ export default function NotificationList() {
       setHasMore(data.hasMore);
       setLiveNotifications((prev) => {
         const notificationIds = new Set(prev.map(notification => notification.id));
-        const newNotifications = data.notifications.filter((notification: Notification) => !notificationIds.has(notification.id));
+        const newNotifications = data.notifications.filter(
+          (notification: Notification) => !notificationIds.has(notification.id)
+        );
         return sortNotification([...prev, ...newNotifications]);
       });
       setPage((prev) => prev + 1);

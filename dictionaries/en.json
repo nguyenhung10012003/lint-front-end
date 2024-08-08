@@ -162,7 +162,23 @@
   "setting": {
     "profile": {
       "title" : "Profile",
-      "description": "Edit your personal information"
+      "description": "Edit your personal information",
+      "editProfile": "Edit profile",
+      "changeAvatar": "Change avatar",
+      "form": {
+        "name": "Name",
+        "bio": "Bio",
+        "gender": "Gender",
+        "genderMale": "Male",
+        "genderFemale": "Female",
+        "genderOther": "Other",
+        "birthday": "Birthday",
+        "submit": "Save"
+      },
+      "toast": {
+        "updateProfileSuccessTitle": "Cập nhật thành công",
+        "updateProfileSuccessDescription": "Thông tin cá nhân của bạn đã được cập nhật"
+      }
     },
     "privacy": {
       "title" : "Privacy",

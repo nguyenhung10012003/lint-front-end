@@ -39,23 +39,23 @@ const FollowList = ({
   const [hasMore, setHasMore] = useState<boolean>(follows.length > 0);
   const userPerFetch = 10;
   const loadMore = useCallback(async () => {
-    const data = await api.get<any, { users: User[] }>(`/user`, {
+    const data = await api.get<any, User[]>(`/user`, {
       params: {
-        ids: follows
+        id: follows
           .slice(page * userPerFetch, page * userPerFetch + userPerFetch)
           .map((follow) => {
             return variant === "followers"
               ? follow.followerId
               : follow.followingId;
           }),
-        select: ["id", "profile"],
+        include: ["profile"],
       },
     });
-    if (data.users) {
-      setUsers((prev) => [...prev, ...data.users]);
+    if (data) {
+      setUsers((prev) => [...prev, ...data]);
       setPage(page + 1);
     }
-    if (!data.users || data.users.length < userPerFetch) setHasMore(false);
+    if (!data || data.length < userPerFetch) setHasMore(false);
   }, [follows, page, hasMore]);
 
   const handleDelete = async ({ id, followerId, followingId }: Following) => {
@@ -135,7 +135,7 @@ export function FollowersModal({
   if (isLoading) return <></>;
   return (
     <Dialog>
-      <DialogTrigger>{`${data.follows?.length || 0} ${
+      <DialogTrigger>{`${data?.length || 0} ${
         dict.profile.followersModal.trigger
       }`}</DialogTrigger>
       <DialogContent
@@ -159,7 +159,7 @@ export function FollowersModal({
         </div>
         <div className="flex flex-col px-4 overflow-y-auto">
           <FollowList
-            follows={data.follows || []}
+            follows={data || []}
             variant={"followers"}
             search={debounce}
             includeAction={includeAction}
@@ -190,7 +190,7 @@ export function FollowingsModal({
   if (isLoading) return <></>;
   return (
     <Dialog>
-      <DialogTrigger>{`${data.follows?.length || 0} ${
+      <DialogTrigger>{`${data.length || 0} ${
         dict.profile.followingModal.trigger
       }`}</DialogTrigger>
       <DialogContent
@@ -214,7 +214,7 @@ export function FollowingsModal({
         </div>
         <div className="flex flex-col px-4 overflow-y-auto">
           <FollowList
-            follows={data.follows || []}
+            follows={data || []}
             variant={"followings"}
             search={debounce}
             includeAction={includeAction}
