@@ -1,7 +1,6 @@
 import { getDictionary } from "@/app/dictionaries";
 import { Icons } from "@/components/Icons";
 import AuthForm from "@/components/forms/AuthForm";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -33,7 +32,7 @@ export default async function SignIn({
     title: dictionary.signIn.formTitle,
     description: dictionary.signIn.formDescription,
     continueWith: dictionary.signIn.orContinueWith,
-  }
+  };
 
   const formFields = [
     {
@@ -54,20 +53,28 @@ export default async function SignIn({
       <Card className="max-w-[400px] w-full">
         <CardHeader>
           <CardTitle>{form.title}</CardTitle>
-          <CardDescription>
-            {form.description}
-          </CardDescription>
+          <CardDescription>{form.description}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="py-2 flex gap-4 flex-wrap">
-            <Button variant="outline" className="flex-1 min-w-[100px]">
+            <Link
+              className="flex-1 min-w-[100px] flex p-1 border border-input bg-background hover:bg-accent 
+              hover:text-accent-foreground justify-center whitespace-nowrap rounded-md text-sm 
+              font-medium items-center transition-colors h-10 px-4 py-2"
+              href={`${process.env.NEXT_PUBLIC_API_URL}/auth/callback/google`}
+            >
               {Icons.google({ className: "w-6 h-6 mr-2" })}
               Google
-            </Button>
-            <Button variant="outline" className="flex-1 min-w-[100px]">
+            </Link>
+            <Link
+              className="flex-1 min-w-[100px] flex p-1 border border-input bg-background hover:bg-accent 
+              hover:text-accent-foreground justify-center whitespace-nowrap rounded-md text-sm 
+              font-medium items-center transition-colors h-10 px-4 py-2"
+              href={`${process.env.NEXT_PUBLIC_API_URL}/auth/callback/facebook`}
+            >
               {Icons.facebook({ className: "w-6 h-6 mr-2" })}
               Facebook
-            </Button>
+            </Link>
           </div>
           <div className="relative">
             <div className="absolute inset-0 flex items-center">

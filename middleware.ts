@@ -1,35 +1,45 @@
 import { getLocale, locales } from "@/utils/locale";
-import type { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  let { pathname } = request.nextUrl;
+  let url = request.nextUrl;
   let needRedirect = false;
   const user = request.cookies.get("userId")?.value;
   const token = request.cookies.get("token")?.value;
 
-  //Redirect if user is not logged in
+  // Redirect when user logs in with OAuth
+  if (url.pathname.startsWith("/oauth")) {
+    const tokenData = JSON.parse(
+      decodeURIComponent(url.searchParams.get("token") || "")
+    );
+    const response = NextResponse.redirect(new URL("/", request.url));
+    response.cookies.set("userId", tokenData.userId);
+    response.cookies.set("token", tokenData.token);
+    response.cookies.set("refreshToken", tokenData.refreshToken);
+    url.searchParams.delete("token");
+    return response;
+  }
+
+  // Redirect if user is not logged in
   const checkPath = /sign-(in|up)/;
   if (!checkPath.test(request.nextUrl.pathname) && (!user || !token)) {
-    needRedirect = true;
-    pathname = "/sign-in";
+    return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 
   const pathnameHasLocale = locales.some(
     (locale) =>
-      pathname.startsWith(`/${locale.key}/`) || pathname === `/${locale.key}`
+      url.pathname.startsWith(`/${locale.key}/`) ||
+      url.pathname === `/${locale.key}`
   );
 
   // Redirect if there is no locale
   if (!pathnameHasLocale) {
-    needRedirect = true;
     const locale = getLocale(request);
-    pathname = `/${locale}${pathname}`;
+    url.pathname = `/${locale}${url.pathname}`;
+    return NextResponse.redirect(url);
   }
 
-  if (needRedirect) {
-    request.nextUrl.pathname = pathname;
-    return Response.redirect(request.nextUrl);
-  } else return;
+  return NextResponse.next();
 }
 
 export const config = {
