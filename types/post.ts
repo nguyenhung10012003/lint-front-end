@@ -24,9 +24,9 @@ export interface Media {
 }
 
 export enum MediaType {
-  IMAGE = 0,
-  VIDEO = 1,
-  AUDIO = 2,
+  IMAGE = "IMAGE",
+  VIDEO = "VIDEO",
+  AUDIO = "AUDIO",
 }
 
 export enum PostScope {

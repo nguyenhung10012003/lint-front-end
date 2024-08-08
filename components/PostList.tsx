@@ -24,18 +24,19 @@ export default function PostList({
     setHasMore(true);
   }, [url]);
   const loadMore = useCallback(async () => {
-    const data = await api.get<any, { posts: Post[] }>(`${url.url}`, {
+    const newPosts = await api.get<any, Post[]>(`${url.url}`, {
       params: {
         ...url.params,
         idsNotIn: posts.map((post) => post.id),
         take: postPerFetch,
       },
     });
-    if (data.posts) {
-      setPosts((prev) => [...prev, ...data.posts]);
+    
+    if (newPosts) {
+      setPosts((prev) => [...prev, ...newPosts]);
       setPage(page + 1);
     }
-    if (!data.posts || data.posts.length < postPerFetch) setHasMore(false);
+    if (!newPosts || newPosts.length < postPerFetch) setHasMore(false);
   }, [page, hasMore]);
 
   // useEffect(() => {

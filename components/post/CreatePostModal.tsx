@@ -167,11 +167,19 @@ export default function CreatePostModal({
           <div className="flex flex-wrap gap-2">
             {previews?.map((preview, index) => (
               <div key={index} className="relative w-20 h-20">
-                <img
-                  src={preview}
-                  alt="media"
-                  className="w-full h-full object-cover rounded-lg"
-                />
+                {medias[index].type.startsWith('image/') ? (
+                  <img
+                    src={preview}
+                    alt="media"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                ) : medias[index].type.startsWith('video/') ? (
+                  <video
+                    src={preview}
+                    className="w-full h-full object-cover rounded-lg"
+                    controls
+                  />
+                ) : null}
                 <button
                   className="absolute top-0 right-0 p-1 bg-red-500 rounded-full border-2 border-white"
                   onClick={() => handleRemoveMedia(index)}
@@ -214,6 +222,7 @@ export default function CreatePostModal({
                 accept="video/*"
                 max={10 - (medias?.length || 0)}
                 multiple
+                onChange={handleAddMedia}
               />
             </Label>
             <HashTagPicker

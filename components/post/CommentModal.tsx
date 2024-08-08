@@ -33,17 +33,17 @@ export default function CommentModal({
   const fetchPerPage = 5;
 
   const loadMore = useCallback(async () => {
-    const data = await api.get<any, { comments: Comment[] }>(
+    const data = await api.get<any, Comment[]>(
       `/comment?postId=${postId}&skip=${
         page * fetchPerPage
       }&take=${fetchPerPage}&orderField=createdAt&orderDirection=desc`
     );
-    if (!data.comments || data.comments.length === 0) {
+    if (!data || data.length === 0) {
       setHasMore(false);
       return;
     }
     setPage(page + 1);
-    setComments([...comments, ...data.comments]);
+    setComments([...comments, ...data]);
   }, [page]);
   //if (isLoading) return <Skeleton className="w-10 h-6"></Skeleton>;
   if (isMobile)
