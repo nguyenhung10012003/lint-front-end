@@ -8,13 +8,13 @@ import { Skeleton } from "./ui/skeleton";
 export default function ProfileAvatar({
   src,
   alt,
-  profileId,
+  userId,
   variant = "none",
   className,
 }: {
   src?: string;
   alt?: string;
-  profileId?: string;
+  userId?: string;
   variant?: "link" | "button" | "none" | "input" | "modal" | "skeleton";
   className?: string;
 }) {
@@ -28,9 +28,9 @@ export default function ProfileAvatar({
       <AvatarFallback>{alt?.slice(0, 1)}</AvatarFallback>
     </Avatar>
   );
-  if (variant === "link" && profileId)
+  if (variant === "link" && userId)
     return (
-      <Link href={`/profile/${profileId}`} className="">
+      <Link href={`/profile/${userId}`} className="">
         {avatar}
       </Link>
     );

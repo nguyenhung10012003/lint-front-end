@@ -2,9 +2,10 @@
 import api from "@/config/api";
 import { Post } from "@/types/post";
 import { useCookies } from "next-client-cookies";
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
 import InfiniteScroll from "./InfiniteScroll";
-import PostCard from "./post/PostCard";
+const PostCard = dynamic(() => import("./post/PostCard"), { ssr: false });
 
 export default function PostList({
   dictionary,
@@ -24,18 +25,18 @@ export default function PostList({
     setHasMore(true);
   }, [url]);
   const loadMore = useCallback(async () => {
-    const data = await api.get<any, { posts: Post[] }>(`${url.url}`, {
+    const data = await api.get<any, Post[]>(`${url.url}`, {
       params: {
         ...url.params,
         idsNotIn: posts.map((post) => post.id),
         take: postPerFetch,
       },
     });
-    if (data.posts) {
-      setPosts((prev) => [...prev, ...data.posts]);
+    if (data) {
+      setPosts((prev) => [...prev, ...data]);
       setPage(page + 1);
     }
-    if (!data.posts || data.posts.length < postPerFetch) setHasMore(false);
+    if (!data || data.length === 0) setHasMore(false);
   }, [page, hasMore]);
 
   // useEffect(() => {
