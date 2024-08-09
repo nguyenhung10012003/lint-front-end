@@ -34,7 +34,7 @@ export default async function SideBarFooter({
     <div className="flex w-full gap-2 items-center justify-center">
       <ProfileAvatar
         src={user.profile.avatar}
-        profileId={user.profile.id}
+        userId={user.profile.id}
         className="hidden lg:flex"
       />
       <div className="w-full hidden lg:block">

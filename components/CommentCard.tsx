@@ -76,7 +76,7 @@ function CommentUI({
         <ProfileAvatar
           src={data?.profile.avatar}
           alt={data?.profile.alias}
-          profileId={userId}
+          userId={userId}
           variant="link"
           className="h-10 w-10 md:h-10 md:w-10"
         />
@@ -84,7 +84,7 @@ function CommentUI({
       </div>
       <div className="">
         <div className="flex gap-3 items-center">
-          {data && <ProfileHoverCard user={data} />}
+          {data && <ProfileHoverCard profile={data?.profile} />}
           <span className="text-gray-400 text-sm">
             {formatTimeDifference(new Date(createdAt))}
           </span>

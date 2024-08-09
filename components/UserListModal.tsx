@@ -58,7 +58,7 @@ export default function UserListModal({
                   src={item.avatar}
                   alt={""}
                   className="w-12 h-12 md:w-12 md:h-12"
-                  profileId={item.id}
+                  userId={item.id}
                   variant="link"
                 />
                 <div className="flex w-full flex-col items-start">

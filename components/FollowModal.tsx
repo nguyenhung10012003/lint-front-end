@@ -90,7 +90,7 @@ const FollowList = ({
               src={user.profile.avatar}
               alt={user.profile.name}
               className="w-12 h-12 md:w-12 md:h-12"
-              profileId={user.id}
+              userId={user.id}
               variant="link"
             />
             <div className="flex w-full flex-col items-start">
