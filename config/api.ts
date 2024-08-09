@@ -1,9 +1,9 @@
 import axios from "axios";
 
-function createApi(server: string = 'main'){
+function createApi(server: string = "main") {
   let baseURL: string | undefined;
-  if (server === 'main') {
-    baseURL = process.env.NEXT_PUBLIC_API_URL 
+  if (server === "main") {
+    baseURL = process.env.NEXT_PUBLIC_API_URL;
   } else {
     baseURL = process.env.NEXT_PUBLIC_NOTIFICATION_API_URL;
   }
@@ -52,6 +52,7 @@ function createApi(server: string = 'main'){
 }
 
 const api = createApi();
-const notificationApi = createApi('notification');
+const notificationApi = createApi("notification");
 
-export { api, notificationApi};
+export { api, notificationApi };
+export default api;
