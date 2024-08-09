@@ -1,4 +1,4 @@
-import api from "@/config/api";
+import { api } from "@/config/api";
 import { Comment, Reply } from "@/types/comment";
 import { User } from "@/types/user";
 import { formatTimeDifference } from "@/utils/datetime";
@@ -12,6 +12,14 @@ import ProfileHoverCard from "./ProfileHoverCard";
 import { Skeleton } from "./ui/skeleton";
 
 const fetcher = (url: string) => api.get<any, any>(url);
+
+const manyFetchers = (urls: string[]) => {
+  return Promise.all(
+    urls.map((url) => {
+      return api.get<any, any>(url);
+    })
+  );
+};
 
 function CommentSkeleton() {
   return (
@@ -34,14 +42,33 @@ function CommentUI({
   userId,
   content,
   createdAt,
+  commentId,
   connector,
 }: {
   userId: string;
   content: string;
   createdAt: string;
+  commentId: string;
   connector?: React.ReactNode;
 }) {
   const { data, error, isLoading } = useSWR<User>(`/user/${userId}`, fetcher);
+  const { data: likeData, mutate } = useSWR(
+    [`/like/exist?commentId=${commentId}`,
+    `/like/count?commentId=${commentId}`],
+    manyFetchers,
+  );
+  const [ liked, count ] = likeData || [];
+
+  const handleLike = async () => {
+    if (liked.exist) {
+      await api.delete(`/like`, { data: { commentId } });
+      mutate();
+    } else {
+      await api.post(`/like`, { commentId, for: "comment" });
+      mutate();
+    }
+  };
+
   if (isLoading) return <CommentSkeleton />;
   return (
     <div className="flex gap-3">
@@ -69,12 +96,12 @@ function CommentUI({
             className="flex gap-1 items-center cursor-pointer hover:scale-105 text-gray-700 dark:text-gray-300"
             onClick={() => {}}
           >
-            <Icons.heart
-              className={`w-5 h-5 ${true && "text-red-500"}`}
-              variant={true ? "solid" : "outline"}
+            <Icons.heart onClick={handleLike}
+              className={`w-5 h-5 ${liked?.exist && "text-red-500"}`}
+              variant={liked?.exist ? "solid" : "outline"}
             />
             <span className="text-sm font-semibold">
-              {formatToShortNumber(0)}
+              {formatToShortNumber(count?.count || 0)}
             </span>
           </div>
         </div>
@@ -95,6 +122,7 @@ export default function CommentCard({ comment }: { comment: Comment }) {
         userId={comment.userId}
         content={comment.content}
         createdAt={comment.createdAt}
+        commentId={comment.id}
         connector={
           <div className="w-[3px] h-full bg-gray-500 mt-1 rounded-lg" />
         }
@@ -105,6 +133,7 @@ export default function CommentCard({ comment }: { comment: Comment }) {
           userId={reply.userId}
           content={reply.content}
           createdAt={reply.createdAt}
+          commentId={reply.id}
           connector={
             <div className="w-[3px] h-full bg-gray-500 mt-1 rounded-lg" />
           }

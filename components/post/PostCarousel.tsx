@@ -9,12 +9,14 @@ import {
 import Image from "next/image";
 import { useState } from "react";
 import { Dialog, DialogContent } from "../ui/dialog";
+import { MediaType } from "@/types/post";
 
 export default function PostCarousel({
-  images,
+  medias,
 }: {
-  images: {
+  medias: {
     url: string;
+    type: MediaType;
   }[];
 }) {
   const [selected, setSelected] = useState<undefined | number>();
@@ -22,7 +24,7 @@ export default function PostCarousel({
     <>
       <Carousel>
         <CarouselContent className="mt-2">
-          {images.map((image, index) => (
+          {medias.map((item, index) => (
             <CarouselItem key={index} className="flex">
               <div
                 onClick={() => setSelected(index)}
@@ -30,14 +32,25 @@ export default function PostCarousel({
                 dark:bg-black object-cover flex-wrap
                 hover:cursor-pointer"
               >
-                <Image
-                  src={image.url}
-                  alt={`Post image ${index}`}
-                  width={500}
-                  height={500}
-                  className="rounded-md"
-                  onLoad={(e) => {}}
-                />
+                {item.type === MediaType.IMAGE ? (
+                  <Image
+                    src={item.url}
+                    alt={`Post media ${index}`}
+                    width={500}
+                    height={500}
+                    className="rounded-md"
+                    onLoad={(e) => {}}
+                  />
+                ) : (
+                  <video
+                    src={item.url}
+                    controls
+                    width={500}
+                    height={500}
+                    className="rounded-md"
+                    onLoad={(e) => {}}
+                  />
+                )}
               </div>
             </CarouselItem>
           ))}
@@ -52,14 +65,24 @@ export default function PostCarousel({
             includeClose={false}
             aria-describedby={undefined}
           >
-            <Image
-              src={images[selected].url}
-              alt={``}
-              width={1000}
-              height={1000}
-              className="object-contain max-w-[90vw] max-h-[95vh] lg:max-w-[80vw] lg:max-h-[90vh] flex"
-              onLoad={(e) => {}}
-            />
+            {medias[selected].type === MediaType.IMAGE ? (
+              <Image
+                src={medias[selected].url}
+                alt={``}
+                width={1000}
+                height={1000}
+                className="object-contain max-w-[90vw] max-h-[95vh] lg:max-w-[80vw] lg:max-h-[90vh] flex"
+                onLoad={(e) => {}}
+              />
+            ) : (
+              <video
+                src={medias[selected].url}
+                controls
+                autoPlay
+                className="object-contain max-w-[90vw] max-h-[95vh] lg:max-w-[80vw] lg:max-h-[90vh] flex"
+                onLoad={(e) => {}}
+              />
+            )}
           </DialogContent>
         </Dialog>
       )}

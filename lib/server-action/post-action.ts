@@ -1,6 +1,6 @@
 "use server";
 
-import api from "@/config/api";
+import { api } from "@/config/api";
 
 export const getTags = async (params: {
   search?: string;

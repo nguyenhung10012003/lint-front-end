@@ -98,7 +98,7 @@ export default async function Profile({
       <div className="flex flex-col gap-6 w-full">
         <PostList
           dictionary={dictionary}
-          url={{ url: `/post?userId=${user.id}` }}
+          url={{ url: '/post', params: { userId: [user.id] } }}
         />
       </div>
     </div>

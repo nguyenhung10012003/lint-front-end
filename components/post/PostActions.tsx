@@ -1,6 +1,6 @@
 "use client";
 import { Icons } from "@/components/Icons";
-import api from "@/config/api";
+import { api } from "@/config/api";
 import { formatToShortNumber } from "@/utils/number";
 import CommentModal from "./CommentModal";
 

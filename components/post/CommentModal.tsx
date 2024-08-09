@@ -1,4 +1,4 @@
-import api from "@/config/api";
+import { api } from "@/config/api";
 import useMediaQuery from "@/hooks/use-media-query";
 import { Comment } from "@/types/comment";
 import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";

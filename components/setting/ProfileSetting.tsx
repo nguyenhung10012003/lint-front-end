@@ -1,6 +1,6 @@
 "use client";
 
-import api from "@/config/api";
+import { api } from "@/config/api";
 import { Profile } from "@/types/user";
 import {} from "@radix-ui/react-select";
 import { useState } from "react";

@@ -1,6 +1,6 @@
 "use client";
 
-import api from "@/config/api";
+import { api } from "@/config/api";
 import { Post } from "@/types/post";
 import { formatTimeDifference } from "@/utils/datetime";
 import { getRandomInt } from "@/utils/number";
@@ -128,7 +128,7 @@ function PostCard({ post, dictionary, isAuthor = false }: PostCardProps) {
           content={post.content || ""}
           tags={post.tags?.map((tag) => tag.name) || []}
         />
-        <PostCarousel images={post.medias || []} />
+        <PostCarousel medias={post.medias || []} />
       </CardContent>
       <CardFooter>
         <PostActions

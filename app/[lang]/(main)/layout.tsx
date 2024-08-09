@@ -1,6 +1,6 @@
 import DefaultLayout from "@/components/layouts/DefaultLayout";
 import { SocketProvider } from "@/components/providers/SocketProvider";
-import api from "@/config/api";
+import { api} from "@/config/api";
 import { getCookie } from "@/lib/server-action/cookies-action";
 import { User } from "@/types/user";
 import { ReactNode } from "react";
