@@ -105,7 +105,9 @@
       "turnOnNotification": "Bật thông báo cho bài viết này",
       "turnOffNotification": "Tắt thông báo cho bài viết này",
       "hidePost": "Ẩn bài viết",
-      "unHidePost": "Hiện bài viết"
+      "unHidePost": "Hiện bài viết",
+      "deletePost": "Xóa bài viết",
+      "editPost": "Chỉnh sửa bài viết"
     },
     "content": {
       "seeMore": "Xem thêm",

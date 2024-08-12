@@ -22,18 +22,20 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
 import { useToast } from "../ui/use-toast";
+import PostScopeSelector from "./PostScopeSelector";
 
 export default function CreatePostModal({
   user,
-  dictionary
+  dictionary,
 }: {
-  user: User,
-  dictionary: any
+  user: User;
+  dictionary: any;
 }) {
   const [content, setContent] = useState<string | undefined>();
   const [medias, setMedias] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[] | undefined>();
   const [hashTags, setHashTags] = useState<string[]>([]);
+  const [postScope, setPostScope] = useState<"PUBLIC" | "PRIVATE">("PUBLIC");
   const [open, setOpen] = useState(false);
   const handleAddMedia = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -74,6 +76,7 @@ export default function CreatePostModal({
   const handleSubmitPost = async () => {
     const formData = new FormData();
     if (content) formData.append("content", content);
+    formData.append("scope", postScope);
     if (medias)
       Array.from(medias).forEach((media) => {
         formData.append("medias", media);
@@ -111,7 +114,9 @@ export default function CreatePostModal({
               items-center hover:scale-105 hover:cursor-pointer"
         >
           <Icons.create className="w-6 h-6" />
-          <span className="hidden lg:flex items-center">{dictionary?.createPost.sidebarItem}</span>
+          <span className="hidden lg:flex items-center">
+            {dictionary?.createPost.sidebarItem}
+          </span>
         </div>
       </DialogTrigger>
       <DialogContent className="md:max-w-[600px]" aria-describedby={undefined}>
@@ -122,7 +127,7 @@ export default function CreatePostModal({
           <Separator />
           <div className="flex items-center gap-2 pt-2">
             <ProfileAvatar src={user.profile.avatar} alt={user.profile.name} />
-            <div className="grid gap-0.5">
+            <div className="grid gap-0.5 w-full justify-items-start">
               <div className="font-medium">{user.profile.name}</div>
               <Link
                 className="text-xs text-gray-500 dark:text-gray-400 hover:underline underline-offset-2"
@@ -132,6 +137,7 @@ export default function CreatePostModal({
                 {`@${user.profile.alias}`}
               </Link>
             </div>
+            <PostScopeSelector onValueChange={(value) => setPostScope(value)} />
           </div>
         </DialogHeader>
         <div className="grid gap-4 py-2">
@@ -167,13 +173,13 @@ export default function CreatePostModal({
           <div className="flex flex-wrap gap-2">
             {previews?.map((preview, index) => (
               <div key={index} className="relative w-20 h-20">
-                {medias[index].type.startsWith('image/') ? (
+                {medias[index].type.startsWith("image/") ? (
                   <img
                     src={preview}
                     alt="media"
                     className="w-full h-full object-cover rounded-lg"
                   />
-                ) : medias[index].type.startsWith('video/') ? (
+                ) : medias[index].type.startsWith("video/") ? (
                   <video
                     src={preview}
                     className="w-full h-full object-cover rounded-lg"

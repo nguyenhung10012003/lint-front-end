@@ -8,6 +8,7 @@ import {
   EyeSlashIcon as EyeSlashIconOutline,
   FaceSmileIcon as FaceSmileIconOutline,
   GifIcon as GifIconOutline,
+  GlobeAsiaAustraliaIcon as GlobeAsiaAustraliaIconOutline,
   HashtagIcon as HashtagIconOutline,
   HeartIcon as HeartIconOutline,
   HomeIcon as HomeIconOutline,
@@ -16,10 +17,12 @@ import {
   MusicalNoteIcon as MusicalNoteIconOutline,
   NoSymbolIcon as NoSymbolIconOutline,
   PaperAirplaneIcon as PaperAirplaneIconOutline,
+  PencilIcon as PencilIconOutline,
   PencilSquareIcon as PencilSquareIconOutline,
   PhotoIcon as PhotoIconOutline,
   ShareIcon as ShareIconOutline,
   TagIcon as TagIconOutline,
+  TrashIcon as TrashIconOutline,
   UserIcon as UserIconOutline,
   VideoCameraIcon as VideoCameraIconOutline,
 } from "@heroicons/react/24/outline";
@@ -38,6 +41,7 @@ import {
   EyeSlashIcon,
   FaceSmileIcon,
   GifIcon,
+  GlobeAsiaAustraliaIcon,
   HashtagIcon,
   HeartIcon,
   HomeIcon,
@@ -45,10 +49,12 @@ import {
   MusicalNoteIcon,
   NoSymbolIcon,
   PaperAirplaneIcon,
+  PencilIcon,
   PencilSquareIcon,
   PhotoIcon,
   ShareIcon,
   TagIcon,
+  TrashIcon,
   UserIcon,
   VideoCameraIcon,
   XMarkIcon,
@@ -287,4 +293,25 @@ export const Icons = {
 
   arrowRight: (props: IconProps) => <ArrowRightIcon {...props} />,
   arrowLeft: (props: IconProps) => <ArrowLeftIcon {...props} />,
+
+  edit: (props: IconProps) =>
+    props.variant === "solid" ? (
+      <PencilIcon {...props} />
+    ) : (
+      <PencilIconOutline {...props} />
+    ),
+
+  delete: (props: IconProps) =>
+    props.variant === "solid" ? (
+      <TrashIcon {...props} />
+    ) : (
+      <TrashIconOutline {...props} />
+    ),
+
+  global: (props: IconProps) =>
+    props.variant === "solid" ? (
+      <GlobeAsiaAustraliaIcon {...props} />
+    ) : (
+      <GlobeAsiaAustraliaIconOutline {...props} />
+    ),
 };

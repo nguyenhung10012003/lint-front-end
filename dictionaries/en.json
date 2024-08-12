@@ -82,16 +82,16 @@
       "aliasInvalid": "Alias must be alphanumeric and can contain underscores and periods."
     },
     "form": {
-        "name": "What is your name?",
-        "alias": "What is your alias?",
-        "submitNext": "Next",
-        "dob": "When is your birthday?",
-        "country": "Where are you from?",
-        "uploadAvatar": "Choose avatar",
-        "bio": "Tell us about yourself",
-        "submit": "Finish",
-        "skip": "Skip"
-      }
+      "name": "What is your name?",
+      "alias": "What is your alias?",
+      "submitNext": "Next",
+      "dob": "When is your birthday?",
+      "country": "Where are you from?",
+      "uploadAvatar": "Choose avatar",
+      "bio": "Tell us about yourself",
+      "submit": "Finish",
+      "skip": "Skip"
+    }
   },
   "post": {
     "action": {
@@ -105,7 +105,9 @@
       "turnOnNotification": "Turn on notification for this post",
       "turnOffNotification": "Turn off notification for this post",
       "hidePost": "Hide post",
-      "unHidePost": "Unhide post"
+      "unHidePost": "Unhide post",
+      "deletePost": "Delete post",
+      "editPost": "Edit post"
     },
     "content": {
       "seeMore": "See more",
@@ -132,18 +134,18 @@
   },
 
   "search": {
-      "searchBox": {
-        "placeholder": "Search"
-      },
-      "searchResult": {
-        "people": "Peoples",
-        "post": "Posts",
-        "noResult": "No result found"
-      }
+    "searchBox": {
+      "placeholder": "Search"
+    },
+    "searchResult": {
+      "people": "Peoples",
+      "post": "Posts",
+      "noResult": "No result found"
+    }
   },
   "notification": {
     "tab": {
-      "notification" :"Notification",
+      "notification": "Notification",
       "followRequest": "Follow request"
     }
   },
@@ -161,7 +163,7 @@
   "delete": "Delete",
   "setting": {
     "profile": {
-      "title" : "Profile",
+      "title": "Profile",
       "description": "Edit your personal information",
       "editProfile": "Edit profile",
       "changeAvatar": "Change avatar",
@@ -176,16 +178,16 @@
         "submit": "Save"
       },
       "toast": {
-        "updateProfileSuccessTitle": "Cập nhật thành công",
-        "updateProfileSuccessDescription": "Thông tin cá nhân của bạn đã được cập nhật"
+        "updateProfileSuccessTitle": "Update success",
+        "updateProfileSuccessDescription": "Your personal information has been updated"
       }
     },
     "privacy": {
-      "title" : "Privacy",
+      "title": "Privacy",
       "description": "Manage your privacy settings"
     },
     "application": {
-      "title" : "Application",
+      "title": "Application",
       "description": "Manage your application settings",
       "theme": "Theme",
       "themeDark": "Dark",

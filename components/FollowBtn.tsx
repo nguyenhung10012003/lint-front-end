@@ -24,9 +24,7 @@ export default function FollowBtn({
     `/following?followingId=${followingId}&followerId=${userId}`,
     fetcher,
   );
-  console.log(data);
   const isFollowing = data?.length && data?.length > 0;
-  console.log(isFollowing);
   const handleFollow = async () => {
     try {
       await api.post("/following", {

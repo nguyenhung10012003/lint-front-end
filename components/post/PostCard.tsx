@@ -4,6 +4,7 @@ import { api } from "@/config/api";
 import { Post } from "@/types/post";
 import { formatTimeDifference } from "@/utils/datetime";
 import { getRandomInt } from "@/utils/number";
+import dynamic from "next/dynamic";
 import { Roboto } from "next/font/google";
 import Link from "next/link";
 import { memo } from "react";
@@ -12,10 +13,10 @@ import ProfileAvatar from "../ProfileAvatar";
 import ProfileHoverCard from "../ProfileHoverCard";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
-import PostActions from "./PostActions";
-import PostCarousel from "./PostCarousel";
 import PostContent from "./PostContent";
-import PostDropdownMenu from "./PostDropdownMenu";
+const PostCarousel = dynamic(() => import("./PostCarousel"));
+const PostActions = dynamic(() => import("./PostActions"));
+const PostDropdownMenu = dynamic(() => import("./PostDropdownMenu"));
 
 interface PostCardProps {
   dictionary: any;
@@ -94,14 +95,14 @@ function PostCard({ post, dictionary, isAuthor = false }: PostCardProps) {
         <div className="flex justify-between">
           <div className="flex gap-2">
             <ProfileAvatar
-              src={author.profile.avatar}
+              src={author.profile?.avatar}
               variant="link"
               userId={author.id}
             />
             <div className="flex flex-col font-bold">
               <div className="flex items-center gap-2">
                 <Link href={`/profile/${author.id}`}>
-                  {author.profile.name}
+                  {author.profile?.name}
                 </Link>
                 <div className="bg-gray-400 rounded-full w-[5px] h-[5px]"></div>
                 <span className="text-gray-400 text-sm">
@@ -115,7 +116,7 @@ function PostCard({ post, dictionary, isAuthor = false }: PostCardProps) {
             </div>
           </div>
           <div className="flex justify-end">
-            <PostDropdownMenu dict={dictionary.post.moreDropdown} />
+            <PostDropdownMenu dict={dictionary.post.moreDropdown} post={post} />
           </div>
         </div>
       </CardHeader>

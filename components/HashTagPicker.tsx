@@ -26,9 +26,7 @@ export default function HashTagPicker({
   const [hashtags, setHashtags] = useState<string[]>([]);
   useEffect(() => {
     getTags({ search: debounce, take: 10 }).then((res) => {
-      res.tags
-        ? setHashtags(res.tags.map((tag: any) => tag.name))
-        : setHashtags([]);
+      res ? setHashtags(res.map((tag: any) => tag.name)) : setHashtags([]);
     });
   }, [debounce]);
 
