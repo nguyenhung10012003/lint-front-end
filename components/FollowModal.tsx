@@ -4,7 +4,7 @@ import useDebounce from "@/hooks/use-debounce";
 import { Following } from "@/types/relationship";
 import { User } from "@/types/user";
 import Link from "next/link";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useSWR from "swr";
 import { Icons } from "./Icons";
 import InfiniteScroll from "./InfiniteScroll";
@@ -20,43 +20,56 @@ import {
 
 const fetcher = (url: string) => api.get<any, any>(url);
 const FollowList = ({
-  follows,
+  userId,
+  followCount,
   search,
   variant,
   includeAction = false,
   mutate,
   deleteText,
 }: {
-  follows: Following[];
+  userId: string;
+  followCount: number;
   search: string;
   variant: "followers" | "followings";
   includeAction?: boolean;
   mutate: () => void;
   deleteText: string;
 }) => {
+  const [follows, setFollows] = useState<Following[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [page, setPage] = useState<number>(0);
-  const [hasMore, setHasMore] = useState<boolean>(follows.length > 0);
+  const [hasMore, setHasMore] = useState<boolean>(followCount > 0);
   const userPerFetch = 10;
+
   const loadMore = useCallback(async () => {
-    const data = await api.get<any, User[]>(`/user`, {
+    const data = await api.get<any, any>(`/following`, {
       params: {
-        id: follows
-          .slice(page * userPerFetch, page * userPerFetch + userPerFetch)
-          .map((follow) => {
-            return variant === "followers"
-              ? follow.followerId
-              : follow.followingId;
-          }),
-        include: ["profile"],
+        userId,
+        variant,
+        take: userPerFetch,
+        skip: page * userPerFetch,
+        search: search
       },
     });
+
     if (data) {
-      setUsers((prev) => [...prev, ...data]);
+      const newUser = data.map((d: any) => {
+        return variant === "followers" ? d.follower : d.following;
+      })
+      setFollows((prev) => [...prev, ...data]);
+      setUsers((prev) => [...prev, ...newUser]);
       setPage(page + 1);
     }
     if (!data || data.length < userPerFetch) setHasMore(false);
-  }, [follows, page, hasMore]);
+  }, [page, search, variant, userId]);
+
+  useEffect(() => {
+    setUsers([]);
+    setFollows([]);
+    setPage(0);
+    setHasMore(true);
+  }, [search]);
 
   const handleDelete = async ({ id, followerId, followingId }: Following) => {
     const data = await api.delete(`/following`, {
@@ -77,13 +90,10 @@ const FollowList = ({
       mutate();
     }
   };
+
   return (
     <InfiniteScroll loadMore={loadMore} hasMore={hasMore}>
       {users
-        ?.filter((user) => {
-          if (!search) return true;
-          return user.profile.alias?.includes(search);
-        })
         .map((user, index) => (
           <div key={index} className="flex gap-3 items-center w-full py-2">
             <ProfileAvatar
@@ -96,7 +106,7 @@ const FollowList = ({
             <div className="flex w-full flex-col items-start">
               <Link
                 className="text-md font-semibold hover:underline underline-offset-4"
-                href={`/${user.id}`}
+                href={`/profile/${user.profile.userId}`}
               >
                 {user.profile.alias}
               </Link>
@@ -128,14 +138,14 @@ export function FollowersModal({
   const [search, setSearch] = useState<string>("");
   const debounce = useDebounce(search, 500);
   const { data, isLoading, error, mutate } = useSWR(
-    `/following?followingId=${userId}`,
+    `/following/count?followingId=${userId}`,
     fetcher
   );
 
   if (isLoading) return <></>;
   return (
     <Dialog>
-      <DialogTrigger>{`${data?.length || 0} ${
+      <DialogTrigger>{`${data?.count || 0} ${
         dict.profile.followersModal.trigger
       }`}</DialogTrigger>
       <DialogContent
@@ -159,7 +169,8 @@ export function FollowersModal({
         </div>
         <div className="flex flex-col px-4 overflow-y-auto">
           <FollowList
-            follows={data || []}
+            userId={userId}
+            followCount={data?.count || 0}
             variant={"followers"}
             search={debounce}
             includeAction={includeAction}
@@ -184,13 +195,14 @@ export function FollowingsModal({
   const [search, setSearch] = useState<string>("");
   const debounce = useDebounce(search, 500);
   const { data, isLoading, error, mutate } = useSWR(
-    `/following?followerId=${userId}`,
+    `/following/count?followerId=${userId}`,  
     fetcher
   );
+
   if (isLoading) return <></>;
   return (
     <Dialog>
-      <DialogTrigger>{`${data.length || 0} ${
+      <DialogTrigger>{`${data.count || 0} ${
         dict.profile.followingModal.trigger
       }`}</DialogTrigger>
       <DialogContent
@@ -214,7 +226,8 @@ export function FollowingsModal({
         </div>
         <div className="flex flex-col px-4 overflow-y-auto">
           <FollowList
-            follows={data || []}
+            userId={userId}
+            followCount={data.count || 0}
             variant={"followings"}
             search={debounce}
             includeAction={includeAction}
