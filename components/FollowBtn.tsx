@@ -20,11 +20,11 @@ export default function FollowBtn({
 }) {
   const cookies = useCookies();
   const userId = cookies.get("userId");
-  const { data, error, isLoading, mutate } = useSWR<Following[]>(
-    `/following?followingId=${followingId}&followerId=${userId}`,
+  const { data, error, isLoading, mutate } = useSWR<any, any>(
+    `/following/count?followingId=${followingId}&followerId=${userId}`,
     fetcher,
   );
-  const isFollowing = data?.length && data?.length > 0;
+  const isFollowing = data?.count && data?.count > 0;
   const handleFollow = async () => {
     try {
       await api.post("/following", {
