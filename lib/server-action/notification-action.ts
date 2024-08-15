@@ -19,7 +19,7 @@ export async function updateLanguage(params: { localeKey: string }) {
   }
 }
 
-export async function getNotifications(page: number = 1, take: number = 6) {
+export async function getNotifications(page: number = 1, take: number = 5) {
   return await notificationApi.get<any, any>(
     `/notifications?skip=${(page - 1) * take}&take=${take}`,
   )

@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 import { useSocket } from '../providers/SocketProvider';
 import { mutate } from 'swr';
-import { getNotifications, markAsRead } from '@/lib/server-action/notification.action';
+import { getNotifications, markAsRead } from '@/lib/server-action/notification-action';
 
 function HighlightedText({ text, highlights }: { text: string, highlights: Highlight[] }) {
   if (!highlights || highlights.length === 0) {
@@ -45,23 +45,21 @@ function sortNotification(notifications: Notification[]) {
 
 export default function NotificationList() {
   const [liveNotifications, setLiveNotifications] = useState<Notification[]>([]);
-  const [hasMore, setHasMore] = useState(false);
+  const [hasMore, setHasMore] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const fetchPerPage = 5;
 
   const socket = useSocket();
 
   useEffect(() => {
     const initializeNotifications = async () => {
-      try {
-        const data = await getNotifications(page);
-        setHasMore(data.hasMore);
-        setLiveNotifications(data.notifications ? sortNotification(data.notifications) : []);
-      } catch (error) {
-        console.error('Error fetching notifications:', error);
-      }
+        const data = await getNotifications(page, fetchPerPage);
+        if (data && data.length === fetchPerPage) {
+          setHasMore(true);
+        }
+        setLiveNotifications(data ? sortNotification(data) : []);
     };
-
     initializeNotifications();
   }, []);
 
@@ -69,16 +67,14 @@ export default function NotificationList() {
     if (socket) {
       socket.on('notification', (payload: any) => {
         const notification: Notification = payload.data;
-        console.log(notification);
-        const parseNotification = { ...notification, content: notification.content };
         setLiveNotifications((prev) => {
           const index = prev.findIndex((msg) => msg.id === notification.id);
           if (index !== -1) {
             const updatedNotifications = [...prev];
-            updatedNotifications[index] = parseNotification;
+            updatedNotifications[index] = notification;
             return sortNotification(updatedNotifications);
           } else {
-            return [parseNotification, ...prev];
+            return [notification, ...prev];
           }
         });
       });
@@ -112,16 +108,18 @@ export default function NotificationList() {
     }
   };
 
-  const loadMoreNotifications = async () => {
+  const loadMore = async () => {
     if (loading || !hasMore) return;
 
     setLoading(true);
     try {
-      const data = await getNotifications(page + 1);
-      setHasMore(data.hasMore);
+      const data = await getNotifications(page + 1, fetchPerPage);
+      if (!data || data.length < fetchPerPage) {
+        setHasMore(false);
+      }
       setLiveNotifications((prev) => {
         const notificationIds = new Set(prev.map(notification => notification.id));
-        const newNotifications = data.notifications.filter(
+        const newNotifications = data.filter(
           (notification: Notification) => !notificationIds.has(notification.id)
         );
         return sortNotification([...prev, ...newNotifications]);
@@ -144,24 +142,24 @@ export default function NotificationList() {
           onClick={() => handleNotificationClick(notification.id)}
         >
           <Avatar className="w-14 h-14">
-            <AvatarImage src={notification.subject?.imageUrl} className="object-cover" />
+            <AvatarImage src={notification.subjectUrl} className="object-cover" />
             <AvatarFallback>T</AvatarFallback>
           </Avatar>
           <div className="w-full">
           <div className="text-md max-h-[100px] line-clamp-3">
               <HighlightedText 
-                text={ notification.content?.text || ''} 
-                highlights={notification.content?.highlights || []}
+                text={ notification.compiledContent?.text || ''} 
+                highlights={notification.compiledContent?.highlights || []}
               />
             </div>
             <p className="text-sm text-blue-500">
               {formatTimeDifference(new Date(notification.lastModified))}
             </p>
           </div>
-          {notification.diObject?.imageUrl && (
+          {notification.diUrl && (
             <div className="w-20 h-14 ml-4">
               <Image 
-                src={notification.diObject?.imageUrl}
+                src={notification.diUrl}
                 alt="Post Image" 
                 className="object-cover w-full h-full rounded-lg" 
                 width={2000}
@@ -181,7 +179,7 @@ export default function NotificationList() {
       <div className="flex justify-center mt-4">
         {hasMore && (
           <Button
-            onClick={loadMoreNotifications}
+            onClick={loadMore}
             disabled={loading}
             className="w-full bg-accent text-accent-foreground font-semibold hover:bg-accent/50"
           > 

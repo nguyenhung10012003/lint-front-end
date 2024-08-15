@@ -38,6 +38,7 @@ export default function FollowBtn({
       await api.delete(`/following`, {
         data: {
           followingId,
+          followerId: userId,
           id: data? data[0]?.id : '',
         },
       });

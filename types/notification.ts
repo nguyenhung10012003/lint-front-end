@@ -1,18 +1,15 @@
 export interface Notification {
   id: string;
-  userId: string;
-  diObject?: Obj | undefined;
-  subject: Obj | undefined;
-  url: string;
-  content: Content | undefined;
+  compiledContent: Content;
   read: boolean;
-  lastModified: string;
-}
+  count: number;
 
-export interface Obj {
-  id: string;
-  name?: string | undefined;
-  imageUrl?: string | undefined;
+  subjectUrl: string;
+  diUrl: string;
+  url: string;
+
+  userId: string;
+  lastModified: string;
 }
 
 export interface Content {
