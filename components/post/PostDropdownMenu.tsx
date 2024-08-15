@@ -26,7 +26,7 @@ import {
 } from "../ui/alert-dialog";
 import { toast } from "../ui/use-toast";
 
-export default function dictDropdownMenu({
+export default function PostDropdownMenu({
   dict,
   post,
 }: {
