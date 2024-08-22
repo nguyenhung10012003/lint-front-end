@@ -31,3 +31,13 @@ export async function markAsRead(id: string) {
 export async function getUnreadCount() {
   return await notificationApi.get<any, any>('/notifications/count-unread');
 } 
+
+export async function changeNotificationLanguage(language: string) {
+  try {
+    await notificationApi.patch('/notifications/user/language', {
+      lang: language,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
