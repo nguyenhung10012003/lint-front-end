@@ -1,5 +1,7 @@
 export interface Notification {
   id: string;
+  type: string;
+  diId: string;
   compiledContent: Content;
   read: boolean;
   count: number;

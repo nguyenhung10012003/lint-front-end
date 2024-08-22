@@ -49,7 +49,8 @@ const FollowList = ({
         variant,
         take: userPerFetch,
         skip: page * userPerFetch,
-        search: search
+        search: search,
+        accepted: "true",
       },
     });
 
@@ -71,20 +72,20 @@ const FollowList = ({
     setHasMore(true);
   }, [search]);
 
-  const handleDelete = async ({ id, followerId, followingId }: Following) => {
+  const handleDelete = async ({ id, follower, following }: Following) => {
     const data = await api.delete(`/following`, {
       data: {
         id,
-        followerId,
-        followingId,
+        followerId: follower?.id,
+        followingId: following?.id,
       },
     });
     if (data) {
       setUsers((prev) =>
         prev.filter((user) =>
           variant === "followers"
-            ? user.id !== followerId
-            : user.id !== followingId
+            ? user.id !== follower?.id
+            : user.id !== following?.id
         )
       );
       mutate();
@@ -106,7 +107,7 @@ const FollowList = ({
             <div className="flex w-full flex-col items-start">
               <Link
                 className="text-md font-semibold hover:underline underline-offset-4"
-                href={`/profile/${user.profile.userId}`}
+                href={`/profile/${user.id}`}
               >
                 {user.profile.alias}
               </Link>

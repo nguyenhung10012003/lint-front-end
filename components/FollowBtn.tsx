@@ -1,13 +1,10 @@
 "use client";
 import { api } from "@/config/api";
 import { cn } from "@/lib/utils";
-import { Following } from "@/types/relationship";
 import { useCookies } from "next-client-cookies";
 import useSWR from "swr";
 import { Button } from "./ui/button";
 
-const fetcher = (url: string) =>
-  api.get<any, Following[] >(url).then((res) => res);
 
 export default function FollowBtn({
   followingId,
@@ -20,11 +17,22 @@ export default function FollowBtn({
 }) {
   const cookies = useCookies();
   const userId = cookies.get("userId");
+  const fetcher = (url: string) =>
+    api.get<any, any>(url, {
+      params: {
+        where: {
+          followerId: userId,
+          followingId: followingId,
+        }
+      }
+    }).then((res) => res);
+  
   const { data, error, isLoading, mutate } = useSWR<any, any>(
-    `/following/count?followingId=${followingId}&followerId=${userId}`,
+    "/following",
     fetcher,
   );
-  const isFollowing = data?.count && data?.count > 0;
+  const isFollowing = data && data?.length > 0;
+  const isAccepted = data ? data[0]?.accepted : false; 
   const handleFollow = async () => {
     try {
       await api.post("/following", {
@@ -62,7 +70,7 @@ export default function FollowBtn({
       variant="secondary"
       onClick={handleUnfollow}
     >
-      Unfollow
+      { isAccepted ? "Unfollow" : "Requested" }
     </Button>
   );
 }

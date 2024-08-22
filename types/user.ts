@@ -1,6 +1,7 @@
 export interface User {
   id: string;
   email: string;
+  isPrivate: boolean;
   profile: Profile;
 }
 

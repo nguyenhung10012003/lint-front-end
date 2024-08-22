@@ -42,10 +42,14 @@ export async function updateProfile(params: {
   if (params.profile.country) form.append("country", params.profile.country);
   if (params.profile.gender) form.append("gender", params.profile.gender);
   if (params.avatar) form.append("avatar", params.avatar);
-  const profile = await api.patch<any, Profile>("/profile", form, {
+   const profile = await api.patch<any, Profile>("/profile", form, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
   return profile;
+}
+
+export async function updatePrivacy(data: { isPrivate: boolean }) {
+  return await api.patch<any, any>("/user", data);
 }

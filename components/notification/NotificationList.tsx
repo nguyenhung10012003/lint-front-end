@@ -1,46 +1,16 @@
 'use client';
-import { formatTimeDifference } from '@/utils/datetime';
 import {} from '@radix-ui/react-avatar';
-import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { Notification, Highlight } from '@/types/notification'; 
-import Image from 'next/image';
+import { Notification } from '@/types/notification'; 
 import { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 import { useSocket } from '../providers/SocketProvider';
-import { mutate } from 'swr';
-import { getNotifications, markAsRead } from '@/lib/server-action/notification-action';
-
-function HighlightedText({ text, highlights }: { text: string, highlights: Highlight[] }) {
-  if (!highlights || highlights.length === 0) {
-    return <>{text}</>;
-  }
-
-  const parts = [];
-  let currentIndex = 0;
-
-  highlights.forEach((highlight, index) => {
-    if (highlight.offset > currentIndex) {
-      parts.push(
-        <span key={`${index}-text`}>{text.substring(currentIndex, highlight.offset)}</span>
-      );
-    }
-
-    parts.push(
-      <strong key={`${index}-highlight`}>{text.substring(highlight.offset, highlight.offset + highlight.length)}</strong>
-    );
-    currentIndex = highlight.offset + highlight.length;
-  });
-
-  if (currentIndex < text.length) {
-    parts.push(<span key="remaining-text">{text.substring(currentIndex)}</span>);
-  }
-
-  return <>{parts}</>;
-}
+import { getNotifications } from '@/lib/server-action/notification-action';
+import { NotificationCard } from './NotificationCard';
 
 function sortNotification(notifications: Notification[]) {
-  return notifications.sort((a, b) => new Date(b.lastModified).getTime() - new Date(a.lastModified).getTime());
+  return notifications.sort(
+    (a, b) => new Date(b.lastModified).getTime() - new Date(a.lastModified).getTime()
+  );
 }
 
 export default function NotificationList() {
@@ -48,7 +18,7 @@ export default function NotificationList() {
   const [hasMore, setHasMore] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const fetchPerPage = 5;
+  const fetchPerPage = 7;
 
   const socket = useSocket();
 
@@ -88,26 +58,6 @@ export default function NotificationList() {
     };
   }, [socket]);
 
-  const handleNotificationClick = async (id: string) => {
-    setLiveNotifications(prev => {
-      const updatedNotifications = prev.map(notification => 
-        notification.id === id ? { ...notification, read: true } : notification
-      );
-      return updatedNotifications;
-    });
-
-    try {
-      const response = await markAsRead(id);
-      mutate('/notifications/count-unread');
-
-      if (!response) {
-        throw new Error('Failed to update notification');
-      }
-    } catch (error) {
-      console.error('Error updating notification:', error);
-    }
-  };
-
   const loadMore = async () => {
     if (loading || !hasMore) return;
 
@@ -135,47 +85,12 @@ export default function NotificationList() {
   return (
     <>
       {liveNotifications?.map((notification) => (
-        <Link
+        <NotificationCard 
           key={notification.id}
-          className="flex p-2 hover:bg-accent rounded-lg  gap-4"
-          href={notification.url}
-          onClick={() => handleNotificationClick(notification.id)}
-        >
-          <Avatar className="w-14 h-14">
-            <AvatarImage src={notification.subjectUrl} className="object-cover" />
-            <AvatarFallback>T</AvatarFallback>
-          </Avatar>
-          <div className="w-full">
-          <div className="text-md max-h-[100px] line-clamp-3">
-              <HighlightedText 
-                text={ notification.compiledContent?.text || ''} 
-                highlights={notification.compiledContent?.highlights || []}
-              />
-            </div>
-            <p className="text-sm text-blue-500">
-              {formatTimeDifference(new Date(notification.lastModified))}
-            </p>
-          </div>
-          {notification.diUrl && (
-            <div className="w-20 h-14 ml-4">
-              <Image 
-                src={notification.diUrl}
-                alt="Post Image" 
-                className="object-cover w-full h-full rounded-lg" 
-                width={2000}
-                height={2000}
-              />
-            </div>
-          )}
-          <div className="flex items-center">
-            <div
-              className={`w-3 h-3 ${
-                notification.read ? "bg-none" : "bg-primary"
-              } rounded-full`}
-            ></div>
-          </div>
-        </Link>
-      ))}
+          notification={notification}
+        />
+      ))
+      }
       <div className="flex justify-center mt-4">
         {hasMore && (
           <Button

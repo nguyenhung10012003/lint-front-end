@@ -6,8 +6,7 @@ export async function updateLanguage(params: { localeKey: string }) {
   form.append('language', locales.findIndex(
     locale => locale.key === params.localeKey).toString()
   );
-  console.log(params);
-  console.log(form.get('language'));
+
   try {
     await notificationApi.patch<any, any>('/notifications/user/language', form, {
       headers: {

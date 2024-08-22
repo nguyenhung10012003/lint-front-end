@@ -1,11 +1,19 @@
+"use client";
+import { useState } from "react";
 import BlacklistModal from "../BlacklistModal";
 import { Icons } from "../Icons";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Switch } from "../ui/switch";
 import { SettingGroup, SettingItem } from "./Setting";
+import { updatePrivacy } from "@/lib/server-action/user-action";
 
-export default function PrivacySetting() {
+
+export default function PrivacySetting({ isPrivate, dictionary }: { isPrivate: boolean, dictionary: any}) {
+  const [ iP, setIsPrivate ] = useState<boolean>(isPrivate);
+  const handleSave = async () => {
+    await updatePrivacy({ isPrivate: iP });
+  }
   return (
     <SettingGroup title="Privacy" id="privacy">
       <SettingItem className="justify-between">
@@ -13,13 +21,20 @@ export default function PrivacySetting() {
           <Icons.lock className="w-6 h-6 mr-2" />
           <span>Private Account</span>
         </Label>
-        <Switch id="private-account" />
+        <Switch 
+          id="private-account"
+          checked={iP}
+          onClick={() => setIsPrivate(!iP)}
+        />
       </SettingItem>
       <SettingItem className="w-full">
         <BlacklistModal />
       </SettingItem>
       <SettingItem className="justify-end">
-        <Button className="max-w-[120px] text-white w-full">Save</Button>
+        <Button 
+          className="max-w-[120px] text-white w-full"
+          onClick = {handleSave}
+        >Save</Button>
       </SettingItem>
     </SettingGroup>
   );

@@ -24,7 +24,6 @@ export default function ApplicationSetting({dictionary}: {dictionary: any}) {
     const segments = path.split('/');
     return segments[1];
   };
-  console.log(extractLocaleFromPath(pathname));
 
   const defaultTheme = Cookies.get("theme") || "system";
   const currentLocale = Cookies.get("locale") || extractLocaleFromPath(pathname);
