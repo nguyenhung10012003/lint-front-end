@@ -7,7 +7,7 @@ import { Notification, Highlight } from '@/types/notification';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
-import { useSocket } from '../providers/SocketProvider';
+import { SocketToConnect, useSocket } from '../providers/SocketProvider';
 import { mutate } from 'swr';
 import { getNotifications, markAsRead } from '@/lib/server-action/notification.action';
 
@@ -49,7 +49,7 @@ export default function NotificationList() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
 
-  const socket = useSocket();
+  const socket = useSocket(SocketToConnect.Notification);
 
   useEffect(() => {
     const initializeNotifications = async () => {

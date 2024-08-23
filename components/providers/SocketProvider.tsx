@@ -1,10 +1,12 @@
-'use client';
-import React, { createContext, useContext, useEffect, useRef, ReactNode, useState } from 'react';
-import { io, Socket } from 'socket.io-client';
-import Cookies from 'js-cookie';
+"use client";
+import { closeSocket, getSocket } from "@/utils/socket";
+import Cookies from "js-cookie";
+import React, { createContext, ReactNode, useContext, useEffect } from "react";
+import { Socket } from "socket.io-client";
 
 interface SocketContextType {
-  socket: Socket | null;
+  notificationSocket: Socket | null;
+  chatSocket: Socket | null;
 }
 
 const SocketContext = createContext<SocketContextType | undefined>(undefined);
@@ -14,53 +16,68 @@ interface SocketProviderProps {
 }
 
 export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
-  const [socket, setSocket] = useState<Socket | null>(null);
+  const token = Cookies.get("token") || "";
+  const socketOptions = {
+    transportOptions: {
+      polling: {
+        extraHeaders: {
+          Authorization: "Bearer " + token,
+        },
+      },
+    },
+    reconnectionAttempts: 5,
+  };
+  const notificationSocket = getSocket(
+    process.env.NEXT_PUBLIC_NOTIFICATION_SOCKET_URL || "",
+    socketOptions
+  );
+  const chatSocket = getSocket(
+    process.env.NEXT_PUBLIC_CHAT_SOCKET_URL || "",
+    socketOptions
+  );
 
   useEffect(() => {
-    const token = Cookies.get('token') || '';
-    const socketOptions = {
-      transportOptions: {
-        polling: {
-          extraHeaders: {
-            Authorization: 'Bearer ' + token,
-          }
-        }
-      },
-      reconnectionAttempts: 5,
-    };
-
-    if (typeof window !== 'undefined') {
-      const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || '';
-      const socket = io(socketUrl, socketOptions);
-      setSocket(socket);
-  
-      socket.on('connect', () => {
-        console.log('Socket.io is connected.');
-      });
-  
-      socket.on('disconnect', () => {
-        console.log('Socket.io is disconnected.');
-      });
-    }
-
+    chatSocket.on("connect", () => {
+      console.log("chat socket connected");
+    });
+    chatSocket.on("disconnect", () => {
+      console.log("chat socket disconnected");
+    });
+    notificationSocket.on("connect", () => {
+      console.log("notification socket connected");
+    });
+    notificationSocket.on("disconnect", () => {
+      console.log("notification socket disconnected");
+    });
     return () => {
-      if (socket) {
-        socket.close();
-      }
+      closeSocket(process.env.NEXT_PUBLIC_NOTIFICATION_SOCKET_URL || "");
+      closeSocket(process.env.NEXT_PUBLIC_CHAT_SOCKET_URL || "");
     };
   }, []);
 
   return (
-    <SocketContext.Provider value={{ socket: socket }}>
+    <SocketContext.Provider value={{ notificationSocket, chatSocket }}>
       {children}
     </SocketContext.Provider>
   );
 };
 
-export const useSocket = (): Socket | null => {
+export enum SocketToConnect {
+  Notification,
+  Chat,
+}
+
+export const useSocket = (s: SocketToConnect): Socket | null => {
   const context = useContext(SocketContext);
   if (context === undefined) {
-    throw new Error('useSocket must be used within a SocketProvider');
+    throw new Error("useSocket must be used within a SocketProvider");
   }
-  return context.socket;
+  switch (s) {
+    case SocketToConnect.Notification:
+      return context.notificationSocket;
+    case SocketToConnect.Chat:
+      return context.chatSocket;
+    default:
+      return null;
+  }
 };

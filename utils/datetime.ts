@@ -21,3 +21,4 @@ export function formatTimeDifference(date: Date): string {
     return date.toLocaleDateString();
   }
 }
+

@@ -19,7 +19,7 @@ export default function ProfileAvatar({
   className?: string;
 }) {
   const avatar = (
-    <Avatar className={cn("md:w-12 md:h-12 w-10 h-10 bg-gray-200", className)}>
+    <Avatar className={cn("w-12 h-12  bg-gray-200", className)}>
       <AvatarImage
         src={src || "/image/default_avatar.png"}
         alt={alt}

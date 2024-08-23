@@ -1,7 +1,7 @@
+import { getDictionary } from "@/app/dictionaries";
 import { User } from "@/types/user";
 import MobileNav from "./MobileNav";
 import Sidebar from "./Sidebar";
-import { getDictionary } from "@/app/dictionaries";
 
 export default async function DefaultLayout({
   children,
@@ -14,12 +14,12 @@ export default async function DefaultLayout({
 }) {
   const dictionary = await getDictionary(lang);
   return (
-    <>
-      <Sidebar lang={lang} user={user} />
-      <MobileNav dictionary={dictionary}  user={user} />
-      <main className="flex flex-col w-full overflow-y-auto h-[100vh] sm:p-8 pb-24 p-4 items-center">
+    <div className="sm:flex-row flex flex-col w-full h-[100vh]">
+      <Sidebar dictionary={dictionary} user={user} />
+      <main className="flex flex-col w-full items-center overflow-y-auto h-full">
         {children}
       </main>
-    </>
+      <MobileNav dictionary={dictionary} user={user} />
+    </div>
   );
 }

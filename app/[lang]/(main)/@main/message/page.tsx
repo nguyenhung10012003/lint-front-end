@@ -1,5 +1,3 @@
-export default function Message() {
-  return (
-    <></>
-  )
+export default function ChatPage() {
+  return <div></div>;
 }

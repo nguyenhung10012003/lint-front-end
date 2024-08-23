@@ -14,12 +14,14 @@ import {
   HomeIcon as HomeIconOutline,
   LockClosedIcon as LockClosedIconOutline,
   MagnifyingGlassIcon as MagnifyingGlassIconOutline,
+  MicrophoneIcon as MicrophoneIconOutline,
   MusicalNoteIcon as MusicalNoteIconOutline,
   NoSymbolIcon as NoSymbolIconOutline,
   PaperAirplaneIcon as PaperAirplaneIconOutline,
   PencilIcon as PencilIconOutline,
   PencilSquareIcon as PencilSquareIconOutline,
   PhotoIcon as PhotoIconOutline,
+  PlusCircleIcon as PlusCircleIconOutline,
   ShareIcon as ShareIconOutline,
   TagIcon as TagIconOutline,
   TrashIcon as TrashIconOutline,
@@ -46,12 +48,14 @@ import {
   HeartIcon,
   HomeIcon,
   LockClosedIcon,
+  MicrophoneIcon,
   MusicalNoteIcon,
   NoSymbolIcon,
   PaperAirplaneIcon,
   PencilIcon,
   PencilSquareIcon,
   PhotoIcon,
+  PlusCircleIcon,
   ShareIcon,
   TagIcon,
   TrashIcon,
@@ -64,6 +68,7 @@ import {
   LogOut,
   Menu,
   MessageSquareWarning,
+  Reply,
   Settings,
 } from "lucide-react";
 
@@ -313,5 +318,21 @@ export const Icons = {
       <GlobeAsiaAustraliaIcon {...props} />
     ) : (
       <GlobeAsiaAustraliaIconOutline {...props} />
+    ),
+
+  reply: (props: IconProps) => <Reply {...props} />,
+
+  plusCircle: (props: IconProps) =>
+    props.variant === "solid" ? (
+      <PlusCircleIcon {...props} />
+    ) : (
+      <PlusCircleIconOutline {...props} />
+    ),
+
+  microphone: (props: IconProps) =>
+    props.variant === "solid" ? (
+      <MicrophoneIcon {...props} />
+    ) : (
+      <MicrophoneIconOutline {...props} />
     ),
 };
