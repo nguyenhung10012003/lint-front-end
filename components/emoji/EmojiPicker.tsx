@@ -2,26 +2,26 @@
 
 import useDebounce from "@/hooks/use-debounce";
 import emojiGroups from "@/utils/emojis.json";
-import { capitalizeFirstLetter } from "@/utils/string";
+import {capitalizeFirstLetter} from "@/utils/string";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@radix-ui/react-popover";
-import { memo, useState } from "react";
-import { Icons } from "./Icons";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import {memo, useState} from "react";
+import {Icons} from "../Icons";
+import {Button} from "../ui/button";
+import {Input} from "../ui/input";
 
 const EmojiTable = memo(
-  ({ onChoose }: { onChoose: (emoji: string) => void }) => {
+  ({onChoose}: { onChoose: (emoji: string) => void }) => {
     const [key, setKey] = useState("");
     const debounce = useDebounce(key, 500);
     return (
       <div className="flex gap-2 flex-col max-w-[225px] max-h-[280px] items-center">
         <div className="px-2 w-full pt-2 pb-1">
           <div className="flex border rounded-full items-center w-full">
-            <Icons.search className="w-6 h-6 p-1" />
+            <Icons.search className="w-6 h-6 p-1"/>
             <Input
               type="text"
               placeholder={""}
@@ -59,9 +59,9 @@ const EmojiTable = memo(
 );
 
 export default function EmojiPicker({
-  text,
-  setText,
-}: {
+                                      text,
+                                      setText,
+                                    }: {
   text?: string;
   setText: (text: string) => void;
 }) {
@@ -69,11 +69,11 @@ export default function EmojiPicker({
     <Popover>
       <PopoverTrigger asChild>
         <Button className="h-auto p-1 rounded-full" variant="ghost">
-          <Icons.emoji className="h-5 w-5 hover:bg-ancent" />
+          <Icons.emoji className="h-5 w-5 hover:bg-ancent"/>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="bg-background border rounded-md z-60">
-        <EmojiTable onChoose={setText} />
+        <EmojiTable onChoose={setText}/>
       </PopoverContent>
     </Popover>
   );

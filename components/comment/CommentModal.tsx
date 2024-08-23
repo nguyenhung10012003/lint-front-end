@@ -1,10 +1,10 @@
-import { api } from "@/config/api";
+import {api} from "@/config/api";
 import useMediaQuery from "@/hooks/use-media-query";
-import { Comment } from "@/types/comment";
-import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
-import { useCallback, useState } from "react";
-import CommentForm from "../CommentForm";
-import CommentList from "../CommentList";
+import {Comment} from "@/types/comment";
+import {Dialog, DialogTrigger} from "@radix-ui/react-dialog";
+import {useCallback, useState} from "react";
+import CommentForm from "./CommentForm";
+import CommentList from "./CommentList";
 import {
   DialogClose,
   DialogContent,
@@ -20,9 +20,9 @@ import {
 } from "../ui/drawer";
 
 export default function CommentModal({
-  trigger,
-  postId,
-}: {
+                                       trigger,
+                                       postId,
+                                     }: {
   trigger: React.ReactNode;
   postId: string;
 }) {
@@ -52,8 +52,8 @@ export default function CommentModal({
         <DrawerTrigger>{trigger}</DrawerTrigger>
         <DrawerContent aria-describedby={undefined} className="h-full">
           <DrawerHeader className="p-2">
-            <DialogTitle />
-            <DrawerClose />
+            <DialogTitle/>
+            <DrawerClose/>
           </DrawerHeader>
           <div className="overflow-y-auto pb-2">
             <CommentList
@@ -63,7 +63,7 @@ export default function CommentModal({
             />
           </div>
           <div className="border-t-2 bottom-0 flex w-full p-2 bg-background">
-            <CommentForm postId={postId} />
+            <CommentForm postId={postId}/>
           </div>
         </DrawerContent>
       </Drawer>
@@ -78,7 +78,7 @@ export default function CommentModal({
       >
         <DialogHeader>
           <DialogTitle className="text-center pt-4">Comments</DialogTitle>
-          <DialogClose />
+          <DialogClose/>
         </DialogHeader>
         <div className="px-0 overflow-y-auto pb-4 max-h-[70vh]">
           <CommentList

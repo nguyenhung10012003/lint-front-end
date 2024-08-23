@@ -1,17 +1,17 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { cn } from "@/lib/utils";
+import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
+import {cn} from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
-import { Skeleton } from "./ui/skeleton";
+import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "../../ui/dialog";
+import {Skeleton} from "../../ui/skeleton";
 
 export default function ProfileAvatar({
-  src,
-  alt,
-  userId,
-  variant = "none",
-  className,
-}: {
+                                        src,
+                                        alt,
+                                        userId,
+                                        variant = "none",
+                                        className,
+                                      }: {
   src?: string;
   alt?: string;
   userId?: string;

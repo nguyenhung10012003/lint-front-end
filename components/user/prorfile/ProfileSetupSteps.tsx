@@ -1,15 +1,15 @@
 "use client";
-import { createProfile } from "@/lib/server-action/user-action";
-import { Profile } from "@/types/user";
-import { contries } from "@/utils/countries";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Icons } from "./Icons";
+import {createProfile} from "@/lib/server-action/user-action";
+import {Profile} from "@/types/user";
+import {contries} from "@/utils/countries";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {useRouter} from "next/navigation";
+import {useState} from "react";
+import {useForm} from "react-hook-form";
+import {z} from "zod";
+import {Icons} from "../../Icons";
 import ProfileAvatar from "./ProfileAvatar";
-import { Button } from "./ui/button";
+import {Button} from "../../ui/button";
 import {
   Form,
   FormControl,
@@ -17,28 +17,28 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+} from "../../ui/form";
+import {Input} from "../../ui/input";
+import {Label} from "../../ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
-import { Textarea } from "./ui/textarea";
+} from "../../ui/select";
+import {Textarea} from "../../ui/textarea";
 
 export function StepDots({
-  totalSteps,
-  currentStep,
-}: {
+                           totalSteps,
+                           currentStep,
+                         }: {
   totalSteps: number;
   currentStep: number;
 }) {
   return (
     <div className="flex gap-2 justify-center">
-      {Array.from({ length: totalSteps }).map((_, index) => (
+      {Array.from({length: totalSteps}).map((_, index) => (
         <div
           key={index}
           className={`w-3 h-3 rounded-full border ${
@@ -51,10 +51,10 @@ export function StepDots({
 }
 
 export default function ProfileSetupSteps({
-  profile,
-  initStep,
-  dict
-}: {
+                                            profile,
+                                            initStep,
+                                            dict
+                                          }: {
   profile: Profile;
   initStep: number;
   dict: any
@@ -66,7 +66,7 @@ export default function ProfileSetupSteps({
   const router = useRouter();
 
   const handleStart = async () => {
-    profile = await createProfile({ profile: pf, avatar: avatar });
+    profile = await createProfile({profile: pf, avatar: avatar});
     window.location.reload();
   };
 
@@ -92,7 +92,7 @@ export default function ProfileSetupSteps({
   const handleSubmitStep1 = async (
     values: z.infer<typeof nameAndAliasSchema>
   ) => {
-    setProfile({ ...pf, name: values.name, alias: values.alias });
+    setProfile({...pf, name: values.name, alias: values.alias});
     setStep(step + 1);
   };
 
@@ -116,30 +116,30 @@ export default function ProfileSetupSteps({
             <FormField
               control={nameAndAliasForm.control}
               name="name"
-              render={({ field }) => (
+              render={({field}) => (
                 <FormItem>
                   <FormLabel className="font-semibold">
                     {dict.form.name}
                   </FormLabel>
                   <FormControl>
-                    <Input id="name" {...field} maxLength={32} />
+                    <Input id="name" {...field} maxLength={32}/>
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage/>
                 </FormItem>
               )}
             />
             <FormField
               control={nameAndAliasForm.control}
               name="alias"
-              render={({ field }) => (
+              render={({field}) => (
                 <FormItem>
                   <FormLabel className="font-semibold">
                     {dict.form.alias}
                   </FormLabel>
                   <FormControl>
-                    <Input id="alias" {...field} maxLength={24} />
+                    <Input id="alias" {...field} maxLength={24}/>
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage/>
                 </FormItem>
               )}
             />
@@ -149,7 +149,8 @@ export default function ProfileSetupSteps({
           </form>
         </Form>
       ),
-      submitAction: () => {},
+      submitAction: () => {
+      },
       canSkip: false,
     },
     {
@@ -165,7 +166,7 @@ export default function ProfileSetupSteps({
               max={new Date().toISOString().split("T")[0]}
               min={"1900-01-01"}
               value={pf.dob}
-              onChange={(e) => setProfile({ ...pf, dob: e.target.value })}
+              onChange={(e) => setProfile({...pf, dob: e.target.value})}
               className="block"
             />
           </div>
@@ -174,10 +175,10 @@ export default function ProfileSetupSteps({
               {dict.form.country}
             </Label>
             <Select
-              onValueChange={(value) => setProfile({ ...pf, country: value })}
+              onValueChange={(value) => setProfile({...pf, country: value})}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select your country" />
+                <SelectValue placeholder="Select your country"/>
               </SelectTrigger>
               <SelectContent className="max-h-[300px]">
                 {contries.map((country) => (
@@ -197,7 +198,8 @@ export default function ProfileSetupSteps({
           </Button>
         </div>
       ),
-      submitAction: () => {},
+      submitAction: () => {
+      },
       canSkip: true,
     },
     {
@@ -234,7 +236,7 @@ export default function ProfileSetupSteps({
               id="bio"
               value={pf.bio}
               maxLength={250}
-              onChange={(e) => setProfile({ ...pf, bio: e.target.value })}
+              onChange={(e) => setProfile({...pf, bio: e.target.value})}
               className="resize-none"
               rows={3}
             />
@@ -244,7 +246,8 @@ export default function ProfileSetupSteps({
           </Button>
         </div>
       ),
-      submitAction: () => {},
+      submitAction: () => {
+      },
       canSkip: true,
     },
   ];
@@ -257,7 +260,7 @@ export default function ProfileSetupSteps({
             variant="ghost"
             className="rounded-full p-1 h-auto"
           >
-            <Icons.arrowLeft className="w-6 h-6" />
+            <Icons.arrowLeft className="w-6 h-6"/>
           </Button>
         )}
         {step < pageSteps.length - 1 && pageSteps[step].canSkip && (

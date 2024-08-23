@@ -1,4 +1,4 @@
-import { Icons } from "@/components/Icons";
+import {Icons} from "@/components/Icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,9 +8,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { User } from "@/types/user";
+import {User} from "@/types/user";
 import Link from "next/link";
-import ProfileAvatar from "../ProfileAvatar";
+import ProfileAvatar from "../user/prorfile/ProfileAvatar";
 
 interface DropDownMenuGroup {
   name: string;
@@ -24,9 +24,9 @@ interface DropDownMenuGroup {
 }
 
 export default async function SideBarFooter({
-  dropDownMenuGroups,
-  user,
-}: {
+                                              dropDownMenuGroups,
+                                              user,
+                                            }: {
   dropDownMenuGroups: DropDownMenuGroup[];
   user: User;
 }) {
@@ -47,13 +47,13 @@ export default async function SideBarFooter({
       <DropdownMenu>
         <DropdownMenuTrigger>
           <div className="p-2 hover:bg-primary-foreground rounded-lg hover:scale-105">
-            <Icons.menu />
+            <Icons.menu/>
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-48">
           {dropDownMenuGroups.map((group, index) => (
             <div key={group.name}>
-              {index !== 0 && <DropdownMenuSeparator className="bg-gray-200" />}
+              {index !== 0 && <DropdownMenuSeparator className="bg-gray-200"/>}
               <DropdownMenuGroup key={group.name}>
                 {group.label && (
                   <DropdownMenuLabel>{group.label}</DropdownMenuLabel>
@@ -64,7 +64,7 @@ export default async function SideBarFooter({
                     className="hover:bg-primary-foreground focus:bg-primary-foreground"
                   >
                     <Link href={item.href} className="flex w-full items-center">
-                      <item.icon className="h-4 w-4 mr-2" />
+                      <item.icon className="h-4 w-4 mr-2"/>
                       <span>{item.label}</span>
                     </Link>
                   </DropdownMenuItem>

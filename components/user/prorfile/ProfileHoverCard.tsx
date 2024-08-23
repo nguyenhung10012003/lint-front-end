@@ -1,17 +1,17 @@
-import { cn } from "@/lib/utils";
+import {cn} from "@/lib/utils";
 
-import { Profile } from "@/types/user";
+import {Profile} from "@/types/user";
 import Link from "next/link";
-import FollowBtn from "./FollowBtn";
+import FollowBtn from "../../FollowBtn";
 import ProfileAvatar from "./ProfileAvatar";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
-import { Separator } from "./ui/separator";
+import {HoverCard, HoverCardContent, HoverCardTrigger} from "../../ui/hover-card";
+import {Separator} from "../../ui/separator";
 
 export default function ProfileHoverCard({
-  profile,
-  avatarClassName,
-  aliasClassName,
-}: {
+                                           profile,
+                                           avatarClassName,
+                                           aliasClassName,
+                                         }: {
   profile: Profile;
   avatarClassName?: string;
   aliasClassName?: string;
@@ -50,10 +50,10 @@ export default function ProfileHoverCard({
         <div className="text-sm">{profile.bio}</div>
         <div className="flex gap-2 text-gray-400">
           <span className="text-sm font-semibold">{0} followers</span>
-          <Separator orientation="vertical" className="h-[20px]" />
+          <Separator orientation="vertical" className="h-[20px]"/>
           <span className="text-sm font-semibold">{0} following</span>
         </div>
-        <FollowBtn followingId={profile.userId} />
+        <FollowBtn followingId={profile.userId}/>
       </HoverCardContent>
     </HoverCard>
   );

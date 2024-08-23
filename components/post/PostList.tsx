@@ -1,17 +1,18 @@
 "use client";
-import { api } from "@/config/api";
-import { Post } from "@/types/post";
-import { useCookies } from "next-client-cookies";
+import {api} from "@/config/api";
+import {Post} from "@/types/post";
+import {useCookies} from "next-client-cookies";
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useState } from "react";
-import InfiniteScroll from "./InfiniteScroll";
-const PostCard = dynamic(() => import("./post/PostCard"), { ssr: false });
+import {useCallback, useEffect, useState} from "react";
+import InfiniteScroll from "../InfiniteScroll";
+
+const PostCard = dynamic(() => import("./PostCard"), {ssr: false});
 
 export default function PostList({
-  dictionary,
-  url,
-  postPerFetch = 2,
-}: {
+                                   dictionary,
+                                   url,
+                                   postPerFetch = 2,
+                                 }: {
   dictionary: any;
   url: Url;
   postPerFetch?: number;

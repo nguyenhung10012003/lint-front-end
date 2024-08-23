@@ -1,18 +1,18 @@
 "use client";
 import api from "@/config/api";
-import { User } from "@/types/user";
+import {User} from "@/types/user";
 import Link from "next/link";
-import { memo, useCallback, useEffect, useState } from "react";
-import FollowBtn from "./FollowBtn";
-import InfiniteScroll from "./InfiniteScroll";
-import ProfileAvatar from "./ProfileAvatar";
-import ProfileHoverCard from "./ProfileHoverCard";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import {memo, useCallback, useEffect, useState} from "react";
+import FollowBtn from "../FollowBtn";
+import InfiniteScroll from "../InfiniteScroll";
+import ProfileAvatar from "./prorfile/ProfileAvatar";
+import ProfileHoverCard from "./prorfile/ProfileHoverCard";
+import {Card, CardContent, CardHeader, CardTitle} from "../ui/card";
 
 export function UserSearchList({
-  q,
-  dictionary,
-}: {
+                                 q,
+                                 dictionary,
+                               }: {
   q: string;
   dictionary: any;
 }) {

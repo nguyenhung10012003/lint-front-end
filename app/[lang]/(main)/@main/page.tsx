@@ -1,9 +1,9 @@
-import { getDictionary } from "@/app/dictionaries";
-import PostList from "@/components/PostList";
+import {getDictionary} from "@/app/dictionaries";
+import PostList from "@/components/post/PostList";
 
 export default async function Home({
-  params,
-}: {
+                                     params,
+                                   }: {
   params: {
     lang: string;
   };
@@ -11,7 +11,7 @@ export default async function Home({
   const dictionary = await getDictionary(params.lang);
   return (
     <div className="flex flex-col gap-6 w-full py-6 px-4">
-      <PostList dictionary={dictionary} url={{ url: "/feed" }} />
+      <PostList dictionary={dictionary} url={{url: "/feed"}}/>
     </div>
   );
 }

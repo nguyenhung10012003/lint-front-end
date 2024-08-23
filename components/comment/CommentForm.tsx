@@ -1,24 +1,24 @@
 "use client";
-import { api } from "@/config/api";
-import { cn } from "@/lib/utils";
-import { Comment, Reply } from "@/types/comment";
-import { useCookies } from "next-client-cookies";
-import { ChangeEvent, useRef, useState } from "react";
+import {api} from "@/config/api";
+import {cn} from "@/lib/utils";
+import {Comment, Reply} from "@/types/comment";
+import {useCookies} from "next-client-cookies";
+import {ChangeEvent, useRef, useState} from "react";
 import useSWR from "swr";
-import EmojiPicker from "./EmojiPicker";
-import { Icons } from "./Icons";
-import ProfileAvatar from "./ProfileAvatar";
-import { Button } from "./ui/button";
-import { Textarea } from "./ui/textarea";
+import EmojiPicker from "../emoji/EmojiPicker";
+import {Icons} from "../Icons";
+import ProfileAvatar from "../user/prorfile/ProfileAvatar";
+import {Button} from "../ui/button";
+import {Textarea} from "../ui/textarea";
 
 const fetcher = (url: string) => api.get<any, any>(url);
 export default function CommentForm({
-  postId,
-  mutate,
-  commentBoxClassName,
-  submitAction,
-  commentId,
-}: {
+                                      postId,
+                                      mutate,
+                                      commentBoxClassName,
+                                      submitAction,
+                                      commentId,
+                                    }: {
   postId: string;
   commentId?: string;
   mutate?: (newComment: any) => void;
@@ -62,7 +62,7 @@ export default function CommentForm({
     }
   };
   const cookies = useCookies();
-  const { data, error, isLoading } = useSWR(
+  const {data, error, isLoading} = useSWR(
     `/user/${cookies.get("userId")}`,
     fetcher
   );
@@ -110,7 +110,7 @@ export default function CommentForm({
             disabled={!comment}
             onClick={handleSubmit}
           >
-            <Icons.send className={`w-5 h-5 text-blue-500`} />
+            <Icons.send className={`w-5 h-5 text-blue-500`}/>
           </Button>
         </div>
       </div>

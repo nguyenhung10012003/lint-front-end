@@ -1,19 +1,20 @@
 "use client";
 
-import { api } from "@/config/api";
-import { Post } from "@/types/post";
-import { formatTimeDifference } from "@/utils/datetime";
-import { getRandomInt } from "@/utils/number";
+import {api} from "@/config/api";
+import {Post} from "@/types/post";
+import {formatTimeDifference} from "@/utils/datetime";
+import {getRandomInt} from "@/utils/number";
 import dynamic from "next/dynamic";
-import { Roboto } from "next/font/google";
+import {Roboto} from "next/font/google";
 import Link from "next/link";
-import { memo } from "react";
+import {memo} from "react";
 import useSWR from "swr";
-import ProfileAvatar from "../ProfileAvatar";
-import ProfileHoverCard from "../ProfileHoverCard";
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
-import { Skeleton } from "../ui/skeleton";
+import ProfileAvatar from "../user/prorfile/ProfileAvatar";
+import ProfileHoverCard from "../user/prorfile/ProfileHoverCard";
+import {Card, CardContent, CardFooter, CardHeader} from "../ui/card";
+import {Skeleton} from "../ui/skeleton";
 import PostContent from "./PostContent";
+
 const PostCarousel = dynamic(() => import("./PostCarousel"));
 const PostActions = dynamic(() => import("./PostActions"));
 const PostDropdownMenu = dynamic(() => import("./PostDropdownMenu"));
@@ -44,7 +45,7 @@ function PostCardSkeleton() {
     >
       <CardHeader className="">
         <div className="flex gap-2 items-center">
-          <ProfileAvatar variant="skeleton" />
+          <ProfileAvatar variant="skeleton"/>
           <div className="flex flex-col font-bold gap-2">
             <Skeleton className="w-[100px] h-4"></Skeleton>
             <Skeleton className="w-[80px] h-3"></Skeleton>
@@ -54,17 +55,17 @@ function PostCardSkeleton() {
       <CardContent className="flex flex-col gap-2 w-full">
         <Skeleton
           className={`h-3`}
-          style={{ width: `${getRandomInt(50, 100)}%` }}
+          style={{width: `${getRandomInt(50, 100)}%`}}
         />
         <Skeleton
           className={`h-3`}
-          style={{ width: `${getRandomInt(20, 100)}%` }}
+          style={{width: `${getRandomInt(20, 100)}%`}}
         />
         <Skeleton
           className={`h-3`}
-          style={{ width: `${getRandomInt(1, 100)}%` }}
+          style={{width: `${getRandomInt(1, 100)}%`}}
         />
-        <Skeleton className="h-[300px] mt-3 " />
+        <Skeleton className="h-[300px] mt-3 "/>
       </CardContent>
       <CardFooter className="flex gap-2">
         <Skeleton className="w-10 h-6 rounded-full"></Skeleton>
@@ -75,8 +76,8 @@ function PostCardSkeleton() {
   );
 }
 
-function PostCard({ post, dictionary, isAuthor = false }: PostCardProps) {
-  const { data, error, isLoading, mutate } = useSWR(
+function PostCard({post, dictionary, isAuthor = false}: PostCardProps) {
+  const {data, error, isLoading, mutate} = useSWR(
     [
       `/user/${post.userId}`,
       `/comment/count?postId=${post.id}`,
@@ -87,7 +88,7 @@ function PostCard({ post, dictionary, isAuthor = false }: PostCardProps) {
   );
   const [author, comments, likes, exist] = data || [];
 
-  if (isLoading) return <PostCardSkeleton />;
+  if (isLoading) return <PostCardSkeleton/>;
 
   return (
     <Card className={`${roboto.className} max-w-[550px] w-full shadow-md`}>
@@ -116,7 +117,7 @@ function PostCard({ post, dictionary, isAuthor = false }: PostCardProps) {
             </div>
           </div>
           <div className="flex justify-end">
-            <PostDropdownMenu dict={dictionary.post.moreDropdown} post={post} />
+            <PostDropdownMenu dict={dictionary.post.moreDropdown} post={post}/>
           </div>
         </div>
       </CardHeader>
@@ -129,7 +130,7 @@ function PostCard({ post, dictionary, isAuthor = false }: PostCardProps) {
           content={post.content || ""}
           tags={post.tags?.map((tag) => tag.name) || []}
         />
-        <PostCarousel medias={post.medias || []} />
+        <PostCarousel medias={post.medias || []}/>
       </CardContent>
       <CardFooter>
         <PostActions
