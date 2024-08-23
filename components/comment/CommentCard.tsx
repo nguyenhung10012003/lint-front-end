@@ -1,15 +1,15 @@
-import { api } from "@/config/api";
-import { Comment, Reply } from "@/types/comment";
-import { User } from "@/types/user";
-import { formatTimeDifference } from "@/utils/datetime";
-import { formatToShortNumber } from "@/utils/number";
-import React, { useState } from "react";
+import {api} from "@/config/api";
+import {Comment, Reply} from "@/types/comment";
+import {User} from "@/types/user";
+import {formatTimeDifference} from "@/utils/datetime";
+import {formatToShortNumber} from "@/utils/number";
+import React, {useState} from "react";
 import useSWR from "swr";
 import CommentForm from "./CommentForm";
-import { Icons } from "./Icons";
-import ProfileAvatar from "./ProfileAvatar";
-import ProfileHoverCard from "./ProfileHoverCard";
-import { Skeleton } from "./ui/skeleton";
+import {Icons} from "../Icons";
+import ProfileAvatar from "../user/prorfile/ProfileAvatar";
+import ProfileHoverCard from "../user/prorfile/ProfileHoverCard";
+import {Skeleton} from "../ui/skeleton";
 
 const fetcher = (url: string) => api.get<any, any>(url);
 
@@ -25,51 +25,51 @@ function CommentSkeleton() {
   return (
     <div className="flex gap-3">
       <div className="flex flex-col items-center">
-        <Skeleton className="h-10 w-10 md:h-10 md:w-10 rounded-full" />
+        <Skeleton className="h-10 w-10 md:h-10 md:w-10 rounded-full"/>
       </div>
       <div className="w-full flex flex-col gap-2">
         <div className="flex gap-3 items-center">
-          <Skeleton className="h-4 w-20" />
+          <Skeleton className="h-4 w-20"/>
         </div>
-        <Skeleton className="h-3 w-[100%]" />
-        <Skeleton className="h-3 w-3/4" />
+        <Skeleton className="h-3 w-[100%]"/>
+        <Skeleton className="h-3 w-3/4"/>
       </div>
     </div>
   );
 }
 
 function CommentUI({
-  userId,
-  content,
-  createdAt,
-  commentId,
-  connector,
-}: {
+                     userId,
+                     content,
+                     createdAt,
+                     commentId,
+                     connector,
+                   }: {
   userId: string;
   content: string;
   createdAt: string;
   commentId: string;
   connector?: React.ReactNode;
 }) {
-  const { data, error, isLoading } = useSWR<User>(`/user/${userId}`, fetcher);
-  const { data: likeData, mutate } = useSWR(
+  const {data, error, isLoading} = useSWR<User>(`/user/${userId}`, fetcher);
+  const {data: likeData, mutate} = useSWR(
     [`/like/exist?commentId=${commentId}`,
-    `/like/count?commentId=${commentId}`],
+      `/like/count?commentId=${commentId}`],
     manyFetchers,
   );
-  const [ liked, count ] = likeData || [];
+  const [liked, count] = likeData || [];
 
   const handleLike = async () => {
     if (liked.exist) {
-      await api.delete(`/like`, { data: { commentId } });
+      await api.delete(`/like`, {data: {commentId}});
       mutate();
     } else {
-      await api.post(`/like`, { commentId, for: "comment" });
+      await api.post(`/like`, {commentId, for: "comment"});
       mutate();
     }
   };
 
-  if (isLoading) return <CommentSkeleton />;
+  if (isLoading) return <CommentSkeleton/>;
   return (
     <div className="flex gap-3">
       <div className="flex flex-col items-center">
@@ -84,7 +84,7 @@ function CommentUI({
       </div>
       <div className="">
         <div className="flex gap-3 items-center">
-          {data && <ProfileHoverCard profile={data?.profile} />}
+          {data && <ProfileHoverCard profile={data?.profile}/>}
           <span className="text-gray-400 text-sm">
             {formatTimeDifference(new Date(createdAt))}
           </span>
@@ -94,11 +94,12 @@ function CommentUI({
           {/* like */}
           <div
             className="flex gap-1 items-center cursor-pointer hover:scale-105 text-gray-700 dark:text-gray-300"
-            onClick={() => {}}
+            onClick={() => {
+            }}
           >
             <Icons.heart onClick={handleLike}
-              className={`w-5 h-5 ${liked?.exist && "text-red-500"}`}
-              variant={liked?.exist ? "solid" : "outline"}
+                         className={`w-5 h-5 ${liked?.exist && "text-red-500"}`}
+                         variant={liked?.exist ? "solid" : "outline"}
             />
             <span className="text-sm font-semibold">
               {formatToShortNumber(count?.count || 0)}
@@ -110,8 +111,8 @@ function CommentUI({
   );
 }
 
-export default function CommentCard({ comment }: { comment: Comment }) {
-  const { data, error, isLoading, mutate } = useSWR<{ replies: Reply[] }>(
+export default function CommentCard({comment}: { comment: Comment }) {
+  const {data, error, isLoading, mutate} = useSWR<{ replies: Reply[] }>(
     `/reply?commentId=${comment.id}&orderField=createdAt&orderDirection=desc`,
     fetcher
   );
@@ -124,7 +125,7 @@ export default function CommentCard({ comment }: { comment: Comment }) {
         createdAt={comment.createdAt}
         commentId={comment.id}
         connector={
-          <div className="w-[3px] h-full bg-gray-500 mt-1 rounded-lg" />
+          <div className="w-[3px] h-full bg-gray-500 mt-1 rounded-lg"/>
         }
       />
       {data?.replies?.slice(0, repliesShow).map((reply: Reply) => (
@@ -135,7 +136,7 @@ export default function CommentCard({ comment }: { comment: Comment }) {
           createdAt={reply.createdAt}
           commentId={reply.id}
           connector={
-            <div className="w-[3px] h-full bg-gray-500 mt-1 rounded-lg" />
+            <div className="w-[3px] h-full bg-gray-500 mt-1 rounded-lg"/>
           }
         />
       ))}

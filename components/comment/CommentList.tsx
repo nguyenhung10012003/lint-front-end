@@ -1,12 +1,12 @@
-import { Comment } from "@/types/comment";
+import {Comment} from "@/types/comment";
 import CommentCard from "./CommentCard";
-import InfiniteScroll from "./InfiniteScroll";
+import InfiniteScroll from "../InfiniteScroll";
 
 export default function CommentList({
-  comments,
-  loadMore,
-  hasMore,
-}: {
+                                      comments,
+                                      loadMore,
+                                      hasMore,
+                                    }: {
   comments: Comment[];
   loadMore: () => void;
   hasMore: boolean;
@@ -19,8 +19,8 @@ export default function CommentList({
     >
       {comments.map((comment, index) => (
         <div key={index}>
-          <CommentCard key={index} comment={comment} />
-          {index !== comments.length - 1 && <hr />}
+          <CommentCard key={index} comment={comment}/>
+          {index !== comments.length - 1 && <hr/>}
         </div>
       ))}
     </InfiniteScroll>

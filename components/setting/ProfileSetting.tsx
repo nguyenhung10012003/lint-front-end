@@ -1,13 +1,13 @@
 "use client";
 
-import { api } from "@/config/api";
-import { Profile } from "@/types/user";
+import {api} from "@/config/api";
+import {Profile} from "@/types/user";
 import {} from "@radix-ui/react-select";
-import { useState } from "react";
-import ProfileAvatar from "../ProfileAvatar";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+import {useState} from "react";
+import ProfileAvatar from "../user/prorfile/ProfileAvatar";
+import {Button} from "../ui/button";
+import {Input} from "../ui/input";
+import {Label} from "../ui/label";
 import {
   Select,
   SelectContent,
@@ -15,15 +15,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { Textarea } from "../ui/textarea";
-import { useToast } from "../ui/use-toast";
-import { SettingGroup, SettingItem } from "./Setting";
+import {Textarea} from "../ui/textarea";
+import {useToast} from "../ui/use-toast";
+import {SettingGroup, SettingItem} from "./Setting";
 
-export default function ProfileSetting({ profile, dictionary }: { profile: Profile, dictionary: any }) {
+export default function ProfileSetting({profile, dictionary}: { profile: Profile, dictionary: any }) {
   const [pf, setProfile] = useState(profile);
   const [avatar, setAvatar] = useState<File | undefined>();
   const [preview, setPreview] = useState<string | undefined>();
-  const { toast } = useToast();
+  const {toast} = useToast();
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -94,7 +94,7 @@ export default function ProfileSetting({ profile, dictionary }: { profile: Profi
           type="text"
           defaultValue={pf.name}
           className="w-full rounded-lg"
-          onChange={(e) => setProfile({ ...pf, name: e.target.value })}
+          onChange={(e) => setProfile({...pf, name: e.target.value})}
         />
       </SettingItem>
       <SettingItem className="flex-col gap-2">
@@ -107,7 +107,7 @@ export default function ProfileSetting({ profile, dictionary }: { profile: Profi
           placeholder="Bio"
           maxLength={250}
           value={pf.bio}
-          onChange={(e) => setProfile({ ...pf, bio: e.target.value })}
+          onChange={(e) => setProfile({...pf, bio: e.target.value})}
         />
       </SettingItem>
       <SettingItem className="flex-col gap-2">
@@ -116,7 +116,7 @@ export default function ProfileSetting({ profile, dictionary }: { profile: Profi
         </Label>
         <Select
           defaultValue={pf.gender}
-          onValueChange={(value) => setProfile({ ...pf, gender: value })}
+          onValueChange={(value) => setProfile({...pf, gender: value})}
         >
           <SelectTrigger className="hover:bg-secondary">
             <SelectValue placeholder="Choose gender"></SelectValue>
@@ -141,7 +141,7 @@ export default function ProfileSetting({ profile, dictionary }: { profile: Profi
           max={new Date().toISOString().split("T")[0]}
           min={"1900-01-01"}
           className="w-full rounded-lg block"
-          onChange={(e) => setProfile({ ...pf, dob: e.target.value })}
+          onChange={(e) => setProfile({...pf, dob: e.target.value})}
         />
       </SettingItem>
       <SettingItem className="justify-end">

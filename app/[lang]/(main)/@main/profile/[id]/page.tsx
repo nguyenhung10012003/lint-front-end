@@ -1,23 +1,23 @@
-import { getDictionary } from "@/app/dictionaries";
+import {getDictionary} from "@/app/dictionaries";
 import FollowBtn from "@/components/FollowBtn";
-import { FollowersModal, FollowingsModal } from "@/components/FollowModal";
-import { Icons } from "@/components/Icons";
-import PostList from "@/components/PostList";
-import ProfileAvatar from "@/components/ProfileAvatar";
-import { Separator } from "@/components/ui/separator";
-import { getCookie } from "@/lib/server-action";
-import { getOneUser } from "@/lib/server-action/user-action";
+import {FollowersModal, FollowingsModal} from "@/components/FollowModal";
+import {Icons} from "@/components/Icons";
+import PostList from "@/components/post/PostList";
+import ProfileAvatar from "@/components/user/prorfile/ProfileAvatar";
+import {Separator} from "@/components/ui/separator";
+import {getCookie} from "@/lib/server-action";
+import {getOneUser} from "@/lib/server-action/user-action";
 import Link from "next/link";
 
 export default async function Profile({
-  params,
-}: {
+                                        params,
+                                      }: {
   params: {
     id: string;
     lang: string;
   };
 }) {
-  const user = await getOneUser({ id: params.id });
+  const user = await getOneUser({id: params.id});
   const isOwner = (await getCookie("userId"))?.value === user.id;
   const dictionary = await getDictionary(params.lang);
 
@@ -57,14 +57,14 @@ export default async function Profile({
               )}
               {isOwner && (
                 <Link href="/setting">
-                  <Icons.setting />
+                  <Icons.setting/>
                 </Link>
               )}
             </div>
           </div>
           <p className="">{`@${user.profile?.alias}`}</p>
           <div className="flex sm:gap-8 text-lg font-semibold gap-2 text-center py-4">
-            <FollowersModal includeAction={isOwner} userId={params.id} dict={dictionary} />
+            <FollowersModal includeAction={isOwner} userId={params.id} dict={dictionary}/>
             <Separator
               className="h-full w-[2px] bg-gray-500 "
               orientation="vertical"
@@ -94,11 +94,11 @@ export default async function Profile({
           unfollowBtnClassName="flex sm:hidden"
         ></FollowBtn>
       )}
-      <Separator className="w-full h-[1px] bg-border" />
+      <Separator className="w-full h-[1px] bg-border"/>
       <div className="flex flex-col gap-6 w-full">
         <PostList
           dictionary={dictionary}
-          url={{ url: '/post', params: { userId: [user.id] } }}
+          url={{url: '/post', params: {userId: [user.id]}}}
         />
       </div>
     </div>

@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import {Button} from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -8,26 +8,26 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
-import { api } from "@/config/api";
-import { Post } from "@/types/post";
-import { User } from "@/types/user";
+import {Textarea} from "@/components/ui/textarea";
+import {api} from "@/config/api";
+import {Post} from "@/types/post";
+import {User} from "@/types/user";
 import Link from "next/link";
-import { useState } from "react";
-import EmojiPicker from "../EmojiPicker";
+import {useState} from "react";
+import EmojiPicker from "../emoji/EmojiPicker";
 import HashTagPicker from "../HashTagPicker";
-import { Icons } from "../Icons";
-import ProfileAvatar from "../ProfileAvatar";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Separator } from "../ui/separator";
-import { useToast } from "../ui/use-toast";
+import {Icons} from "../Icons";
+import ProfileAvatar from "../user/prorfile/ProfileAvatar";
+import {Input} from "../ui/input";
+import {Label} from "../ui/label";
+import {Separator} from "../ui/separator";
+import {useToast} from "../ui/use-toast";
 import PostScopeSelector from "./PostScopeSelector";
 
 export default function CreatePostModal({
-  user,
-  dictionary,
-}: {
+                                          user,
+                                          dictionary,
+                                        }: {
   user: User;
   dictionary: any;
 }) {
@@ -71,7 +71,7 @@ export default function CreatePostModal({
     setHashTags([]);
   };
 
-  const { toast } = useToast();
+  const {toast} = useToast();
 
   const handleSubmitPost = async () => {
     const formData = new FormData();
@@ -113,7 +113,7 @@ export default function CreatePostModal({
           className="flex gap-4 p-4 rounded-lg w-full 
               items-center hover:scale-105 hover:cursor-pointer"
         >
-          <Icons.create className="w-6 h-6" />
+          <Icons.create className="w-6 h-6"/>
           <span className="hidden lg:flex items-center">
             {dictionary?.createPost.sidebarItem}
           </span>
@@ -124,9 +124,9 @@ export default function CreatePostModal({
           <DialogTitle className="text-2xl font-bold justify-center">
             {dictionary?.createPost.title}
           </DialogTitle>
-          <Separator />
+          <Separator/>
           <div className="flex items-center gap-2 pt-2">
-            <ProfileAvatar src={user.profile.avatar} alt={user.profile.name} />
+            <ProfileAvatar src={user.profile.avatar} alt={user.profile.name}/>
             <div className="grid gap-0.5 w-full justify-items-start">
               <div className="font-medium">{user.profile.name}</div>
               <Link
@@ -192,7 +192,7 @@ export default function CreatePostModal({
                   className="absolute top-0 right-0 p-1 bg-red-500 rounded-full border-2 border-white"
                   onClick={() => handleRemoveMedia(index)}
                 >
-                  <Icons.close className="w-3 h-3" />
+                  <Icons.close className="w-3 h-3"/>
                 </button>
               </div>
             ))}
@@ -203,7 +203,7 @@ export default function CreatePostModal({
               className="p-2 border rounded-md hover:cursor-pointer"
             >
               <span className="flex items-center gap-1">
-                <Icons.image className="h-5 w-5" />
+                <Icons.image className="h-5 w-5"/>
                 {dictionary?.createPost.image}
               </span>
               <Input
@@ -220,7 +220,7 @@ export default function CreatePostModal({
               className="p-2 border rounded-md hover:cursor-pointer"
             >
               <span className="flex items-center gap-1">
-                <Icons.video className="h-5 w-5" />
+                <Icons.video className="h-5 w-5"/>
                 Video
               </span>
               <Input
@@ -237,7 +237,7 @@ export default function CreatePostModal({
               trigger={
                 <div className="p-2 border rounded-md hover:cursor-pointer">
                   <span className="flex items-center gap-1 text-sm">
-                    <Icons.hashTag className="h-5 w-5" />
+                    <Icons.hashTag className="h-5 w-5"/>
                     Hashtag
                   </span>
                 </div>
@@ -252,7 +252,7 @@ export default function CreatePostModal({
               className="p-2 border rounded-md hover:cursor-pointer"
             >
               <span className="flex items-center gap-1">
-                <Icons.music className="h-5 w-5" />
+                <Icons.music className="h-5 w-5"/>
                 {dictionary?.createPost.music}
               </span>
               <Input

@@ -1,24 +1,24 @@
 import {} from "@radix-ui/react-dialog";
 import Link from "next/link";
-import { useState } from "react";
-import { Icons } from "./Icons";
-import ProfileAvatar from "./ProfileAvatar";
+import {useState} from "react";
+import {Icons} from "../Icons";
+import ProfileAvatar from "./prorfile/ProfileAvatar";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./ui/dialog";
+} from "../ui/dialog";
 
 export default function UserListModal({
-  trigger,
-  title,
-  items,
-  triggerAschild = false,
-  actionBtn,
-  includeAction = true,
-}: {
+                                        trigger,
+                                        title,
+                                        items,
+                                        triggerAschild = false,
+                                        actionBtn,
+                                        includeAction = true,
+                                      }: {
   trigger: string | React.ReactNode;
   title: string;
   items: any[];
@@ -37,7 +37,7 @@ export default function UserListModal({
           </DialogTitle>
         </DialogHeader>
         <div className="flex gap-2 mx-4 my-2 border-b">
-          <Icons.search className="w-5 h-5" />
+          <Icons.search className="w-5 h-5"/>
           <input
             type="text"
             placeholder="Search"

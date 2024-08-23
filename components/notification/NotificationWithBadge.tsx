@@ -1,7 +1,7 @@
 'use client';
 import { notificationApi } from "@/config/api";
 import { useState, useEffect } from 'react';
-import { useSocket } from '../providers/SocketProvider';
+import { SocketToConnect, useSocket } from '../providers/SocketProvider';
 import { Icons } from '../Icons';
 import useSWR from 'swr';
 
@@ -12,7 +12,7 @@ interface NotificationProps {
 
 export default function NotificationWithBadge({ variant }: NotificationProps) {
   const [unreadNotificationCount, setUnreadNotificationCount] = useState(0);
-  const socket = useSocket();
+  const socket = useSocket(SocketToConnect.Notification);
 
   const fetcher = (url: string) => {
     return notificationApi.get<any, any>(url);

@@ -1,12 +1,12 @@
-import { getDictionary } from "@/app/dictionaries";
-import PostList from "@/components/PostList";
-import UserSearchList from "@/components/UserSearchList";
+import {getDictionary} from "@/app/dictionaries";
+import PostList from "@/components/post/PostList";
+import UserSearchList from "@/components/user/UserSearchList";
 import SearchBox from "./SearchBox";
 
 export default async function Search({
-  params,
-  searchParams,
-}: {
+                                       params,
+                                       searchParams,
+                                     }: {
   params: {
     lang: string;
   };
@@ -18,11 +18,15 @@ export default async function Search({
   const dictionary = await getDictionary(params.lang);
 
   if (!searchParams.q && !searchParams.tags)
-    return <SearchBox placeholder={dictionary.search.searchBox.placeholder} />;
+    return (
+      <div className="justify-center relative flex w-full">
+        <SearchBox placeholder={dictionary.search.searchBox.placeholder}/>
+      </div>
+    );
   return (
-    <div className="flex items-center flex-col w-full p-4 gap-4 relative">
-      <SearchBox placeholder={dictionary.search.searchBox.placeholder} />
-      <UserSearchList q={searchParams.q} dictionary={dictionary} />
+    <div className="flex items-center flex-col w-full gap-4 relative">
+      <SearchBox placeholder={dictionary.search.searchBox.placeholder}/>
+      <UserSearchList q={searchParams.q} dictionary={dictionary}/>
       <PostList
         dictionary={dictionary}
         url={{

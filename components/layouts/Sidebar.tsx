@@ -1,4 +1,3 @@
-import { getDictionary } from "@/app/dictionaries";
 import { Icons } from "@/components/Icons";
 import SideBarFooter from "@/components/layouts/SideBarFooter";
 import SidebarBody from "@/components/layouts/SidebarBody";
@@ -7,14 +6,13 @@ import Image from "next/image";
 import NotificationWithBadge from "../notification/NotificationWithBadge";
 
 export default async function Sidebar({
-  lang,
+  dictionary,
   user,
 }: {
-  lang: string;
+  dictionary: any;
   user: User;
 }) {
-  const dictionary = await getDictionary(lang);
-  const { sidebar, createPost } = await getDictionary(lang);
+  const sidebar = dictionary.sidebar;
   const sidebarItems = [
     {
       name: "home",
@@ -107,7 +105,7 @@ export default async function Sidebar({
   ];
 
   return (
-    <div className="sm:flex flex-col h-screen lg:w-full lg:max-w-[275px] py-6 px-4 border-r hidden z-40 over">
+    <div className="sm:inline-flex flex-col h-screen lg:w-full lg:max-w-[275px] py-6 px-4 border-r hidden z-40 over">
       <div id="logo" className="flex justify-center">
         <a href="/">
           <Image
@@ -120,7 +118,11 @@ export default async function Sidebar({
         </a>
       </div>
       <div id="sidebar-body" className="flex gap-2 flex-col mt-6">
-        <SidebarBody sidebarItems={sidebarItems} user={user} dictionary={dictionary} />
+        <SidebarBody
+          sidebarItems={sidebarItems}
+          user={user}
+          dictionary={dictionary}
+        />
       </div>
       <div id="sidebar-footer" className="items-end flex h-full">
         <SideBarFooter dropDownMenuGroups={dropDownMenuGroups} user={user} />

@@ -1,15 +1,15 @@
 "use client";
-import { api } from "@/config/api";
+import {api} from "@/config/api";
 import useDebounce from "@/hooks/use-debounce";
-import { Following } from "@/types/relationship";
-import { User } from "@/types/user";
+import {Following} from "@/types/relationship";
+import {User} from "@/types/user";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import {useCallback, useEffect, useState} from "react";
 import useSWR from "swr";
-import { Icons } from "./Icons";
+import {Icons} from "./Icons";
 import InfiniteScroll from "./InfiniteScroll";
-import ProfileAvatar from "./ProfileAvatar";
-import { Button } from "./ui/button";
+import ProfileAvatar from "./user/prorfile/ProfileAvatar";
+import {Button} from "./ui/button";
 import {
   Dialog,
   DialogContent,
@@ -20,14 +20,14 @@ import {
 
 const fetcher = (url: string) => api.get<any, any>(url);
 const FollowList = ({
-  userId,
-  followCount,
-  search,
-  variant,
-  includeAction = false,
-  mutate,
-  deleteText,
-}: {
+                      userId,
+                      followCount,
+                      search,
+                      variant,
+                      includeAction = false,
+                      mutate,
+                      deleteText,
+                    }: {
   userId: string;
   followCount: number;
   search: string;
@@ -128,17 +128,17 @@ const FollowList = ({
 };
 
 export function FollowersModal({
-  includeAction,
-  userId,
-  dict,
-}: {
+                                 includeAction,
+                                 userId,
+                                 dict,
+                               }: {
   includeAction?: boolean;
   userId: string;
   dict: any;
 }) {
   const [search, setSearch] = useState<string>("");
   const debounce = useDebounce(search, 500);
-  const { data, isLoading, error, mutate } = useSWR(
+  const {data, isLoading, error, mutate} = useSWR(
     `/following/count?followingId=${userId}`,
     fetcher
   );
@@ -159,7 +159,7 @@ export function FollowersModal({
           </DialogTitle>
         </DialogHeader>
         <div className="flex gap-2 mx-4 my-2 border-b">
-          <Icons.search className="w-5 h-5" />
+          <Icons.search className="w-5 h-5"/>
           <input
             type="text"
             placeholder="Search"
@@ -185,18 +185,18 @@ export function FollowersModal({
 }
 
 export function FollowingsModal({
-  includeAction,
-  userId,
-  dict,
-}: {
+                                  includeAction,
+                                  userId,
+                                  dict,
+                                }: {
   includeAction?: boolean;
   userId: string;
   dict: any;
 }) {
   const [search, setSearch] = useState<string>("");
   const debounce = useDebounce(search, 500);
-  const { data, isLoading, error, mutate } = useSWR(
-    `/following/count?followerId=${userId}`,  
+  const {data, isLoading, error, mutate} = useSWR(
+    `/following/count?followerId=${userId}`,
     fetcher
   );
 
@@ -216,7 +216,7 @@ export function FollowingsModal({
           </DialogTitle>
         </DialogHeader>
         <div className="flex gap-2 mx-4 my-2 border-b">
-          <Icons.search className="w-5 h-5" />
+          <Icons.search className="w-5 h-5"/>
           <input
             type="text"
             placeholder="Search"

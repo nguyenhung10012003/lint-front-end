@@ -1,17 +1,17 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { cn } from "@/lib/utils";
+import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
+import {cn} from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
-import { Skeleton } from "./ui/skeleton";
+import {Dialog, DialogContent, DialogTitle, DialogTrigger} from "../../ui/dialog";
+import {Skeleton} from "../../ui/skeleton";
 
 export default function ProfileAvatar({
-  src,
-  alt,
-  userId,
-  variant = "none",
-  className,
-}: {
+                                        src,
+                                        alt,
+                                        userId,
+                                        variant = "none",
+                                        className,
+                                      }: {
   src?: string;
   alt?: string;
   userId?: string;
@@ -19,7 +19,7 @@ export default function ProfileAvatar({
   className?: string;
 }) {
   const avatar = (
-    <Avatar className={cn("md:w-12 md:h-12 w-10 h-10 bg-gray-200", className)}>
+    <Avatar className={cn("w-12 h-12  bg-gray-200", className)}>
       <AvatarImage
         src={src || "/image/default_avatar.png"}
         alt={alt}

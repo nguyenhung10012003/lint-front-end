@@ -1,16 +1,16 @@
 "use client";
-import { Icons } from "@/components/Icons";
-import { api } from "@/config/api";
-import { formatToShortNumber } from "@/utils/number";
-import CommentModal from "./CommentModal";
+import {Icons} from "@/components/Icons";
+import {api} from "@/config/api";
+import {formatToShortNumber} from "@/utils/number";
+import CommentModal from "../comment/CommentModal";
 
 export default function PostActions({
-  likes,
-  comments,
-  liked,
-  postId,
-  mutate,
-}: {
+                                      likes,
+                                      comments,
+                                      liked,
+                                      postId,
+                                      mutate,
+                                    }: {
   likes: number;
   comments: number;
   liked: boolean;
@@ -21,10 +21,10 @@ export default function PostActions({
     "flex gap-1 items-center cursor-pointer hover:scale-105 text-gray-700 dark:text-gray-300";
   const handleLike = async () => {
     if (liked) {
-      await api.delete(`/like`, { data: { postId } });
+      await api.delete(`/like`, {data: {postId}});
       mutate();
     } else {
-      await api.post(`/like`, { postId });
+      await api.post(`/like`, {postId});
       mutate();
     }
   };
@@ -45,7 +45,7 @@ export default function PostActions({
       <CommentModal
         trigger={
           <div className={actionClasses}>
-            <Icons.message className={`w-6 h-6`} variant={"outline"} />
+            <Icons.message className={`w-6 h-6`} variant={"outline"}/>
             <span className="text-sm font-semibold">
               {formatToShortNumber(comments)}
             </span>
@@ -56,7 +56,7 @@ export default function PostActions({
 
       {/* share */}
       <div className={actionClasses}>
-        <Icons.share className={`w-6 h-6`} variant={"outline"} />
+        <Icons.share className={`w-6 h-6`} variant={"outline"}/>
         <span className="text-sm font-semibold">{formatToShortNumber(0)}</span>
       </div>
     </div>

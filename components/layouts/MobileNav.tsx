@@ -2,9 +2,9 @@
 import { User } from "@/types/user";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import CreatePostModal from "../post/CreatePostModal";
 import { Icons } from "../Icons";
 import NotificationWithBadge from "../notification/NotificationWithBadge";
+import CreatePostModal from "../post/CreatePostModal";
 
 export default function MobileNav({
   dictionary,
@@ -29,7 +29,7 @@ export default function MobileNav({
     {
       name: "create-post",
       type: "component",
-      component: <CreatePostModal user={user} dictionary={dictionary}/>,
+      component: <CreatePostModal user={user} dictionary={dictionary} />,
     },
     {
       name: "notification",
@@ -46,7 +46,7 @@ export default function MobileNav({
   const path = usePathname();
 
   return (
-    <div className="fixed sm:hidden flex bottom-0 border-t w-full justify-center gap-2 p-2 flex-wrap z-40 bg-background">
+    <div className="sm:hidden flex border-t w-full justify-center gap-2 p-2 flex-wrap z-40 bg-background">
       {items.map((item) =>
         item.type === "component" ? (
           <div key={item.name}>{item.component}</div>

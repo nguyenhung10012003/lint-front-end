@@ -3,9 +3,10 @@ import {} from '@radix-ui/react-avatar';
 import { Notification } from '@/types/notification'; 
 import { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
-import { useSocket } from '../providers/SocketProvider';
 import { getNotifications } from '@/lib/server-action/notification-action';
 import { NotificationCard } from './NotificationCard';
+
+import { SocketToConnect, useSocket } from '../providers/SocketProvider';
 
 function sortNotification(notifications: Notification[]) {
   return notifications.sort(
@@ -20,7 +21,7 @@ export default function NotificationList() {
   const [page, setPage] = useState(1);
   const fetchPerPage = 7;
 
-  const socket = useSocket();
+  const socket = useSocket(SocketToConnect.Notification);
 
   useEffect(() => {
     const initializeNotifications = async () => {

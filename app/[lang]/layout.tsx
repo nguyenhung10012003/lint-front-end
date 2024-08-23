@@ -23,9 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning>
-      <body className={`${archivo.className} flex w-full overflow-hidden `}>
+      <body className={`${archivo.className} overflow-hidden`}>
         <Providers>
-          <ThemeToggle />
+          {process.env.ENVIROMENT === "development" && <ThemeToggle />}
           {children}
         </Providers>
         <Toaster />
