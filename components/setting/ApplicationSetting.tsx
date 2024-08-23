@@ -1,5 +1,5 @@
 'use client';
-import { locales } from "@/utils/locale";
+import { getLanguageFromLocale, locales } from "@/utils/locale";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import {
@@ -15,6 +15,7 @@ import Cookies from "js-cookie";
 import { useTheme } from "next-themes";
 import { useToast } from "../ui/use-toast";
 import { useRouter, usePathname } from 'next/navigation';
+import { changeNotificationLanguage } from "@/lib/server-action/notification-action";
 
 export default function ApplicationSetting({dictionary}: {dictionary: any}) {
   const router = useRouter();
@@ -24,7 +25,6 @@ export default function ApplicationSetting({dictionary}: {dictionary: any}) {
     const segments = path.split('/');
     return segments[1];
   };
-  console.log(extractLocaleFromPath(pathname));
 
   const defaultTheme = Cookies.get("theme") || "system";
   const currentLocale = Cookies.get("locale") || extractLocaleFromPath(pathname);
@@ -49,6 +49,10 @@ export default function ApplicationSetting({dictionary}: {dictionary: any}) {
 
     const newLocale = locale;
     Cookies.set("locale", newLocale);
+
+    const lang = getLanguageFromLocale(newLocale);
+    changeNotificationLanguage(lang);
+
 
     const newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
     router.replace(newPathname);

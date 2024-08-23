@@ -6,8 +6,7 @@ export async function updateLanguage(params: { localeKey: string }) {
   form.append('language', locales.findIndex(
     locale => locale.key === params.localeKey).toString()
   );
-  console.log(params);
-  console.log(form.get('language'));
+
   try {
     await notificationApi.patch<any, any>('/notifications/user/language', form, {
       headers: {
@@ -19,7 +18,7 @@ export async function updateLanguage(params: { localeKey: string }) {
   }
 }
 
-export async function getNotifications(page: number = 1, take: number = 6) {
+export async function getNotifications(page: number = 1, take: number = 5) {
   return await notificationApi.get<any, any>(
     `/notifications?skip=${(page - 1) * take}&take=${take}`,
   )
@@ -32,3 +31,13 @@ export async function markAsRead(id: string) {
 export async function getUnreadCount() {
   return await notificationApi.get<any, any>('/notifications/count-unread');
 } 
+
+export async function changeNotificationLanguage(language: string) {
+  try {
+    await notificationApi.patch('/notifications/user/language', {
+      lang: language,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}

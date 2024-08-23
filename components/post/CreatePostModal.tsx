@@ -35,7 +35,7 @@ export default function CreatePostModal({
   const [medias, setMedias] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[] | undefined>();
   const [hashTags, setHashTags] = useState<string[]>([]);
-  const [postScope, setPostScope] = useState<"PUBLIC" | "PRIVATE">("PUBLIC");
+  const [postScope, setPostScope] = useState<"PUBLIC" | "PRIVATE">(user.isPrivate ? "PRIVATE" : "PUBLIC");
   const [open, setOpen] = useState(false);
   const handleAddMedia = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -137,7 +137,9 @@ export default function CreatePostModal({
                 {`@${user.profile.alias}`}
               </Link>
             </div>
-            <PostScopeSelector onValueChange={(value) => setPostScope(value)}/>
+            <PostScopeSelector 
+              defaultValue={user.isPrivate ? "PRIVATE" : "PUBLIC"} 
+              onValueChange={(value) => setPostScope(value)} />
           </div>
         </DialogHeader>
         <div className="grid gap-4 py-2">
