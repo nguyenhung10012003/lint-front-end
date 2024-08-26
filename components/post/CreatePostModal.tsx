@@ -17,7 +17,7 @@ import {useState} from "react";
 import EmojiPicker from "../emoji/EmojiPicker";
 import HashTagPicker from "../HashTagPicker";
 import {Icons} from "../Icons";
-import ProfileAvatar from "../user/prorfile/ProfileAvatar";
+import ProfileAvatar from "../user/profile/ProfileAvatar";
 import {Input} from "../ui/input";
 import {Label} from "../ui/label";
 import {Separator} from "../ui/separator";
@@ -35,7 +35,7 @@ export default function CreatePostModal({
   const [medias, setMedias] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[] | undefined>();
   const [hashTags, setHashTags] = useState<string[]>([]);
-  const [postScope, setPostScope] = useState<"PUBLIC" | "PRIVATE">(user.isPrivate ? "PRIVATE" : "PUBLIC");
+  const [postScope, setPostScope] = useState<"PUBLIC" | "PRIVATE">(user.setting?.status == "PRIVATE" ? "PRIVATE" : "PUBLIC");
   const [open, setOpen] = useState(false);
   const handleAddMedia = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -138,7 +138,7 @@ export default function CreatePostModal({
               </Link>
             </div>
             <PostScopeSelector 
-              defaultValue={user.isPrivate ? "PRIVATE" : "PUBLIC"} 
+              defaultValue={user.setting?.status == "PRIVATE" ? "PRIVATE" : "PUBLIC"} 
               onValueChange={(value) => setPostScope(value)} />
           </div>
         </DialogHeader>

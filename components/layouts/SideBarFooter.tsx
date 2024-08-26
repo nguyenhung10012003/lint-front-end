@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {User} from "@/types/user";
 import Link from "next/link";
-import ProfileAvatar from "../user/prorfile/ProfileAvatar";
+import ProfileAvatar from "../user/profile/ProfileAvatar";
 
 interface DropDownMenuGroup {
   name: string;

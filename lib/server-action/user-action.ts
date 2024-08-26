@@ -1,5 +1,5 @@
 import { api } from "@/config/api";
-import { Profile, User } from "@/types/user";
+import { Profile, Setting, User } from "@/types/user";
 
 export async function getOneUser(params: { id: string }) {
   return await api.get<any, User>(`/user/${params.id}`);
@@ -50,6 +50,6 @@ export async function updateProfile(params: {
   return profile;
 }
 
-export async function updatePrivacy(data: { isPrivate: boolean }) {
-  return await api.patch<any, any>("/user", data);
+export async function updateSetting(params: { setting: Setting }) {
+  return await api.put<any, any>("/setting", params.setting);
 }

@@ -7,8 +7,8 @@ import React, {useState} from "react";
 import useSWR from "swr";
 import CommentForm from "./CommentForm";
 import {Icons} from "../Icons";
-import ProfileAvatar from "../user/prorfile/ProfileAvatar";
-import ProfileHoverCard from "../user/prorfile/ProfileHoverCard";
+import ProfileAvatar from "../user/profile/ProfileAvatar";
+import ProfileHoverCard from "../user/profile/ProfileHoverCard";
 import {Skeleton} from "../ui/skeleton";
 
 const fetcher = (url: string) => api.get<any, any>(url);

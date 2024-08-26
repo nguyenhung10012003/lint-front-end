@@ -3,6 +3,7 @@ export interface User {
   email: string;
   isPrivate: boolean;
   profile: Profile;
+  setting: Setting;
 }
 
 export interface Profile {
@@ -15,4 +16,10 @@ export interface Profile {
   bio?: string;
   country?: string;
   userId: string;
+}
+
+export interface Setting {
+  lang?: string;
+  theme?: string;
+  status?: string;
 }

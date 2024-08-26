@@ -8,7 +8,7 @@ import {useCallback, useEffect, useState} from "react";
 import useSWR from "swr";
 import {Icons} from "./Icons";
 import InfiniteScroll from "./InfiniteScroll";
-import ProfileAvatar from "./user/prorfile/ProfileAvatar";
+import ProfileAvatar from "./user/profile/ProfileAvatar";
 import {Button} from "./ui/button";
 import {
   Dialog,

@@ -5,8 +5,8 @@ import Link from "next/link";
 import {memo, useCallback, useEffect, useState} from "react";
 import FollowBtn from "../FollowBtn";
 import InfiniteScroll from "../InfiniteScroll";
-import ProfileAvatar from "./prorfile/ProfileAvatar";
-import ProfileHoverCard from "./prorfile/ProfileHoverCard";
+import ProfileAvatar from "./profile/ProfileAvatar";
+import ProfileHoverCard from "./profile/ProfileHoverCard";
 import {Card, CardContent, CardHeader, CardTitle} from "../ui/card";
 
 export function UserSearchList({

@@ -4,7 +4,7 @@ import {api} from "@/config/api";
 import {Profile} from "@/types/user";
 import {} from "@radix-ui/react-select";
 import {useState} from "react";
-import ProfileAvatar from "../user/prorfile/ProfileAvatar";
+import ProfileAvatar from "../user/profile/ProfileAvatar";
 import {Button} from "../ui/button";
 import {Input} from "../ui/input";
 import {Label} from "../ui/label";

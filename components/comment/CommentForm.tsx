@@ -7,7 +7,7 @@ import {ChangeEvent, useRef, useState} from "react";
 import useSWR from "swr";
 import EmojiPicker from "../emoji/EmojiPicker";
 import {Icons} from "../Icons";
-import ProfileAvatar from "../user/prorfile/ProfileAvatar";
+import ProfileAvatar from "../user/profile/ProfileAvatar";
 import {Button} from "../ui/button";
 import {Textarea} from "../ui/textarea";
 

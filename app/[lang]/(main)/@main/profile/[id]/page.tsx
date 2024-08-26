@@ -3,7 +3,7 @@ import FollowBtn from "@/components/FollowBtn";
 import {FollowersModal, FollowingsModal} from "@/components/FollowModal";
 import {Icons} from "@/components/Icons";
 import PostList from "@/components/post/PostList";
-import ProfileAvatar from "@/components/user/prorfile/ProfileAvatar";
+import ProfileAvatar from "@/components/user/profile/ProfileAvatar";
 import {Separator} from "@/components/ui/separator";
 import {getCookie} from "@/lib/server-action";
 import {getOneUser} from "@/lib/server-action/user-action";

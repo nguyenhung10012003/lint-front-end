@@ -16,7 +16,7 @@ export default async function Privacy({params} : {
   ]) 
   return (
     <div className="flex flex-col w-full gap-4 max-w-[700px]">
-      <PrivacySetting isPrivate={user.isPrivate} dictionary={dictionary}/>
+      <PrivacySetting isPrivate={user.setting.status === "PRIVATE"} dictionary={dictionary}/>
     </div>
   )
 }

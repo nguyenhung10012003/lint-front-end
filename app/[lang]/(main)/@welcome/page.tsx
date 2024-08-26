@@ -1,5 +1,5 @@
 import {getDictionary} from "@/app/dictionaries";
-import ProfileSetupSteps from "@/components/user/prorfile/ProfileSetupSteps";
+import ProfileSetupSteps from "@/components/user/profile/ProfileSetupSteps";
 import {getCookie} from "@/lib/server-action/cookies-action";
 import {getOneUser} from "@/lib/server-action/user-action";
 

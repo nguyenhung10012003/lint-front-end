@@ -6,13 +6,14 @@ import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { Switch } from "../ui/switch";
 import { SettingGroup, SettingItem } from "./Setting";
-import { updatePrivacy } from "@/lib/server-action/user-action";
+import { updateSetting } from "@/lib/server-action/user-action";
 
 
 export default function PrivacySetting({ isPrivate, dictionary }: { isPrivate: boolean, dictionary: any}) {
   const [ iP, setIsPrivate ] = useState<boolean>(isPrivate);
   const handleSave = async () => {
-    await updatePrivacy({ isPrivate: iP });
+    const status = iP ? "PRIVATE" : "PUBLIC";
+    await updateSetting({ setting: { status } });
   }
   return (
     <SettingGroup title="Privacy" id="privacy">

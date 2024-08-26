@@ -15,7 +15,7 @@ import Cookies from "js-cookie";
 import { useTheme } from "next-themes";
 import { useToast } from "../ui/use-toast";
 import { useRouter, usePathname } from 'next/navigation';
-import { changeNotificationLanguage } from "@/lib/server-action/notification-action";
+import { updateSetting } from "@/lib/server-action/user-action";
 
 export default function ApplicationSetting({dictionary}: {dictionary: any}) {
   const router = useRouter();
@@ -51,7 +51,7 @@ export default function ApplicationSetting({dictionary}: {dictionary: any}) {
     Cookies.set("locale", newLocale);
 
     const lang = getLanguageFromLocale(newLocale);
-    changeNotificationLanguage(lang);
+    updateSetting({ setting: { lang: lang.toUpperCase() } });
 
 
     const newPathname = pathname.replace(`/${currentLocale}`, `/${newLocale}`);

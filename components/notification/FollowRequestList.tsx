@@ -1,8 +1,8 @@
 "use client";
 import api from "@/config/api";
 import { formatTimeDifference } from "@/utils/datetime";
-import ProfileAvatar from "../ProfileAvatar";
-import ProfileHoverCard from "../ProfileHoverCard";
+import ProfileAvatar from "../user/profile/ProfileAvatar";
+import ProfileHoverCard from "../user/profile/ProfileHoverCard";
 import { RequestButtons } from "./RequestButtons";
 import Cookie from "js-cookie";
 import { Following } from "@/types/relationship";
