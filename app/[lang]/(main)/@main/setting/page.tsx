@@ -31,7 +31,7 @@ export default async function Setting({
     },
   ];
   return (
-    <div className="flex flex-col w-full gap-4 max-w-[700px]">
+    <>
       {settingGroups.map((group) => (
         <Link
           key={group.name}
@@ -45,6 +45,6 @@ export default async function Setting({
           <Icons.chevronRight className="w-6 h-6" />
         </Link>
       ))}
-    </div>
+    </>
   );
 }

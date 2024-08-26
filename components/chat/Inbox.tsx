@@ -15,7 +15,7 @@ export default function Inbox() {
       <div className="overflow-hidden lg:flex hidden flex-col">
         <div className="font-medium truncate">Sarah Miller</div>
         <div className="text-sm text-muted-foreground truncate">
-          Let's discuss the project timeline
+          Let&aposs discuss the project timeline
         </div>
       </div>
       <div className="text-xs text-muted-foreground lg:flex hidden whitespace-nowrap">

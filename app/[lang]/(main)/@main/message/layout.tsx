@@ -1,6 +1,8 @@
+import { getDictionary } from "@/app/dictionaries";
+import { RoomProvider } from "@/components/chat/contexts/room-context";
 import LeftSide from "@/components/chat/LeftSide";
 
-export default function ChatLayout({
+export default async function ChatLayout({
   children,
   params,
 }: {
@@ -9,10 +11,13 @@ export default function ChatLayout({
     lang: string;
   };
 }) {
+  const dictionary = await getDictionary(params.lang);
   return (
-    <div className="flex sm:min-h-screen w-full overflow-hidden">
-      <LeftSide />
-      {children}
-    </div>
+    <RoomProvider>
+      <div className="flex sm:min-h-screen w-full overflow-hidden">
+        <LeftSide dictionary={dictionary} />
+        {children}
+      </div>
+    </RoomProvider>
   );
 }

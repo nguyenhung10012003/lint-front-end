@@ -23,6 +23,7 @@ export default function SidebarBody({
           <Link
             href={item.href}
             key={item.name}
+            prefetch={false}
             className={`flex gap-4 p-4 rounded-lg w-full  
               items-center hover:scale-105
                 ${

@@ -2,10 +2,16 @@ import axios from "axios";
 
 function createApi(server: string = "main") {
   let baseURL: string | undefined;
-  if (server === "main") {
-    baseURL = process.env.NEXT_PUBLIC_API_URL;
-  } else {
-    baseURL = process.env.NEXT_PUBLIC_NOTIFICATION_API_URL;
+  switch (server) {
+    case "main":
+      baseURL = process.env.NEXT_PUBLIC_API_URL;
+      break;
+    case "notification":
+      baseURL = process.env.NEXT_PUBLIC_NOTIFICATION_API_URL;
+      break;
+    case "chat":
+      baseURL = process.env.NEXT_PUBLIC_CHAT_API_URL;
+      break;
   }
 
   const isServer = typeof window === "undefined";
@@ -43,8 +49,7 @@ function createApi(server: string = "main") {
       return response;
     },
     (error) => {
-      if (error.response) return error.response;
-      return error;
+      return Promise.reject(error);
     }
   );
 
@@ -53,6 +58,7 @@ function createApi(server: string = "main") {
 
 const api = createApi();
 const notificationApi = createApi("notification");
+const chatApi = createApi("chat");
 
-export { api, notificationApi };
+export { api, chatApi, notificationApi };
 export default api;

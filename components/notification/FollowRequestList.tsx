@@ -1,14 +1,13 @@
 "use client";
 import api from "@/config/api";
-import { formatTimeDifference } from "@/utils/datetime";
-import ProfileAvatar from "../ProfileAvatar";
-import ProfileHoverCard from "../ProfileHoverCard";
-import { RequestButtons } from "./RequestButtons";
-import Cookie from "js-cookie";
 import { Following } from "@/types/relationship";
+import { formatTimeDifference } from "@/utils/datetime";
+import Cookie from "js-cookie";
 import { useCallback, useState } from "react";
 import InfiniteScroll from "../InfiniteScroll";
-
+import ProfileAvatar from "../user/prorfile/ProfileAvatar";
+import ProfileHoverCard from "../user/prorfile/ProfileHoverCard";
+import { RequestButtons } from "./RequestButtons";
 
 export default function FollowRequestList() {
   const [requests, setRequests] = useState<Following[]>([]);
@@ -33,16 +32,16 @@ export default function FollowRequestList() {
     if (data) {
       setRequests([...requests, ...data]);
       setPage(page + 1);
-    } 
+    }
     if (!data || data.length < requestsPerFetch) {
       setHasMore(false);
     }
   }, [page, userId, requests]);
 
   const removeRequest = (id: string) => {
-    setRequests((prev) => prev.filter(request => request.id !== id));
-  }
-  
+    setRequests((prev) => prev.filter((request) => request.id !== id));
+  };
+
   return (
     <InfiniteScroll loadMore={loadMore} hasMore={hasMore}>
       {requests.map((request: any, index: number) => (
@@ -56,16 +55,21 @@ export default function FollowRequestList() {
           />
           <div className="flex w-full pb-2 border-b justify-between md:flex-row flex-col gap-2">
             <div>
-              <ProfileHoverCard profile={request.follower?.profile}></ProfileHoverCard>
+              <ProfileHoverCard
+                profile={request.follower?.profile}
+              ></ProfileHoverCard>
               <span className="ml-2 text-gray-600 dark:text-gray-400 text-sm">
                 {formatTimeDifference(new Date(request.createdAt))}
               </span>
               <p className="text-sm text-gray-500">{`${request.follower?.profile.name} has sent you a follow request`}</p>
             </div>
-            <RequestButtons request={requests[index]} removeRequest={removeRequest}/>
+            <RequestButtons
+              request={requests[index]}
+              removeRequest={removeRequest}
+            />
           </div>
         </div>
       ))}
-    </ InfiniteScroll>
+    </InfiniteScroll>
   );
 }

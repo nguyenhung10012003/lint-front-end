@@ -1,4 +1,5 @@
 import { getDictionary } from "@/app/dictionaries";
+import FollowRequestList from "@/components/notification/FollowRequestList";
 import NotificationList from "@/components/notification/NotificationList";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
