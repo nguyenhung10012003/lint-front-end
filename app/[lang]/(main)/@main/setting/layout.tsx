@@ -5,5 +5,9 @@ export default function SettingLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <AddPadingLayout>{children}</AddPadingLayout>;
+  return (
+    <AddPadingLayout>
+      <div className="flex flex-col w-full gap-4 max-w-[700px] self-center">{children}</div>
+    </AddPadingLayout>
+  );
 }

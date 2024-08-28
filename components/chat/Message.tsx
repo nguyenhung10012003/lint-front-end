@@ -1,3 +1,6 @@
+import { Message as MessageType } from "@/types/message";
+import { Profile } from "@/types/user";
+import { formatTimeAgoV2 } from "@/utils/datetime";
 import { useCallback, useState } from "react";
 import { Icons } from "../Icons";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
@@ -8,8 +11,17 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 
-export default function Message() {
-  const isOwnMessage = false;
+export interface MessageProps {
+  isOwnMessage?: boolean;
+  profile: Profile;
+  message: MessageType;
+}
+
+export default function Message({
+  isOwnMessage = false,
+  profile,
+  message,
+}: MessageProps) {
   const [isHovered, setIsHovered] = useState(false);
   const onMouseEnter = useCallback(() => {
     setIsHovered(true);
@@ -19,50 +31,41 @@ export default function Message() {
     setIsHovered(false);
   }, []);
   return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <div
-            className={`flex gap-2 ${isOwnMessage ? "flex-row-reverse" : ""}`}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-            <Avatar className="h-10 w-10">
-              <AvatarImage src="/placeholder-user.jpg" alt="Avatar" />
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-            <div className="flex flex-col gap-1">
+    <div
+      className={`flex gap-2 ${isOwnMessage ? "flex-row-reverse" : ""}`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <Avatar className="h-10 w-10">
+        <AvatarImage src={profile.avatar} alt="" />
+        <AvatarFallback>{profile.name?.slice(0, 1)}</AvatarFallback>
+      </Avatar>
+      <div className="flex flex-col gap-1">
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
               <div
-                className={`rounded-2xl p-3 text-sm text-white max-w-[550px] break-word ${
-                  isOwnMessage ? "bg-primary" : "bg-muted"
+                className={`rounded-2xl p-3 text-sm max-w-[550px] break-word ${
+                  isOwnMessage ? "bg-primary text-white" : "bg-accent"
                 }`}
               >
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
+                {message.text}
               </div>
-            </div>
-            <div
-              className={`${
-                isHovered ? "flex" : "flex"
-              } gap-2 items-center h-full`}
-            >
-              <Icons.reply className="w-5 h-5 text-muted-foreground" />
-              <Icons.emoji className="w-5 h-5 text-muted-foreground" />
-            </div>
-          </div>
-        </TooltipTrigger>
-        <TooltipContent>
-          <div className="text-xs">2:34 PM</div>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div className="text-xs">
+                {formatTimeAgoV2(message.createdAt)}
+              </div>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+      <div
+        className={`${isHovered ? "flex" : "flex"} gap-2 items-center h-full`}
+      >
+        <Icons.reply className="w-5 h-5 text-muted-foreground" />
+        <Icons.emoji className="w-5 h-5 text-muted-foreground" />
+      </div>
+    </div>
   );
 }

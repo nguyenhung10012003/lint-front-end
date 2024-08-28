@@ -2,10 +2,10 @@ import { Icons } from "../Icons";
 import { Input } from "../ui/input";
 import InboxList from "./InboxList";
 
-export default function LeftSide() {
+export default function LeftSide({dictionary}: {dictionary: any}) {
   return (
     <div className="flex flex-col border-r gap-4">
-      <div className="px-4">
+      <div className="px-4 pt-4">
         <div className="gap-2 items-center lg:flex border border-neutral-400 px-4 py-2 rounded-full hidden">
           <Input
             placeholder="Search users..."

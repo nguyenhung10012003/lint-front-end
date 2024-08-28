@@ -1,21 +1,31 @@
 "use client";
 
-import Message from "./Message";
-import MessageFormBox from "./MessageFormBox";
+import { Room as RoomType } from "@/types/message";
+import { useEffect } from "react";
+import { useRoom } from "./contexts/room-context";
+import MessageList from "./MessageList";
+import RoomFooter from "./RoomFooter";
 import RoomHeader from "./RoomHeader";
 
-export default function Room() {
+export default function Room({
+  room,
+  dictionary,
+}: {
+  room: RoomType;
+  dictionary: any;
+}) {
+  const { changeRoom } = useRoom();
+  useEffect(() => {
+    changeRoom(room);
+  }, []);
+
   return (
     <div className="flex flex-col w-full ">
       <RoomHeader />
       <div className="flex p-6 h-full overflow-y-auto overflow-x-hidden">
-        <div className="flex flex-col gap-4 w-full">
-          <Message />
-          <Message />
-          <Message />
-        </div>
+        <MessageList />
       </div>
-      <MessageFormBox />
+      <RoomFooter />
     </div>
   );
 }

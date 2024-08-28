@@ -57,6 +57,7 @@ const EmojiTable = memo(
     );
   }
 );
+EmojiTable.displayName = "EmojiTable";
 
 export default function EmojiPicker({
                                       text,
